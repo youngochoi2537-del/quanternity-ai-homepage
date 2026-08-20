@@ -24,7 +24,7 @@ window.COPY = {
         eyebrow: "Our Premise",
         h1Lead: "AI 규제는 인증만으로 막을 수 없습니다.",
         h1Emph: "법률 판단이 먼저입니다.",
-        sub: "사시 출신 변호사와 ISO 선임심사원이 한 팀으로, 법적 진단부터 ISO 42001 · 27001 · 13485 인증까지 책임 구조를 함께 설계합니다.",
+        sub: "변호사와 ISO 선임심사원이 한 팀으로, 법적 진단부터 ISO 42001 · 27001 · 13485 인증까지 책임 구조를 함께 설계합니다.",
       },
       finance: {
         eyebrow: "For Financial Institutions",
@@ -36,7 +36,7 @@ window.COPY = {
         eyebrow: "For Public Sector & Listed Companies",
         h1Lead: "AI 기본법 시대,",
         h1Emph: "입찰과 이사회를 통과하는 체계.",
-        sub: "2026년 1월 AI 기본법이 시행되었습니다. 사시 출신 변호사가 준법(37301)·부패방지(37001)를 검토하고, 선임심사원이 42001·27001 통합 체계로 입찰 가점을 설계합니다.",
+        sub: "2026년 1월 AI 기본법이 시행되었습니다. 변호사가 준법(37301)·부패방지(37001)를 검토하고, 선임심사원이 42001·27001 통합 체계로 입찰 가점을 설계합니다.",
       },
       medical: {
         eyebrow: "For MedTech & IVD",
@@ -50,19 +50,19 @@ window.COPY = {
     heroCard: {
       label: "Practice Composition",
       k: {
-        role: "Legal Counsel",
+        role: "Advisory Network",
         name: "K",
-        creds: "사시 합격 · 변호사 · AI전략경영석사",
+        creds: "AI석사 · 변호사 · ISO 42001 27001 선임심사원",
       },
       mark: {
         role: "Lead Implementation",
         name: "Mark",
-        creds: "ISO 42001 · 27001 · 13485 선임심사원",
+        creds: "AI공학박사 · ISO 42001 · 27001 · 13485 선임심사원",
       },
       daniel: {
         role: "Chief Technology Officer",
         name: "Daniel",
-        creds: "AI 공학 박사 · Korea Vibe Coding 전문가",
+        creds: "AI공학박사 · Korea Vibe Coding 전문가",
       },
     },
 
@@ -85,7 +85,7 @@ window.COPY = {
       h2Lead: "체크리스트가 아니라 ",
       h2Emph: "법적 판정",
       h2Trail: "이 먼저인 컨설팅.",
-      sub: "경쟁사들은 인증 발급에 집중합니다. 우리는 법적 책임 구조부터 다시 설계합니다. 사시 출신 변호사가 법률 리스크를 판정하고, 선임심사원이 시스템으로 구현합니다.",
+      sub: "경쟁사들은 인증 발급에 집중합니다. 우리는 법적 책임 구조부터 다시 설계합니다. 변호사가 법률 리스크를 판정하고, 선임심사원이 시스템으로 구현합니다.",
       pillars: [
         {
           num: "I",
@@ -189,7 +189,7 @@ window.COPY = {
           "AI 전략경영 석사 (MBA · AI Governance)",
           "준법지원 · 부패방지 자문 경력",
         ],
-        body: "AI의 법적 위험 분류, 책임 구조 설계, 차별·편향·개인정보·환자안전 법리를 직접 검토합니다. 법적 의견서는 변호사 책임으로 발행합니다.",
+        body: "AI의 법적 위험 분류, 책임 구조 설계, 차별·편향·개인정보·환자안전 법리를 직접 검토합니다. 규제 적용성 분석 보고서는 변호사 책임으로 발행합니다.",
       },
       mark: {
         role: "Lead Implementation",
@@ -217,7 +217,7 @@ window.COPY = {
       },
       separation: {
         label: "Boundary",
-        body: "법률 자문 · 의견서 발행은 K(변호사) 책임. 인증 컨설팅 · 심사 대응은 Mark(선임심사원) 책임. AI 시스템·모델 기술 구현은 Daniel(CTO) 책임. 변호사법 · 광고 규정에 따라 세 업무의 명의와 책임은 분리됩니다.",
+        body: "법률 자문 · 규제 적용성 분석 보고서 발행은 K(변호사) 책임. 인증 컨설팅 · 심사 대응은 Mark(선임심사원) 책임. AI 시스템·모델 기술 구현은 Daniel(CTO) 책임. 변호사법 · 광고 규정에 따라 세 업무의 명의와 책임은 분리됩니다.",
       },
     },
 

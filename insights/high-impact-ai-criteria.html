@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 네이버 서치어드바이저 소유확인 — 삭제 금지 -->
+  <meta name="naver-site-verification" content="c0521f7fab504ab73d5534aab72639841ef20d1c" />
+  <!-- TODO: Google Search Console 소유확인 메타태그 발급 시 추가 -->
+  <title>고영향 AI 사업자, 하위법령이 요구하는 세부 관리 기준 — 퀀터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="AI기본법 시행에 따른 고영향 AI 사업자의 5대 핵심 의무, 위험관리방안, 설명가능성, 사람의 감독 및 실무 체크리스트" />
+  <link rel="canonical" href="https://quanternity.kr/insights/high-impact-ai-criteria" />
+
+  <!-- JSON-LD Structured Data: BlogPosting & BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://quanternity.kr/insights/high-impact-ai-criteria#article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://quanternity.kr/insights/high-impact-ai-criteria"
+        },
+        "headline": "고영향 AI 사업자, 하위법령이 요구하는 세부 관리 기준",
+        "description": "AI기본법 시행에 따른 고영향 AI 사업자의 5대 핵심 의무, 위험관리방안, 설명가능성, 사람의 감독 및 실무 체크리스트",
+        "datePublished": "2026-08-02T00:00:00+09:00",
+        "dateModified": "2026-08-04T00:00:00+09:00",
+        "author": {
+          "@id": "https://quanternity.kr/#organization"
+        },
+        "publisher": {
+          "@id": "https://quanternity.kr/#organization"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://quanternity.kr/images/logo.png"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://quanternity.kr/insights/high-impact-ai-criteria#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://quanternity.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "규제 인사이트",
+            "item": "https://quanternity.kr/insights"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "고영향 AI 세부 관리 기준",
+            "item": "https://quanternity.kr/insights/high-impact-ai-criteria"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="/#services">서비스</a>
+        <a href="/#public-ai">왜 인증인가</a>
+        <a href="/#fieldproof">FieldProof</a>
+        <a href="/insights" class="active">인사이트</a>
+        <div class="nav-item dropdown">
+          <a href="/about" class="nav-link dropdown-toggle">회사 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="/about" class="dropdown-item">회사 소개</a>
+            <a href="/about/independence" class="dropdown-item">원칙과 독립성</a>
+            <a href="/network" class="dropdown-item">심사원 네트워크</a>
+            <a href="/#contact" class="dropdown-item">오시는 길 · 사업자 정보</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <button class="lang-switch">KO / EN</button>
+        <span class="divider-v"></span>
+        <a href="/#login-modal" class="btn-outline open-login-trigger">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          FieldProof 로그인
+        </a>
+        <a href="/#assessment-modal" class="btn-primary-dark open-assessment-trigger">무료 진단 신청</a>
+        <button class="mobile-nav-toggle" aria-label="메뉴 열기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 40px;">
+    <article class="blog-post-wrap">
+      
+      <!-- Back Link -->
+      <div style="margin-bottom: 24px;">
+        <a href="/insights" style="font-family: var(--font-mono); font-size: 13px; color: var(--fg-2); text-decoration: none;">
+          ← 인사이트 목록으로 돌아가기
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="blog-header">
+        <div class="blog-meta-badge">AI기본법 · 규제 분석</div>
+        <h1 class="blog-post-title">#1. 고영향 AI 사업자, 하위법령이 요구하는 세부 관리 기준</h1>
+        <div class="blog-post-meta">
+          <span>작성일: 2026년 7월 31일</span>
+          <span>·</span>
+          <span>읽는 시간: 약 8분</span>
+          <span>·</span>
+          <span>작성: 퀀터니티에이아이 AI 거버넌스 연구소</span>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="blog-body">
+        
+        <blockquote>
+          <p><strong>기준일: 2026년 7월 31일</strong></p>
+          <p style="margin-top: 8px;">「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」, 이른바 AI기본법은 2026년 1월 22일부터 시행되었다. 이후 개정된 일부 조항은 2026년 7월 21일부터 시행되고 있어, 사업자는 최초 시행 법률뿐 아니라 현재 유효한 개정 법령과 하위법령을 함께 확인해야 한다.</p>
+        </blockquote>
+
+        <p>AI기본법에서 말하는 ‘고영향 인공지능’은 보건의료, 에너지, 먹는 물, 원자력, 교통, 교육, 채용·대출 등 국민의 생명·신체 안전이나 기본권에 중대한 영향을 미칠 수 있는 영역에서 사용되는 AI를 의미한다. 따라서 단순히 AI가 특정 산업에서 사용된다는 사실만으로 고영향 AI가 되는 것은 아니며, AI가 실제 의사결정에 미치는 영향과 위험의 중대성 등을 함께 살펴야 한다.</p>
+
+        <h2>1. 고영향 AI 판단은 두 단계로 이루어진다</h2>
+        <p>실무에서는 다음 두 가지를 순차적으로 검토하는 것이 적절하다.</p>
+        
+        <p>첫째, AI가 법률과 시행령에서 정한 고영향 영역에 사용되는지를 확인해야 한다. 의료 진단, 채용 심사, 신용평가, 교육 평가처럼 사람의 권리나 기회에 직접 영향을 미치는 기능이 대표적이다.</p>
+        
+        <p>둘째, AI의 출력이 최종 의사결정에 미치는 실질적 영향과 피해 발생 가능성을 평가해야 한다. 결과의 중대성, 발생 빈도, 영향을 받는 사람의 범위, 오류를 사후에 회복할 수 있는지 등이 주요 판단 요소가 된다.</p>
+        
+        <p>사람이 최종 결정을 내린다는 이유만으로 자동적으로 고영향 AI에서 제외된다고 보기는 어렵다. 담당자가 AI 결과를 실질적으로 검토하고 이를 거부하거나 수정할 권한과 역량을 가지고 있는지가 중요하다. 형식적으로 승인 버튼만 누르는 구조라면 사람에 의한 통제로 인정받기 어려울 수 있다.</p>
+
+        <h2>2. 사업자가 준비해야 할 다섯 가지 핵심 의무</h2>
+        <p>AI기본법 제34조는 고영향 AI 또는 이를 이용한 제품·서비스를 제공하는 사업자에게 안전성과 신뢰성을 확보하기 위한 관리조치를 요구한다. 주요 의무는 다음과 같다.</p>
+
+        <h3>① 위험관리방안 수립과 운영</h3>
+        <p>사업자는 AI의 기획, 데이터 수집, 개발, 검증, 배포, 운영, 변경 및 폐기에 이르는 수명주기 전체에서 위험을 식별하고 관리해야 한다.</p>
+        <p>이를 위해서는 최소한 다음 항목이 필요하다.</p>
+        <ul>
+          <li>AI 위험관리 정책과 책임자</li>
+          <li>위험 식별·평가 기준</li>
+          <li>위험수준별 승인 권한</li>
+          <li>위험 완화조치와 잔여위험 승인 절차</li>
+          <li>운영 중 성능과 사고를 모니터링하는 절차</li>
+        </ul>
+
+        <h3>② 결과에 대한 설명 방안 마련</h3>
+        <p>AI의 결과가 개인의 권리나 기회에 영향을 미치는 경우, 사업자는 이용자와 영향을 받는 사람이 결과의 주요 근거를 이해할 수 있도록 설명 방안을 마련해야 한다.</p>
+        <p>모델의 소스코드나 모든 내부 계산 과정을 공개해야 한다는 의미라기보다, 다음과 같은 정보를 설명할 수 있어야 한다는 의미에 가깝다.</p>
+        <ul>
+          <li>AI가 판단에 사용한 주요 요소</li>
+          <li>결과가 도출된 일반적인 기준</li>
+          <li>사용된 데이터의 유형과 범위</li>
+          <li>알려진 한계와 오류 가능성</li>
+          <li>결과에 이의를 제기하거나 사람의 검토를 요청하는 방법</li>
+        </ul>
+
+        <h3>③ 이용자 보호와 피해구제 체계 구축</h3>
+        <p>사업자는 AI 오작동과 보안사고를 예방하고, 피해가 발생했을 때 신속하게 대응할 수 있는 절차를 마련해야 한다.</p>
+        <p>보안대책, 이상행동 탐지, 이용자 신고채널, 사고 대응, 원인분석, 피해구제 및 재발방지 조치가 하나의 운영체계로 연결되어야 한다.</p>
+
+        <h3>④ 사람에 의한 관리·감독</h3>
+        <p>AI가 자동으로 결정을 내리는 경우에도 필요한 시점에 사람이 개입할 수 있어야 한다.</p>
+        <p>사람의 감독은 단순히 담당자를 지정하는 것에 그치지 않는다. 담당자가 AI의 한계를 이해하고 결과를 재검토할 수 있어야 하며, 필요한 경우 다음 조치를 실행할 수 있어야 한다.</p>
+        <ul>
+          <li>AI 결과의 보류 또는 거부</li>
+          <li>추가 자료를 활용한 재검토</li>
+          <li>모델 또는 서비스의 긴급 정지</li>
+          <li>수동 업무절차로의 전환</li>
+          <li>오류 결과의 수정과 이용자 통지</li>
+        </ul>
+
+        <h3>⑤ 문서 작성·보관 및 주요 내용 공개</h3>
+        <p>사업자는 안전성과 신뢰성을 확보하기 위해 시행한 조치를 문서화해야 한다. 실무상 ‘안전·신뢰 문서’에는 다음 자료가 포함될 수 있다.</p>
+        <ul>
+          <li>AI 시스템의 목적과 적용 범위</li>
+          <li>데이터 출처와 품질관리 결과</li>
+          <li>성능·안전성 시험 결과</li>
+          <li>위험평가와 영향평가 결과</li>
+          <li>사람의 감독 방식</li>
+          <li>사고와 변경 이력</li>
+          <li>위험 완화조치 및 잔여위험 승인 내역</li>
+        </ul>
+        <p>하위법령 해설에서는 관련 문서를 일정 기간 보관하고, 안전성과 신뢰성 확보 조치의 주요 내용을 사업장이나 홈페이지 등을 통해 공개하는 방안을 제시하고 있다. 실무적으로는 최소 5년을 기준으로 문서 보존정책을 설계하는 것이 안전하다.</p>
+
+        <h2>3. 고영향 AI 확인제도 활용</h2>
+        <p>자신이 제공하는 AI가 고영향 AI에 해당하는지 불분명한 사업자는 과학기술정보통신부에 확인을 요청할 수 있다.</p>
+        <p>확인 처리기간은 원칙적으로 30일이며, 추가 검토가 필요한 경우 한 차례에 한해 최대 30일까지 연장될 수 있다. 다만 확인 요청을 했다는 사실만으로 사업자의 자체 판단과 위험관리 책임이 사라지는 것은 아니다.</p>
+        <p>따라서 사업자는 확인 신청 전 다음 자료를 준비하는 것이 바람직하다.</p>
+        <ol>
+          <li>AI의 사용 목적과 이용 대상</li>
+          <li>AI가 사용되는 산업·업무 영역</li>
+          <li>AI 결과가 의사결정에 미치는 영향</li>
+          <li>사람의 검토·개입 방식</li>
+          <li>예상되는 피해와 위험 완화조치</li>
+          <li>시스템 구성도와 데이터 흐름</li>
+        </ol>
+
+        <h2>4. 타 법률과의 중복 규제는 어떻게 처리되는가</h2>
+        <p>의료 AI처럼 이미 디지털의료제품법 등 다른 법률에 따라 안전성·성능·품질관리 의무를 이행하고 있는 경우, 동일하거나 유사한 조치에 대해서는 AI기본법상 의무를 이행한 것으로 인정받을 수 있다. 이는 동일한 시험과 문서를 반복 작성하는 부담을 줄이기 위한 장치다.</p>
+        <p>그러나 기존 인허가나 품질문서가 AI기본법의 모든 요구사항을 자동으로 충족하는 것은 아니다. 기존 문서와 AI기본법 요구사항을 조항별로 매핑하고, 설명가능성, 기본권 영향, 사람의 감독 등 빠진 항목을 보완해야 한다.</p>
+
+        <h2>5. 제재보다 중요한 것은 ‘증거의 부재’다</h2>
+        <p>AI기본법상 시정명령을 이행하지 않거나 국내대리인 지정 등 법률상 의무를 위반한 경우에는 최대 3,000만 원 이하의 과태료가 부과될 수 있다.</p>
+        <p>다만 기업 실무에서 더 큰 위험은 과태료 자체보다 다음과 같은 상황이다.</p>
+        <ul>
+          <li>위험평가를 했지만 기록이 없는 경우</li>
+          <li>담당 부서는 있으나 책임과 승인 권한이 불분명한 경우</li>
+          <li>사람의 감독을 규정했지만 실제 운영 증거가 없는 경우</li>
+          <li>모델 변경 후 영향평가를 다시 수행하지 않은 경우</li>
+          <li>피해 신고를 받았지만 사고관리 절차와 연결되지 않은 경우</li>
+        </ul>
+        <p>결국 고영향 AI 규제 대응의 핵심은 정책을 만드는 데 있지 않다. AI 수명주기 전반에서 누가, 언제, 어떤 기준으로 판단하고 조치했는지를 재현할 수 있는 관리체계와 증거를 확보하는 데 있다.</p>
+
+        <h2>실무 체크리스트</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>확인 사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>적용성 판단</strong></td>
+              <td>고영향 영역 및 중대한 영향 가능성 검토</td>
+            </tr>
+            <tr>
+              <td><strong>거버넌스</strong></td>
+              <td>책임자, 검토자, 승인권자 지정</td>
+            </tr>
+            <tr>
+              <td><strong>위험관리</strong></td>
+              <td>수명주기별 위험평가 및 완화조치</td>
+            </tr>
+            <tr>
+              <td><strong>설명가능성</strong></td>
+              <td>주요 판단 요소와 이의제기 절차 마련</td>
+            </tr>
+            <tr>
+              <td><strong>사람의 감독</strong></td>
+              <td>정지·거부·수정 권한과 절차 설계</td>
+            </tr>
+            <tr>
+              <td><strong>이용자 보호</strong></td>
+              <td>신고, 사고 대응, 피해구제 체계</td>
+            </tr>
+            <tr>
+              <td><strong>문서관리</strong></td>
+              <td>평가·시험·승인·변경·사고 기록 보관</td>
+            </tr>
+            <tr>
+              <td><strong>기존 규제 연계</strong></td>
+              <td>의료·금융 등 기존 규제 문서와 매핑</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="blog-reference-box">
+          <div class="blog-reference-title">참고문헌</div>
+          <ol class="blog-reference-list">
+            <li>국가법령정보센터, 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」.</li>
+            <li>국가법령정보센터, 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법 시행령」.</li>
+            <li>과학기술정보통신부·법제처, AI기본법 하위법령 제정안 및 입법예고 자료.</li>
+            <li>국가법령정보센터, AI기본법 제34조 고영향 인공지능 관련 사업자의 책무.</li>
+            <li>법무법인 태평양, AI기본법 하위법령안의 주요 내용과 기업 대응방안.</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- Bottom Callout -->
+      <div style="margin-top: 64px; background: var(--ink-950); color: #F5F4EF; border-radius: 16px; padding: 40px; text-align: center;">
+        <h3 style="font-size: 22px; font-weight: 600; color: #F5F4EF; margin-bottom: 12px;">우리 회사 AI 시스템도 고영향 AI에 해당할까요?</h3>
+        <p style="font-size: 15px; color: var(--signal-400); margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+          퀀터니티에이아이의 30분 무료 진단 미팅을 통해 현재 AI 시스템의 고영향 해당 여부 및 갭 분석 요약서를 2영업일 내 받아보세요.
+        </p>
+        <a href="/#assessment-modal" class="btn-primary-dark open-assessment-trigger" style="background: #10B981; color: #0B1220; display: inline-block; padding: 14px 28px; font-weight: 700; border-radius: 8px; text-decoration: none;">
+          무료 규제 진단 신청하기 →
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="header-brand">
+          <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+          </svg>
+          <div class="brand-text-group">
+            <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+            <div class="brand-subtitle">AI거버넌스 운영체계</div>
+          </div>
+        </a>
+        <p style="font-size: 13px; color: var(--fg-2); margin-top: 12px; max-width: 320px;">
+          현직 심사원이 설립한 AI 거버넌스·ISO 경영시스템 컴플라이언스 전문 기업
+        </p>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">서비스</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#services" style="color: var(--fg-2);">AI 거버넌스 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">정보보호 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">인증 취득 컨설팅</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">왜 인증인가</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#public-ai" style="color: var(--fg-2);">공공 AI 수주</a>
+          <a href="/#regulation-map" style="color: var(--fg-2);">AI기본법 대응</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">FieldProof</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#fieldproof" style="color: var(--fg-2);">제품 소개</a>
+          <a href="/#login-modal" class="open-login-trigger" style="color: var(--fg-2);">로그인 콘솔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">회사 메뉴</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/about" style="color: var(--fg-2);">회사 소개</a>
+          <a href="/about/independence" style="color: var(--fg-2);">원칙과 독립성</a>
+          <a href="/network" style="color: var(--fg-2);">심사원 네트워크</a>
+          <a href="/#contact" style="color: var(--fg-2);">오시는 길 · 사업자 정보</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Guardrail & Brand Info Block -->
+    <div class="footer-guardrail" style="border-top: 1px solid rgba(245,244,239,0.1); padding-top: 24px; margin-top: 32px; font-size: 13px; color: var(--fg-3); line-height: 1.7; text-align: left;">
+      <div style="margin-bottom: 6px; font-weight: 600; color: rgba(245,244,239,0.95);">
+        퀀터니티에이아이(Quanternity AI)는 주식회사 인코어가 운영하는 브랜드입니다.
+      </div>
+      <div>
+        운영사: 주식회사 인코어 | 대표: 이진범 | 사업자등록번호: 302-87-03113 | 주소: 인천광역시 서구 원당대로 876, 7층 703-19호(당하동, 희림타워) | 이메일: contact@quanternity.kr
+      </div>
+      <div style="margin-top: 8px;">
+        퀀터니티에이아이는 ISO/IEC 42001·27001 인증 심사 준비를 지원하며, 실무 기술과 법률 전문성을 갖춘 컨설턴트가 인증 취득 과정을 함께합니다.
+      </div>
+    </div>
+
+    <div class="footer-copyright" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(245,244,239,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg-3);">
+      <div>© 2026 Quanternity AI. All rights reserved.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="/terms" style="color: var(--fg-3); text-decoration: none;">이용약관</a>
+        <a href="/privacy" style="color: var(--fg-3); text-decoration: none;">개인정보 처리방침</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
