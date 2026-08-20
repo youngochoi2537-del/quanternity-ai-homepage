@@ -492,7 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stopHeroTimer();
     heroTimer = setInterval(() => {
       updateHeroSlide(activeHeroSlide + 1);
-    }, 5000);
+    }, 7000);
   }
 
   function stopHeroTimer() {
