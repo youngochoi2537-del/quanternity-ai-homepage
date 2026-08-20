@@ -766,8 +766,8 @@ document.addEventListener("DOMContentLoaded", () => {
       notice_text: "<strong>2026년 AI기본법 시행 확정</strong><span class=\"announcement-body-inline\"> — 지난 7월 14일 국무회의를 통과한 AI기본법 시행령 개정안이 7월 21일부터 시행되었습니다. 공공조달 AI 확인제 신설 및 ISO/IEC 42001·27001 통합 구축 무료 진단 진행 중</span>",
       notice_link: "진단하기 ➔",
 
-      hero_slide_1_h1: "우리 회사 AI는 <span class=\"text-green\">'고영향 AI'</span>입니까?",
-      hero_slide_1_sub: "AI기본법 시행으로 고영향 AI 사업자에게는 위험관리·설명·문서화 의무가 부여됩니다. 해당 가능성은 자가진단으로 확인하고, 이행 체계는 ISO/IEC 42001로 증명합니다.",
+      hero_slide_1_h1: "두 개의 인증,<br /><span class=\"text-green\">한 번의 구축으로</span> 준비합니다.",
+      hero_slide_1_sub: "ISO/IEC 42001과 27001은 정책·위험관리·내부심사·경영검토 등 경영시스템 구조를 공유합니다. 통합 구축은 같은 문서를 두 번 만드는 일을 없애고, 준비 기간과 심사 대응 부담을 줄입니다.",
       hero_slide_1_cta1: "3분 자가진단",
       hero_slide_1_cta2: "무료 진단 신청",
 
@@ -967,8 +967,8 @@ document.addEventListener("DOMContentLoaded", () => {
       notice_text: "<strong>Korea AI Framework Act Confirmed</strong><span class=\"announcement-body-inline\"> — Enforcement Decree in effect. Public procurement AI verification & ISO/IEC 42001·27001 integrated build assessment open.</span>",
       notice_link: "Assess Now ➔",
 
-      hero_slide_1_h1: "Is your AI a <span class=\"text-green\">'High-Impact AI'</span>?",
-      hero_slide_1_sub: "Under the AI Framework Act, High-Impact AI providers face risk management, explainability, and documentation duties. Assess eligibility via self-diagnosis and prove compliance via ISO/IEC 42001.",
+      hero_slide_1_h1: "Two Certifications,<br /><span class=\"text-green\">One Streamlined Implementation</span>.",
+      hero_slide_1_sub: "ISO/IEC 42001 and 27001 share core management system structures such as policy, risk management, internal audit, and management review. Integrated implementation eliminates duplicate documentation, reducing preparation time and audit burdens.",
       hero_slide_1_cta1: "3-Min Assessment",
       hero_slide_1_cta2: "Free Assessment",
 
