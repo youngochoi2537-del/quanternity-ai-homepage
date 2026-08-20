@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "name": "quanternity-ai-homepage",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/why-certification",
+      "destination": "/why-certification.html"
+    },
+    {
+      "source": "/insights/post",
+      "destination": "/insights/post.html"
+    },
+    {
+      "source": "/insights/:slug",
+      "destination": "/insights/post.html"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+# ─────────────────────────────────────────────────────────────
+# Quanternity AI (주식회사 퀀터니티에이아이)
+# https://quanternity.kr
+#
+# 본 파일은 크롤러 접근 "요청"을 정의합니다.
+# 접근 통제 수단이 아니며, 비공개 자원은 인증 및
+# X-Robots-Tag 헤더로 별도 보호됩니다.
+# ─────────────────────────────────────────────────────────────
+
+# ── 1. 일반 검색엔진 ──────────────────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/chunks/
+Disallow: /preview/
+Disallow: /draft/
+Disallow: /thanks/
+Disallow: /complete/
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# ── 2. 국내 검색엔진 명시 허용 ────────────────────────────────
+# 국내 B2B 고객의 주요 탐색 경로
+User-agent: Yeti
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+# ── 3. AI 학습용 수집 제한 ────────────────────────────────────
+# 당사는 AI 거버넌스 자문 기업으로서, 자사 콘텐츠의
+# 모델 학습 목적 수집을 제한합니다.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+# ── 4. AI 검색 인용 크롤러 허용 ───────────────────────────────
+# 학습은 제한하되, 검색 결과 인용은 유입 채널로 허용합니다.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── 5. 사이트맵 ───────────────────────────────────────────────
+Sitemap: https://quanternity.kr/sitemap.xml

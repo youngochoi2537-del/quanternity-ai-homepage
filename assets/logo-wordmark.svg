@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" fill="none" aria-label="Quanternity AI">
+  <g transform="translate(0, 0)">
+    <rect x="2" y="2" width="19" height="19" rx="4.5" fill="currentColor"/>
+    <rect x="24" y="2" width="19" height="19" rx="4.5" fill="currentColor"/>
+    <rect x="2" y="24" width="19" height="19" rx="4.5" fill="currentColor"/>
+    <rect x="29" y="29" width="19" height="19" rx="4.5" fill="#10B981"/>
+  </g>
+  <text x="54" y="26" fill="currentColor" font-family="Pretendard, sans-serif" font-size="19" font-weight="700" letter-spacing="-0.015em">Quanternity <tspan fill="#10B981">AI</tspan></text>
+  <text x="54" y="41" fill="currentColor" font-family="Pretendard, sans-serif" font-size="10.5" font-weight="500" opacity="0.75" letter-spacing="-0.01em">AI거버넌스 운영체계</text>
+</svg>

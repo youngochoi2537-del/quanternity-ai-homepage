@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 네이버 서치어드바이저 소유확인 — 삭제 금지 -->
+  <meta name="naver-site-verification" content="c0521f7fab504ab73d5534aab72639841ef20d1c" />
+  <!-- TODO: Google Search Console 소유확인 메타태그 발급 시 추가 -->
+  <title>규제 인사이트 — 퀀터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="AI기본법, EU AI Act, ISO/IEC 42001 컴플라이언스 규제 분석 및 실무 가이드 인사이트" />
+  <link rel="canonical" href="https://quanternity.kr/insights" />
+
+  <!-- JSON-LD Structured Data: CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://quanternity.kr/insights#webpage",
+    "url": "https://quanternity.kr/insights",
+    "name": "규제 인사이트 — 퀀터니티에이아이 (Quanternity AI)",
+    "description": "AI기본법, EU AI Act, ISO/IEC 42001 컴플라이언스 규제 분석 및 실무 가이드 인사이트",
+    "publisher": {
+      "@id": "https://quanternity.kr/#organization"
+    }
+  }
+  </script>
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="/#services">서비스</a>
+        <a href="/why-certification">왜 인증인가</a>
+        <a href="/#fieldproof">FieldProof</a>
+        <a href="/insights" class="active">인사이트</a>
+        <div class="nav-item dropdown">
+          <a href="/about" class="nav-link dropdown-toggle">회사 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="/about" class="dropdown-item">회사 소개</a>
+            <a href="/about/independence" class="dropdown-item">원칙과 독립성</a>
+            <a href="/network" class="dropdown-item">심사원 네트워크</a>
+            <a href="/#contact" class="dropdown-item">오시는 길 · 사업자 정보</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <button class="lang-switch">KO / EN</button>
+        <span class="divider-v"></span>
+        <a href="/#login-modal" class="btn-outline open-login-trigger">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          FieldProof 로그인
+        </a>
+        <a href="/#assessment-modal" class="btn-primary-dark open-assessment-trigger">무료 진단 신청</a>
+        <button class="mobile-nav-toggle" aria-label="메뉴 열기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 40px;">
+
+    <!-- Insights Subpage Hero Header -->
+    <section style="background: var(--ink-950); color: #F5F4EF; padding: 64px 0 48px; border-bottom: 1px solid rgba(245,244,239,0.1);">
+      <div class="container">
+        <div class="overline" style="color: var(--signal-400);">REGULATORY & COMPLIANCE INSIGHTS</div>
+        <h1 style="font-size: 42px; font-weight: 600; color: #F5F4EF; margin-top: 12px; letter-spacing: -0.02em;" data-i18n="ins_hero_title">
+          규제 인사이트 & 실무 가이드
+        </h1>
+        <p style="font-size: 16px; color: rgba(245,244,239,0.7); margin-top: 12px; max-width: 720px; line-height: 1.6;" data-i18n="ins_hero_sub">
+          현직 심사원과 규제 전담 연구진이 검토·분석한 AI기본법, EU AI Act, ISO/IEC 42001 최신 실무 가이드입니다.
+        </p>
+
+        <!-- Category Filter Chips -->
+        <div style="display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap;">
+          <span class="chip selected" style="background: var(--signal-700); color: #ffffff; padding: 8px 16px; font-size: 13px; border-radius: 20px;" data-i18n="ins_filter_all">전체 (3)</span>
+          <span class="chip" style="background: rgba(245,244,239,0.08); border: 1px solid rgba(245,244,239,0.2); color: rgba(245,244,239,0.8); padding: 8px 16px; font-size: 13px; border-radius: 20px;">AI기본법</span>
+          <span class="chip" style="background: rgba(245,244,239,0.08); border: 1px solid rgba(245,244,239,0.2); color: rgba(245,244,239,0.8); padding: 8px 16px; font-size: 13px; border-radius: 20px;">EU AI Act</span>
+          <span class="chip" style="background: rgba(245,244,239,0.08); border: 1px solid rgba(245,244,239,0.2); color: rgba(245,244,239,0.8); padding: 8px 16px; font-size: 13px; border-radius: 20px;">ISO/IEC 42001</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles List Grid Section -->
+    <section class="section">
+      <div class="container">
+        
+        <div class="insights-grid">
+          
+          <!-- Article Card 1 -->
+          <a href="/insights/high-impact-ai-criteria" class="insight-card">
+            <div class="insight-card-category">AI기본법 · 하위법령</div>
+            <h2 class="insight-card-title">#1. 고영향 AI 사업자, 하위법령이 요구하는 세부 관리 기준</h2>
+            <p class="insight-card-desc">
+              2026년 1월 시행 AI기본법에 따른 고영향 AI 판단 2단계 기준, 사업자의 5대 핵심 의무(위험관리, 설명가능성, 이용자보호, 사람의 감독, 문서보관) 및 실무 체크리스트.
+            </p>
+            <div class="insight-card-meta">
+              <span>2026.07.31</span>
+              <span style="color: var(--signal-700); font-weight: 600;" data-i18n="ins_read_full">전문 읽기 →</span>
+            </div>
+          </a>
+
+          <!-- Article Card 2 -->
+          <a href="/insights/gpai-document-checklist" class="insight-card">
+            <div class="insight-card-category">EU AI Act · GPAI</div>
+            <h2 class="insight-card-title">#2. GPAI 감독·집행 본격화, 제공자가 준비해야 할 문서 체크리스트</h2>
+            <p class="insight-card-desc">
+              EU AI Act 범용 AI 모델(GPAI) 집행 본격화에 대응하는 4대 필수 문서(기술문서, 다운스트림 패키지, 저작권 준수정책, 학습요약본) 및 시스템적 위험 GPAI 의무 요약.
+            </p>
+            <div class="insight-card-meta">
+              <span>2026.07.31</span>
+              <span style="color: var(--signal-700); font-weight: 600;" data-i18n="ins_read_full">전문 읽기 →</span>
+            </div>
+          </a>
+
+          <!-- Article Card 3 -->
+          <a href="/insights/iso42001-dpia-integration" class="insight-card">
+            <div class="insight-card-category">ISO/IEC 42001 · 거버넌스</div>
+            <h2 class="insight-card-title">#3. ISO/IEC 42001 6.1.4를 중심으로 AI 영향평가와 DPIA를 통합 운영하는 방법</h2>
+            <p class="insight-card-desc">
+              GDPR DPIA와 ISO 42001/42005 AI 영향평가(AI-IA)의 목적 및 대상 비교, 프로세스 연계를 위한 6단계 통합 운영 모델과 심사 대응 가이드.
+            </p>
+            <div class="insight-card-meta">
+              <span>2026.07.31</span>
+              <span style="color: var(--signal-700); font-weight: 600;" data-i18n="ins_read_full">전문 읽기 →</span>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="header-brand">
+          <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+          </svg>
+          <div class="brand-text-group">
+            <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+            <div class="brand-subtitle">AI거버넌스 운영체계</div>
+          </div>
+        </a>
+        <p style="font-size: 13px; color: var(--fg-2); margin-top: 12px; max-width: 320px;">
+          현직 심사원이 설립한 AI 거버넌스·ISO 경영시스템 컴플라이언스 전문 기업
+        </p>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">서비스</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#services" style="color: var(--fg-2);">AI 거버넌스 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">정보보호 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">인증 취득 컨설팅</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">왜 인증인가</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#public-ai" style="color: var(--fg-2);">공공 AI 수주</a>
+          <a href="/#regulation-map" style="color: var(--fg-2);">AI기본법 대응</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">FieldProof</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#fieldproof" style="color: var(--fg-2);">제품 소개</a>
+          <a href="/#login-modal" class="open-login-trigger" style="color: var(--fg-2);">로그인 콘솔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">회사 메뉴</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/about" style="color: var(--fg-2);">회사 소개</a>
+          <a href="/about/independence" style="color: var(--fg-2);">원칙과 독립성</a>
+          <a href="/network" style="color: var(--fg-2);">심사원 네트워크</a>
+          <a href="/#contact" style="color: var(--fg-2);">오시는 길 · 사업자 정보</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Guardrail & Brand Info Block -->
+    <div class="footer-guardrail" style="border-top: 1px solid rgba(245,244,239,0.1); padding-top: 24px; margin-top: 32px; font-size: 13px; color: var(--fg-3); line-height: 1.7; text-align: left;">
+      <div style="margin-bottom: 6px; font-weight: 600; color: rgba(245,244,239,0.95);">
+        퀀터니티에이아이(Quanternity AI)는 주식회사 인코어가 운영하는 브랜드입니다.
+      </div>
+      <div>
+        운영사: 주식회사 인코어 | 대표: 이진범 | 사업자등록번호: 302-87-03113 | 주소: 인천광역시 서구 원당대로 876, 7층 703-19호(당하동, 희림타워) | 이메일: contact@quanternity.kr
+      </div>
+      <div style="margin-top: 8px;">
+        퀀터니티에이아이는 ISO/IEC 42001·27001 인증 심사 준비를 지원하며, 실무 기술과 법률 전문성을 갖춘 컨설턴트가 인증 취득 과정을 함께합니다.
+      </div>
+    </div>
+
+    <div class="footer-copyright" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(245,244,239,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg-3);">
+      <div>© 2026 Quanternity AI. All rights reserved.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="/terms" style="color: var(--fg-3); text-decoration: none;">이용약관</a>
+        <a href="/privacy" style="color: var(--fg-3); text-decoration: none;">개인정보 처리방침</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    async function initInsightsPage() {
+      const SUPABASE_URL = 'https://mogpgiejwsjdludkomee.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vZ3BnaWVqd3NqZGx1ZGtvbWVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2Mjk4NTgsImV4cCI6MjEwMTIwNTg1OH0.td_dAhulUFWCG7lyUZu-qf8Rj4aBOG3O85FeG7llIY4';
+      
+      const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+      const grid = document.querySelector('.insights-grid');
+      const totalChip = document.querySelector('.chip.selected');
+
+      if (!supabase || !grid) return;
+
+      try {
+        const { data: dbArticles, error } = await supabase
+          .from('insights')
+          .select('*');
+
+        if (!error && dbArticles && dbArticles.length > 0) {
+          const publishedArticles = dbArticles
+            .filter(item => !item.status || item.status.toLowerCase() === 'published')
+            .sort((a, b) => {
+              const timeA = new Date(a.published_at || a.created_at || 0).getTime();
+              const timeB = new Date(b.published_at || b.created_at || 0).getTime();
+              return timeB - timeA;
+            });
+
+          if (publishedArticles.length > 0) {
+            const dbCardsHtml = publishedArticles.map(item => `
+              <a href="/insights/post.html?slug=${encodeURIComponent(item.slug || item.id)}" class="insight-card" data-category="${item.category || ''}">
+                <div class="insight-card-category">${item.category || '인사이트'}</div>
+                <h2 class="insight-card-title">${item.title}</h2>
+                <p class="insight-card-desc">${item.summary || ''}</p>
+                <div class="insight-card-meta">
+                  <span>${item.published_at ? item.published_at.substring(0, 10) : item.created_at ? item.created_at.substring(0, 10) : '2026-08-03'}</span>
+                  <span style="color: var(--signal-700); font-weight: 600;">전문 읽기 →</span>
+                </div>
+              </a>
+            `).join('');
+
+            // Prepend new articles at top left
+            grid.innerHTML = dbCardsHtml + grid.innerHTML;
+
+            // Update total chip count
+            const totalCount = document.querySelectorAll('.insight-card').length;
+            if (totalChip) {
+              totalChip.textContent = `전체 (${totalCount})`;
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Error loading published insights:', err);
+      }
+
+      // Chip Filter Handlers
+      const chips = document.querySelectorAll('.chip');
+      chips.forEach(chip => {
+        chip.style.cursor = 'pointer';
+        chip.addEventListener('click', () => {
+          chips.forEach(c => {
+            c.classList.remove('selected');
+            c.style.background = 'rgba(245,244,239,0.08)';
+            c.style.color = 'rgba(245,244,239,0.8)';
+          });
+          chip.classList.add('selected');
+          chip.style.background = 'var(--signal-700)';
+          chip.style.color = '#ffffff';
+
+          const categoryText = chip.textContent.split(' ')[0].trim();
+          const allCards = document.querySelectorAll('.insight-card');
+
+          allCards.forEach(card => {
+            if (categoryText === '전체') {
+              card.style.display = 'block';
+            } else {
+              const cardCat = card.querySelector('.insight-card-category')?.textContent || '';
+              if (cardCat.includes(categoryText)) {
+                card.style.display = 'block';
+              } else {
+                card.style.display = 'none';
+              }
+            }
+          });
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initInsightsPage);
+    } else {
+      initInsightsPage();
+    }
+  </script>
+</body>
+</html>

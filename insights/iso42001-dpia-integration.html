@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 네이버 서치어드바이저 소유확인 — 삭제 금지 -->
+  <meta name="naver-site-verification" content="c0521f7fab504ab73d5534aab72639841ef20d1c" />
+  <!-- TODO: Google Search Console 소유확인 메타태그 발급 시 추가 -->
+  <title>ISO/IEC 42001 6.1.4를 중심으로 AI 영향평가와 DPIA를 통합 운영하는 방법 — 퀀터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="ISO/IEC 42001:2023 및 42005 기반 AI 영향평가(AI-IA)와 GDPR DPIA의 목적 비교, 6단계 통합 운영 모델 및 심사 대응 방법" />
+  <link rel="canonical" href="https://quanternity.kr/insights/iso42001-dpia-integration" />
+
+  <!-- JSON-LD Structured Data: BlogPosting & BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://quanternity.kr/insights/iso42001-dpia-integration#article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://quanternity.kr/insights/iso42001-dpia-integration"
+        },
+        "headline": "ISO/IEC 42001 6.1.4를 중심으로 AI 영향평가와 DPIA를 통합 운영하는 방법",
+        "description": "ISO/IEC 42001:2023 및 42005 기반 AI 영향평가(AI-IA)와 GDPR DPIA의 목적 비교, 6단계 통합 운영 모델 및 심사 대응 방법",
+        "datePublished": "2026-08-03T00:00:00+09:00",
+        "dateModified": "2026-08-04T00:00:00+09:00",
+        "author": {
+          "@id": "https://quanternity.kr/#organization"
+        },
+        "publisher": {
+          "@id": "https://quanternity.kr/#organization"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://quanternity.kr/images/logo.png"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://quanternity.kr/insights/iso42001-dpia-integration#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://quanternity.kr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "규제 인사이트",
+            "item": "https://quanternity.kr/insights"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "AI 영향평가와 DPIA 통합 운영",
+            "item": "https://quanternity.kr/insights/iso42001-dpia-integration"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="/#services">서비스</a>
+        <a href="/#public-ai">왜 인증인가</a>
+        <a href="/#fieldproof">FieldProof</a>
+        <a href="/insights" class="active">인사이트</a>
+        <div class="nav-item dropdown">
+          <a href="/about" class="nav-link dropdown-toggle">회사 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="/about" class="dropdown-item">회사 소개</a>
+            <a href="/about/independence" class="dropdown-item">원칙과 독립성</a>
+            <a href="/network" class="dropdown-item">심사원 네트워크</a>
+            <a href="/#contact" class="dropdown-item">오시는 길 · 사업자 정보</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <button class="lang-switch">KO / EN</button>
+        <span class="divider-v"></span>
+        <a href="/#login-modal" class="btn-outline open-login-trigger">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          FieldProof 로그인
+        </a>
+        <a href="/#assessment-modal" class="btn-primary-dark open-assessment-trigger">무료 진단 신청</a>
+        <button class="mobile-nav-toggle" aria-label="메뉴 열기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 40px;">
+    <article class="blog-post-wrap">
+      
+      <!-- Back Link -->
+      <div style="margin-bottom: 24px;">
+        <a href="/insights" style="font-family: var(--font-mono); font-size: 13px; color: var(--fg-2); text-decoration: none;">
+          ← 인사이트 목록으로 돌아가기
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="blog-header">
+        <div class="blog-meta-badge">ISO/IEC 42001 · 거버넌스</div>
+        <h1 class="blog-post-title">#3. ISO/IEC 42001 6.1.4를 중심으로 AI 영향평가와 DPIA를 통합 운영하는 방법</h1>
+        <div class="blog-post-meta">
+          <span>작성일: 2026년 7월 31일</span>
+          <span>·</span>
+          <span>읽는 시간: 약 12분</span>
+          <span>·</span>
+          <span>작성: 퀀터니티에이아이 AI 거버넌스 연구소</span>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="blog-body">
+        
+        <blockquote>
+          <p><strong>기준일: 2026년 7월 31일</strong></p>
+          <p style="margin-top: 8px;">ISO/IEC 42001:2023은 조직이 AI를 책임 있게 개발·제공·사용하기 위해 필요한 AI 경영시스템, 즉 AIMS의 요구사항을 규정한다. 정책, 역할과 책임, 위험관리, 운영통제, 성과평가, 내부감사 및 개선을 하나의 경영시스템으로 관리하도록 설계된 표준이다.</p>
+        </blockquote>
+
+        <p>ISO/IEC 42001의 6.1.4는 AI 시스템 영향평가를 계획하는 체계를 요구하며, 8.4는 실제 운영 단계에서 영향평가 프로세스를 수행하도록 요구한다. 즉, 영향평가는 프로젝트 착수 시 한 번 작성하는 문서가 아니라 AI 시스템의 개발, 배포, 변경 및 운영 과정에서 반복적으로 수행되는 관리활동이어야 한다.</p>
+
+        <p>2025년 발행된 ISO/IEC 42005는 개별 AI 시스템이 개인, 집단 및 사회에 미치는 영향을 식별하고 평가하는 구체적인 방법을 제시하며, ISO/IEC 42001의 영향평가 요구사항을 실무적으로 구현하는 데 활용할 수 있다.</p>
+
+        <h2>1. DPIA와 AI 영향평가는 목적이 다르다</h2>
+        <p>DPIA, 즉 개인정보 영향평가는 GDPR 제35조에 근거하며, 개인정보 처리가 개인의 권리와 자유에 높은 위험을 초래할 가능성이 있을 때 수행한다. 개인정보 처리의 필요성·비례성, 법적 근거, 정보주체 권리, 데이터 보안 및 위험 완화조치가 주요 평가 대상이다.</p>
+        <p>반면 AI 영향평가, 즉 AI-IA는 개인정보를 넘어 다음과 같은 보다 넓은 영향을 다룬다.</p>
+        <ul>
+          <li>차별과 편향</li>
+          <li>인간의 자율성과 의사결정권</li>
+          <li>안전과 건강</li>
+          <li>설명가능성과 이의제기 가능성</li>
+          <li>고용·교육·금융 기회에 대한 영향</li>
+          <li>특정 집단이나 취약계층에 대한 영향</li>
+          <li>사회·경제·환경에 대한 파급효과</li>
+        </ul>
+
+        <p>두 평가의 차이는 다음과 같이 정리할 수 있다.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>DPIA</th>
+              <th>AI 영향평가</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>주요 근거</strong></td>
+              <td>GDPR 제35조, ISO/IEC 29134</td>
+              <td>ISO/IEC 42001, ISO/IEC 42005</td>
+            </tr>
+            <tr>
+              <td><strong>핵심 대상</strong></td>
+              <td>개인정보 처리활동</td>
+              <td>AI 시스템과 사용 맥락</td>
+            </tr>
+            <tr>
+              <td><strong>핵심 질문</strong></td>
+              <td>개인정보 처리가 합법적이고 비례적인가</td>
+              <td>AI가 사람과 사회에 어떤 영향을 주는가</td>
+            </tr>
+            <tr>
+              <td><strong>주요 위험</strong></td>
+              <td>재식별, 과도한 수집, 유출, 권리 침해</td>
+              <td>편향, 차별, 안전, 자율성, 사회적 영향</td>
+            </tr>
+            <tr>
+              <td><strong>주요 담당</strong></td>
+              <td>개인정보보호책임자·법무</td>
+              <td>AI 거버넌스·위험·제품·윤리</td>
+            </tr>
+            <tr>
+              <td><strong>평가 시점</strong></td>
+              <td>고위험 개인정보 처리 전</td>
+              <td>AI 기획, 개발, 배포, 변경 및 운영</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>ISO/IEC 29134는 개인정보 영향평가를 수행하고 결과를 문서화하는 지침을 제공한다.</p>
+
+        <h2>2. 하나의 문서로 합치기보다 하나의 프로세스로 연결해야 한다</h2>
+        <p>DPIA와 AI 영향평가는 일부 질문이 중복되지만 평가 목적과 책임자가 다르다.</p>
+        <p>모든 질문을 하나의 거대한 양식에 넣으면 다음과 같은 문제가 발생할 수 있다.</p>
+        <ul>
+          <li>개인정보 위험과 AI의 사회적 영향이 혼재된다.</li>
+          <li>누가 어떤 위험을 승인해야 하는지 불분명해진다.</li>
+          <li>개인정보 보호조치가 AI 안전조치로 잘못 대체될 수 있다.</li>
+          <li>AI 모델이 변경될 때 DPIA 전체를 불필요하게 다시 작성하게 된다.</li>
+          <li>감사 시 각 규정에 대한 준수 증거를 분리하기 어렵다.</li>
+        </ul>
+        <p>따라서 권장되는 방식은 <strong>문서는 구분하되 프로세스와 증거는 연결하는 것</strong>이다.</p>
+        <p>ISO/IEC 42005 부속서 D도 AI 영향평가를 DPIA 등 기존 평가체계와 정렬하는 방안을 다룬다. 이는 기존 평가를 폐기하거나 완전히 병합하라는 의미가 아니라, 공통 정보를 재사용하면서 각 평가의 고유 목적과 승인체계를 유지하라는 접근으로 이해할 수 있다.</p>
+
+        <h2>3. 통합 운영을 위한 6단계 모델</h2>
+
+        <h3>1단계. 공통 사전검토</h3>
+        <p>모든 AI 프로젝트는 하나의 공통 접수양식으로 시작한다.</p>
+        <p>공통 접수양식에는 다음 정보를 포함한다.</p>
+        <ul>
+          <li>AI 시스템의 목적과 이용자</li>
+          <li>개발자, 제공자, 사용자의 역할</li>
+          <li>처리하는 데이터와 개인정보 여부</li>
+          <li>자동화된 의사결정 여부</li>
+          <li>영향을 받는 개인과 집단</li>
+          <li>사용 국가와 적용 법률</li>
+          <li>고영향·고위험 AI 가능성</li>
+          <li>외부 모델과 공급업체 사용 여부</li>
+        </ul>
+        <p>이 정보를 바탕으로 DPIA, AI 영향평가, 보안 위험평가, 기본권 영향평가 등의 수행 여부를 결정한다.</p>
+
+        <h3>2단계. 평가 트리거 분리</h3>
+        <p>각 평가는 별도의 트리거를 가져야 한다.</p>
+
+        <p><strong>DPIA 트리거 예시</strong></p>
+        <ul>
+          <li>민감정보 또는 대규모 개인정보 처리</li>
+          <li>새로운 기술을 이용한 체계적 모니터링</li>
+          <li>프로파일링이나 자동화된 의사결정</li>
+          <li>취약계층 정보 처리</li>
+          <li>개인정보 침해 시 높은 위험 예상</li>
+        </ul>
+
+        <p><strong>AI 영향평가 트리거 예시</strong></p>
+        <ul>
+          <li>개인의 권리·기회에 영향을 미치는 AI</li>
+          <li>의료·채용·교육·금융 등 중대한 의사결정</li>
+          <li>사람의 행동을 유도하거나 조작할 가능성</li>
+          <li>특정 집단에 차별적 결과를 초래할 가능성</li>
+          <li>물리적 안전 또는 사회적 영향이 예상되는 AI</li>
+        </ul>
+        <p>두 트리거가 모두 충족되면 두 평가를 병렬로 수행한다.</p>
+
+        <h3>3단계. 공통 사실정보 재사용</h3>
+        <p>DPIA와 AI 영향평가가 각각 동일한 시스템 설명을 다시 작성하지 않도록 공통 사실정보를 중앙에서 관리한다.</p>
+        <p>공통 관리 대상은 다음과 같다.</p>
+        <ul>
+          <li>시스템 목적과 범위</li>
+          <li>데이터 흐름도</li>
+          <li>모델과 공급업체 정보</li>
+          <li>사용자 및 영향 대상</li>
+          <li>처리 데이터와 데이터 출처</li>
+          <li>배포 환경</li>
+          <li>시스템 버전과 변경 이력</li>
+        </ul>
+        <p>DPIA와 AI 영향평가는 이 공통 정보를 참조하되, 각각의 고유한 위험 분석과 결론은 별도 문서에 기록한다.</p>
+
+        <h3>4단계. 통합 위험등록부 운영</h3>
+        <p>각 평가에서 발견된 위험을 하나의 통합 위험등록부에 연결한다.</p>
+        <p>예를 들어 채용 AI의 성별 편향 위험은 다음과 같이 여러 관점으로 나뉠 수 있다.</p>
+        <ul>
+          <li><strong>개인정보 관점:</strong> 성별 정보의 적법한 처리와 목적 제한</li>
+          <li><strong>AI 영향 관점:</strong> 특정 성별에 대한 차별적 결과</li>
+          <li><strong>보안 관점:</strong> 학습데이터와 지원자 정보의 유출</li>
+          <li><strong>운영 관점:</strong> 잘못된 추천 결과에 대한 사람의 과도한 의존</li>
+          <li><strong>법률 관점:</strong> 고용차별 및 설명 의무 위반</li>
+        </ul>
+        <p>각 위험에는 소유자, 완화조치, 완료기한, 잔여위험, 승인자와 모니터링 지표를 연결한다.</p>
+
+        <h3>5단계. 공동 검토와 분리 승인</h3>
+        <p>프로젝트 검토회의는 통합해 운영할 수 있지만, 승인 권한은 위험 유형에 따라 구분하는 것이 좋다.</p>
+        <ul>
+          <li>개인정보 위험: 개인정보보호책임자 또는 법무</li>
+          <li>AI 안전·영향 위험: AI 거버넌스위원회</li>
+          <li>정보보안 위험: 정보보호책임자</li>
+          <li>사업상 잔여위험: 서비스 또는 사업 책임자</li>
+          <li>중대한 기본권 위험: 경영진 또는 독립위원회</li>
+        </ul>
+        <p>이를 통해 하나의 부서가 다른 전문영역의 위험을 임의로 승인하는 문제를 방지할 수 있다.</p>
+
+        <h3>6단계. 변경 기반 재평가</h3>
+        <p>영향평가는 정기적으로만 검토해서는 부족하다. 다음과 같은 변경이 발생하면 재평가를 수행해야 한다.</p>
+        <ul>
+          <li>모델 또는 알고리즘 변경</li>
+          <li>새로운 학습데이터 추가</li>
+          <li>사용 목적이나 이용자 변경</li>
+          <li>자동화 수준 확대</li>
+          <li>새로운 국가 또는 산업으로 확대</li>
+          <li>중대한 사고나 이용자 민원 발생</li>
+          <li>편향·성능·보안 지표 악화</li>
+          <li>관련 법률이나 규제 기준 변경</li>
+        </ul>
+        <p>경미한 변경은 간이 영향검토로 처리하고, 중대한 변경은 DPIA 또는 AI 영향평가 전체를 다시 수행하도록 기준을 정할 수 있다.</p>
+
+        <h2>4. 통합 문서체계 예시</h2>
+        <p>실무에서는 다음과 같은 구조가 효율적이다.</p>
+
+        <h3>공통 문서</h3>
+        <ul>
+          <li>AI 시스템 등록부</li>
+          <li>시스템 설명서</li>
+          <li>데이터 흐름도</li>
+          <li>공급업체 목록</li>
+          <li>법률·규제 적용성 평가</li>
+          <li>통합 위험등록부</li>
+          <li>변경관리 기록</li>
+        </ul>
+
+        <h3>DPIA 전용 문서</h3>
+        <ul>
+          <li>개인정보 처리 목적과 법적 근거</li>
+          <li>필요성·비례성 평가</li>
+          <li>정보주체 권리보호 방안</li>
+          <li>데이터 최소화와 보존기간</li>
+          <li>개인정보 위험과 보호조치</li>
+          <li>개인정보보호책임자 의견</li>
+        </ul>
+
+        <h3>AI 영향평가 전용 문서</h3>
+        <ul>
+          <li>영향을 받는 개인·집단·사회</li>
+          <li>편향과 공정성 평가</li>
+          <li>안전·기본권·인권 영향</li>
+          <li>사람의 감독과 이의제기 방식</li>
+          <li>오용과 예측 가능한 악용</li>
+          <li>긍정적·부정적 영향 비교</li>
+          <li>잔여영향과 모니터링 지표</li>
+        </ul>
+
+        <h2>5. ISO/IEC 42001 심사 대응 관점</h2>
+        <p>ISO/IEC 42001 심사에서는 영향평가 양식의 완성도만 보는 것이 아니다. 심사인은 영향평가가 실제 AIMS 운영과 연결되어 있는지를 확인할 가능성이 높다.</p>
+        <p>주요 확인사항은 다음과 같다.</p>
+        <ul>
+          <li>영향평가 대상 선정 기준이 있는가</li>
+          <li>역할과 승인 권한이 정의되어 있는가</li>
+          <li>평가 결과가 위험처리계획과 연결되는가</li>
+          <li>통제가 실제 개발·운영 프로세스에 반영되는가</li>
+          <li>모델 변경 시 재평가가 이루어지는가</li>
+          <li>부정적 영향과 사고가 모니터링되는가</li>
+          <li>평가 결과를 경영검토와 개선활동에 활용하는가</li>
+        </ul>
+        <p>따라서 가장 중요한 산출물은 단일 영향평가 보고서가 아니라, <strong>평가–의사결정–위험처리–모니터링–재평가로 이어지는 추적 가능한 증거사슬</strong>이다.</p>
+
+        <h2>결론</h2>
+        <p>DPIA와 AI 영향평가는 서로 대체할 수 있는 제도가 아니다.</p>
+        <p>DPIA는 개인정보 처리의 합법성, 필요성, 비례성과 정보주체 권리 보호를 중심으로 하고, AI 영향평가는 AI가 개인·집단·사회에 미치는 공정성, 안전, 자율성 및 기본권 영향을 보다 폭넓게 다룬다.</p>
+        
+        <p>따라서 두 평가를 하나의 범용 문서로 완전히 병합하기보다 다음 원칙을 적용하는 것이 적절하다.</p>
+
+        <blockquote>
+          <p><strong>공통 사실정보와 위험등록부는 공유하되, 평가 목적·전문 검토·승인 책임은 분리한다.</strong></p>
+        </blockquote>
+
+        <p>이 구조는 중복 업무를 줄이면서도 GDPR, ISO/IEC 42001, ISO/IEC 42005 및 관련 AI 규제에 대해 일관된 컴플라이언스 증거를 제공할 수 있다.</p>
+
+        <div class="blog-reference-box">
+          <div class="blog-reference-title">참고문헌</div>
+          <ol class="blog-reference-list">
+            <li>ISO, ISO/IEC 42001:2023, Information technology — Artificial intelligence — Management system.</li>
+            <li>ISO, ISO/IEC 42005:2025, Artificial intelligence — AI system impact assessment.</li>
+            <li>ISO Online Browsing Platform, ISO/IEC 42005 Annex D, Aligning AI System Impact Assessment with Other Assessments.</li>
+            <li>European Union, Regulation (EU) 2016/679, GDPR Article 35, Data Protection Impact Assessment.</li>
+            <li>ISO, ISO/IEC 29134:2023, Privacy Impact Assessment — Guidelines.</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- Bottom Callout -->
+      <div style="margin-top: 64px; background: var(--ink-950); color: #F5F4EF; border-radius: 16px; padding: 40px; text-align: center;">
+        <h3 style="font-size: 22px; font-weight: 600; color: #F5F4EF; margin-bottom: 12px;">ISO 42001 AIMS와 DPIA 프로세스 연계 구축이 필요하신가요?</h3>
+        <p style="font-size: 15px; color: var(--signal-400); margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+          심사원이 설계하는 ISO 42001 거버넌스 및 AI 영향평가(AI-IA) 통합 가이드를 받아보세요.
+        </p>
+        <a href="/#assessment-modal" class="btn-primary-dark open-assessment-trigger" style="background: #10B981; color: #0B1220; display: inline-block; padding: 14px 28px; font-weight: 700; border-radius: 8px; text-decoration: none;">
+          무료 진단 신청하기 →
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="header-brand">
+          <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+            <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+          </svg>
+          <div class="brand-text-group">
+            <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+            <div class="brand-subtitle">AI거버넌스 운영체계</div>
+          </div>
+        </a>
+        <p style="font-size: 13px; color: var(--fg-2); margin-top: 12px; max-width: 320px;">
+          현직 심사원이 설립한 AI 거버넌스·ISO 경영시스템 컴플라이언스 전문 기업
+        </p>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">서비스</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#services" style="color: var(--fg-2);">AI 거버넌스 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">정보보호 컨설팅</a>
+          <a href="/#services" style="color: var(--fg-2);">인증 취득 컨설팅</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">왜 인증인가</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#public-ai" style="color: var(--fg-2);">공공 AI 수주</a>
+          <a href="/#regulation-map" style="color: var(--fg-2);">AI기본법 대응</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">FieldProof</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/#fieldproof" style="color: var(--fg-2);">제품 소개</a>
+          <a href="/#login-modal" class="open-login-trigger" style="color: var(--fg-2);">로그인 콘솔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="overline" style="margin-bottom: 16px;">회사 메뉴</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <a href="/about" style="color: var(--fg-2);">회사 소개</a>
+          <a href="/about/independence" style="color: var(--fg-2);">원칙과 독립성</a>
+          <a href="/network" style="color: var(--fg-2);">심사원 네트워크</a>
+          <a href="/#contact" style="color: var(--fg-2);">오시는 길 · 사업자 정보</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Guardrail & Brand Info Block -->
+    <div class="footer-guardrail" style="border-top: 1px solid rgba(245,244,239,0.1); padding-top: 24px; margin-top: 32px; font-size: 13px; color: var(--fg-3); line-height: 1.7; text-align: left;">
+      <div style="margin-bottom: 6px; font-weight: 600; color: rgba(245,244,239,0.95);">
+        퀀터니티에이아이(Quanternity AI)는 주식회사 인코어가 운영하는 브랜드입니다.
+      </div>
+      <div>
+        운영사: 주식회사 인코어 | 대표: 이진범 | 사업자등록번호: 302-87-03113 | 주소: 인천광역시 서구 원당대로 876, 7층 703-19호(당하동, 희림타워) | 이메일: contact@quanternity.kr
+      </div>
+      <div style="margin-top: 8px;">
+        퀀터니티에이아이는 ISO/IEC 42001·27001 인증 심사 준비를 지원하며, 실무 기술과 법률 전문성을 갖춘 컨설턴트가 인증 취득 과정을 함께합니다.
+      </div>
+    </div>
+
+    <div class="footer-copyright" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(245,244,239,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg-3);">
+      <div>© 2026 Quanternity AI. All rights reserved.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="/terms" style="color: var(--fg-3); text-decoration: none;">이용약관</a>
+        <a href="/privacy" style="color: var(--fg-3); text-decoration: none;">개인정보 처리방침</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
