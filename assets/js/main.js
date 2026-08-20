@@ -786,6 +786,11 @@ document.addEventListener("DOMContentLoaded", () => {
       hero_slide_4_cta1: "SOP → 27001·42001 매핑 진단",
       hero_slide_4_cta2: "무엇이 이미 충족되는지 보기 →",
 
+      hero_slide_5_h1: "고영향 AI,<br />이제 <span class=\"text-green\">'하고 있다'가 아니라 '증명하라'</span>를 요구받습니다.",
+      hero_slide_5_sub: "AI기본법 시행령이 7월 21일부터 시행되며, 고영향 AI 사업자의 위험관리·영향평가 책임이 구체화되었습니다. ISO/IEC 42001·27001 통합 체계는 그 요구를 일회성 문서가 아닌, 운영되는 경영시스템으로 만듭니다.",
+      hero_slide_5_cta1: "무료 진단 신청",
+      hero_slide_5_cta2: "FieldProof 보기",
+
       hero_sidebar_label: "대응 규격",
       promo_video_label: "PROMO · QUANTERNITY AI",
       member_1_role: "I · ADVISORY NETWORK",
@@ -986,6 +991,11 @@ document.addEventListener("DOMContentLoaded", () => {
       hero_slide_4_sub: "Clinical and tech organizations face constant audits. Operating SOPs and data protocols already satisfy most ISO/IEC 27001 & 42001 controls. Align existing practices once into a reusable framework.",
       hero_slide_4_cta1: "SOP → 27001·42001 Assessment",
       hero_slide_4_cta2: "See What Is Already Covered →",
+
+      hero_slide_5_h1: "High-Impact AI,<br />Now Required to <span class=\"text-green\">'Prove It' Rather Than 'Claim It'</span>.",
+      hero_slide_5_sub: "With the AI Framework Act Enforcement Decree in effect, risk management and impact assessment responsibilities for High-Impact AI are now formalized. The ISO/IEC 42001 & 27001 integrated framework transforms these requirements into an operational management system.",
+      hero_slide_5_cta1: "Free Assessment",
+      hero_slide_5_cta2: "Explore FieldProof",
 
       hero_sidebar_label: "Target Standards",
       promo_video_label: "PROMO · QUANTERNITY AI",

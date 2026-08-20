@@ -82,6 +82,16 @@ export default function BannersManagerPage() {
           sort_order: 4,
           is_active: true,
         },
+        {
+          placement: 'hero_slide' as BannerPlacement,
+          eyebrow: '고영향 AI 규제 대응',
+          headline: "고영향 AI, 이제 '하고 있다'가 아니라 '증명하라'를 요구받습니다.",
+          body: 'AI기본법 시행령이 7월 21일부터 시행되며, 고영향 AI 사업자의 위험관리·영향평가 책임이 구체화되었습니다. ISO/IEC 42001·27001 통합 체계는 그 요구를 일회성 문서가 아닌, 운영되는 경영시스템으로 만듭니다.',
+          cta_label: '무료 진단 신청 ➔',
+          cta_target: '#assessment-modal',
+          sort_order: 5,
+          is_active: true,
+        },
       ];
 
       const { data: inserted } = await supabase.from('site_banners').insert(initialSeed).select();
