@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import {
   FileText,
   FileClock,
+  FileSpreadsheet,
   Users,
   Megaphone,
   AlertTriangle,
@@ -15,20 +16,23 @@ import {
   CheckCircle2,
   Calendar,
   Layers,
-  Inbox
+  Inbox,
+  Building2
 } from 'lucide-react';
-import { Insight, SiteBanner, Lead } from '@/lib/types';
+import { Insight, SiteBanner, Lead, QuoteRequest } from '@/lib/types';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
     publishedInsights: 0,
     draftInsights: 0,
     weeklyLeads: 0,
+    quoteRequests: 0,
     activeBanners: 0,
   });
 
   const [recentInsights, setRecentInsights] = useState<Insight[]>([]);
   const [recentLeads, setRecentLeads] = useState<Lead[]>([]);
+  const [recentQuotes, setRecentQuotes] = useState<QuoteRequest[]>([]);
   const [activeNotice, setActiveNotice] = useState<SiteBanner | null>(null);
   const [alerts, setAlerts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -218,17 +222,35 @@ export default function DashboardPage() {
         setRecentLeads(realLeads.slice(0, 5));
         const leadsCount = realLeads.length;
 
+        // 4. Fetch Quotes
+        let loadedQuotes: QuoteRequest[] = [];
+        try {
+          const qRes = await fetch('/api/quote-requests');
+          if (qRes.ok) {
+            const qJson = await qRes.json();
+            if (qJson.quotes && Array.isArray(qJson.quotes)) {
+              loadedQuotes = qJson.quotes;
+            }
+          }
+        } catch (e) {
+          console.error('Error fetching quotes for dashboard:', e);
+        }
+
+        setRecentQuotes(loadedQuotes.slice(0, 5));
+
         // Set Stats
         setStats({
           publishedInsights: publishedCount,
           draftInsights: draftCount,
           weeklyLeads: leadsCount,
+          quoteRequests: loadedQuotes.length,
           activeBanners: activeBannersCount,
         });
 
         // Set Real-time Alerts
         const alertList = [
           '공유 데이터베이스(Supabase Seoul)와 100% 실시간 동기화 상태입니다.',
+          `신규 견적 요청: 총 ${loadedQuotes.length}건이 등록되어 있습니다.`,
           noticeBanner
             ? `활성 NOTICE 배너: "${noticeBanner.headline.slice(0, 45)}..."`
             : '활성화된 NOTICE 배너가 없습니다. 배너 관리에서 활성화해 주세요.',
@@ -263,45 +285,55 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* 4 Stat Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Link href="/insights" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-sm hover:border-emerald-500 transition-all flex items-center gap-4 group">
-          <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+      {/* 5 Stat Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+        <Link href="/quotes" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-xs hover:border-[#2B5CE7] hover:shadow-sm transition-all flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-lg bg-blue-50 text-[#2B5CE7] flex items-center justify-center font-bold group-hover:scale-105 transition-transform flex-shrink-0">
+            <FileSpreadsheet className="w-5 h-5" />
+          </div>
+          <div className="min-w-0">
+            <div className="text-[11px] text-gray-500 font-mono">신규 견적 요청</div>
+            <div className="text-xl font-bold text-[#0B1220] truncate">{stats.quoteRequests} 건</div>
+          </div>
+        </Link>
+
+        <Link href="/insights" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-xs hover:border-emerald-500 hover:shadow-sm transition-all flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform flex-shrink-0">
             <FileText className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="text-[11px] text-gray-500 font-mono">발행된 인사이트</div>
-            <div className="text-xl font-bold text-[#0B1220]">{stats.publishedInsights} 건</div>
+            <div className="text-xl font-bold text-[#0B1220] truncate">{stats.publishedInsights} 건</div>
           </div>
         </Link>
 
-        <Link href="/insights" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-sm hover:border-amber-500 transition-all flex items-center gap-4 group">
-          <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+        <Link href="/insights" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-xs hover:border-amber-500 hover:shadow-sm transition-all flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform flex-shrink-0">
             <FileClock className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="text-[11px] text-gray-500 font-mono">작성 중인 초안</div>
-            <div className="text-xl font-bold text-[#0B1220]">{stats.draftInsights} 건</div>
+            <div className="text-xl font-bold text-[#0B1220] truncate">{stats.draftInsights} 건</div>
           </div>
         </Link>
 
-        <Link href="/leads" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-sm hover:border-blue-500 transition-all flex items-center gap-4 group">
-          <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+        <Link href="/leads" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-xs hover:border-blue-500 hover:shadow-sm transition-all flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform flex-shrink-0">
             <Users className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="text-[11px] text-gray-500 font-mono">신규 리드 · 문의</div>
-            <div className="text-xl font-bold text-[#0B1220]">{stats.weeklyLeads} 건</div>
+            <div className="text-xl font-bold text-[#0B1220] truncate">{stats.weeklyLeads} 건</div>
           </div>
         </Link>
 
-        <Link href="/banners" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-sm hover:border-purple-500 transition-all flex items-center gap-4 group">
-          <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+        <Link href="/banners" className="bg-white border border-[#E5E3DA] p-4 rounded-xl shadow-xs hover:border-purple-500 hover:shadow-sm transition-all flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-bold group-hover:scale-105 transition-transform flex-shrink-0">
             <Megaphone className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="text-[11px] text-gray-500 font-mono">활성 NOTICE 배너</div>
-            <div className="text-xl font-bold text-[#0B1220]">{stats.activeBanners} 건</div>
+            <div className="text-xl font-bold text-[#0B1220] truncate">{stats.activeBanners} 건</div>
           </div>
         </Link>
       </div>
@@ -432,6 +464,12 @@ export default function DashboardPage() {
                 규제 매핑 관리
               </Link>
               <Link
+                href="/quotes"
+                className="p-2.5 bg-blue-50/80 hover:bg-[#2B5CE7] hover:text-white rounded-lg text-xs font-bold border border-blue-200 text-[#2B5CE7] transition-all text-center"
+              >
+                견적 요청 관리
+              </Link>
+              <Link
                 href="/banners"
                 className="p-2.5 bg-[#F9F8F5] hover:bg-[#0B1220] hover:text-white rounded-lg text-xs font-medium border border-[#E5E3DA] transition-all text-center"
               >
@@ -445,6 +483,97 @@ export default function DashboardPage() {
               </Link>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Recent Quote Requests Table Widget */}
+      <div className="bg-white border border-[#E5E3DA] rounded-xl shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-[#E5E3DA] flex items-center justify-between bg-blue-50/20">
+          <div className="flex items-center gap-2">
+            <FileSpreadsheet className="w-4 h-4 text-[#2B5CE7]" />
+            <h2 className="font-bold text-sm text-[#0B1220]">최근 접수된 ISO 인증 견적 요청</h2>
+            <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-100 text-[#2B5CE7]">
+              {recentQuotes.length}건
+            </span>
+          </div>
+          <Link
+            href="/quotes"
+            className="text-xs text-[#2B5CE7] hover:underline font-bold flex items-center gap-1"
+          >
+            <span>전체 견적 관리 및 상세 정보</span>
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="bg-[#F9F8F5] border-b border-[#E5E3DA] text-gray-500 font-mono">
+                <th className="p-3 pl-4">신청 일시</th>
+                <th className="p-3">기업명 (대표자 · 사업자번호)</th>
+                <th className="p-3">산업군 / 인원</th>
+                <th className="p-3">희망 규격</th>
+                <th className="p-3">담당자 연락처</th>
+                <th className="p-3 text-right pr-4">상세 조회</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#E5E3DA]">
+              {recentQuotes.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="py-6 text-center text-gray-400">
+                    최근 접수된 견적 요청이 없습니다.
+                  </td>
+                </tr>
+              ) : (
+                recentQuotes.map((quote) => (
+                  <tr key={quote.id} className="hover:bg-blue-50/30 transition-colors h-11">
+                    <td className="p-3 pl-4 font-mono text-gray-500 whitespace-nowrap">
+                      {formatKSTDate(quote.created_at)}
+                    </td>
+                    <td className="p-3">
+                      <span className="font-bold text-[#0B1220]">{quote.company_name}</span>
+                      <span className="text-gray-400 text-[11px] font-mono ml-1.5">
+                        (대표: {quote.ceo_name || '-'})
+                      </span>
+                    </td>
+                    <td className="p-3 text-gray-700 font-medium">
+                      {quote.industry} <span className="text-gray-400 font-mono text-[11px]">({quote.employee_count || 0}명)</span>
+                    </td>
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-1">
+                        {(quote.target_standards || []).map((std, i) => (
+                          <span
+                            key={i}
+                            className={`px-1.5 py-0.5 rounded text-[10.5px] font-bold ${
+                              std.includes('42001')
+                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                                : std.includes('27001')
+                                ? 'bg-blue-50 text-blue-800 border border-blue-200'
+                                : 'bg-gray-100 text-gray-700 border border-gray-200'
+                            }`}
+                          >
+                            {std}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="p-3 font-mono text-gray-700">
+                      {quote.contact_name} ({quote.contact_phone})
+                    </td>
+                    <td className="p-3 text-right pr-4">
+                      <Link
+                        href="/quotes"
+                        className="px-2.5 py-1 bg-[#2B5CE7] hover:bg-[#1E45B8] text-white rounded text-xs font-bold transition-all inline-flex items-center gap-1 shadow-2xs"
+                      >
+                        <span>보기</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
 

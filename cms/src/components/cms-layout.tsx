@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
+  FileSpreadsheet,
   FileText,
   ShieldCheck,
   Megaphone,
@@ -40,6 +41,7 @@ export default function CmsLayout({ children }: CmsLayoutProps) {
 
   const navItems = [
     { label: '대시보드', href: '/', icon: LayoutDashboard },
+    { label: '견적 요청 관리', href: '/quotes', icon: FileSpreadsheet },
     { label: '인사이트 관리', href: '/insights', icon: FileText },
     { label: '규제 매핑 관리', href: '/regulations', icon: ShieldCheck },
     { label: '배너 & 히어로', href: '/banners', icon: Megaphone },

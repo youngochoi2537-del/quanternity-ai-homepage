@@ -94,6 +94,37 @@ export interface Lead {
   diagnosis_score?: string;
 }
 
+export interface QuoteSite {
+  id?: string;
+  name: string;
+  postcode?: string;
+  address?: string;
+  addressDetail?: string;
+}
+
+export interface QuoteRequest {
+  id: string;
+  created_at: string;
+  company_name: string;
+  ceo_name: string;
+  biz_reg_no: string;
+  industry: string;
+  employee_count: number;
+  sites: QuoteSite[];
+  main_product: string;
+  contact_name: string;
+  contact_phone: string;
+  contact_email: string;
+  referral_source: string;
+  note?: string;
+  target_standards: string[];
+  target_date: string;
+  has_existing_cert: boolean;
+  existing_certs: string[];
+  source_funnel: string;
+  status?: '접수완료' | '검토중' | '견적발송' | '계약체결' | '보류';
+}
+
 export interface AuditLog {
   id: number;
   actor_email: string;
