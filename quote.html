@@ -637,23 +637,27 @@
           }
         };
 
-        const submitBtn = document.getElementById('btn-submit-quote');
-        submitBtn.disabled = true;
-        submitBtn.textContent = '견적 요청 접수 중...';
+        // Save locally in browser storage for resilience
+        try {
+          localStorage.setItem('quanternity_last_quote', JSON.stringify(quotePayload));
+          const history = JSON.parse(localStorage.getItem('quanternity_quotes_log') || '[]');
+          history.unshift(quotePayload);
+          localStorage.setItem('quanternity_quotes_log', JSON.stringify(history.slice(0, 30)));
+        } catch (storageErr) {
+          console.warn('LocalStorage save failed:', storageErr);
+        }
 
         try {
-          const res = await fetch('/api/quote-requests', {
+          await fetch('/api/quote-requests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(quotePayload)
           });
-
-          window.location.href = '/quote/complete';
         } catch (err) {
-          console.error(err);
-          // Fallback direct navigate on client success
-          window.location.href = '/quote/complete';
+          console.error('Quote submission error:', err);
         }
+
+        window.location.href = '/quote/complete';
       });
     });
   </script>

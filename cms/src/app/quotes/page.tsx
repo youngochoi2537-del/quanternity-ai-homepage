@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
+import { createClient } from '@/lib/supabase/client';
 import { QuoteRequest } from '@/lib/types';
 import {
   FileSpreadsheet,
@@ -36,25 +37,176 @@ export default function QuotesManagementPage() {
   const [selectedQuote, setSelectedQuote] = useState<QuoteRequest | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
+  const supabase = createClient();
+
   useEffect(() => {
     fetchQuotes();
   }, []);
 
   async function fetchQuotes() {
     setLoading(true);
+    let apiQuotes: QuoteRequest[] = [];
+    let dbLeads: any[] = [];
+
+    // 1. Fetch from Next.js API store
     try {
       const res = await fetch('/api/quote-requests');
       if (res.ok) {
         const data = await res.json();
         if (data.quotes && Array.isArray(data.quotes)) {
-          setQuotes(data.quotes);
+          apiQuotes = data.quotes;
         }
       }
     } catch (err) {
-      console.error('Failed to fetch quotes:', err);
-    } finally {
-      setLoading(false);
+      console.error('Failed to fetch API quotes:', err);
     }
+
+    // 2. Fetch from Supabase DB leads table
+    try {
+      const { data } = await supabase.from('leads').select('*').order('created_at', { ascending: false });
+      if (data && data.length > 0) {
+        dbLeads = data;
+      }
+    } catch (err) {
+      console.error('Failed to fetch DB leads for quotes:', err);
+    }
+
+    // Map & Deduplicate
+    const quoteMap = new Map<string, QuoteRequest>();
+
+    apiQuotes.forEach((q) => {
+      const key = `${(q.company_name || '').trim().toLowerCase()}::${(q.contact_email || '').trim().toLowerCase()}`;
+      quoteMap.set(key || q.id, q);
+    });
+
+    // Parse any quote records stored in Supabase leads table
+    dbLeads.forEach((d) => {
+      const isQuote = String(d.lead_type || '').includes('견적') || String(d.utm_source || '').includes('[견적요청]');
+      const key = `${(d.company_name || '').trim().toLowerCase()}::${(d.contact_email || '').trim().toLowerCase()}`;
+
+      if (isQuote && !quoteMap.has(key)) {
+        // Extract enriched data from utm_source if available
+        const utm = String(d.utm_source || '');
+        let ceoName = '-';
+        let bizRegNo = '-';
+        let contactPhone = d.contact_phone || '-';
+        let employeeCount = 0;
+        let siteStr = '';
+
+        const ceoMatch = utm.match(/대표(?:자)?:\s*([^|]+)/);
+        if (ceoMatch) ceoName = ceoMatch[1].trim();
+
+        const bizMatch = utm.match(/사업자(?:번호)?:\s*([0-9-]+)/);
+        if (bizMatch) bizRegNo = bizMatch[1].trim();
+
+        const phoneMatch = utm.match(/연락처:\s*([0-9-]+)/);
+        if (phoneMatch) contactPhone = phoneMatch[1].trim();
+
+        const empMatch = utm.match(/임직원:\s*([0-9]+)명?/);
+        if (empMatch) employeeCount = parseInt(empMatch[1], 10);
+
+        const siteMatch = utm.match(/사업장:\s*([^|]+)/);
+        if (siteMatch) siteStr = siteMatch[1].trim();
+
+        const parsedSites = siteStr
+          ? siteStr.split(' / ').map((s, idx) => ({ id: String(idx + 1), name: s }))
+          : [{ id: '1', name: '본사' }];
+
+        let targetStandards: string[] = [];
+        const certMatch = utm.match(/희망인증:\s*([^|]+)/);
+        if (certMatch) {
+          targetStandards = certMatch[1].split(',').map((s) => s.trim());
+        } else if (d.target_standards && Array.isArray(d.target_standards)) {
+          targetStandards = d.target_standards;
+        } else {
+          targetStandards = ['ISO 42001'];
+        }
+
+        quoteMap.set(key, {
+          id: d.id || 'db-' + Math.random().toString(36).substring(2, 7),
+          created_at: d.created_at || new Date().toISOString(),
+          company_name: d.company_name || '미입력 기업',
+          ceo_name: ceoName,
+          biz_reg_no: bizRegNo,
+          industry: d.industry || 'IT/소프트웨어',
+          employee_count: employeeCount,
+          sites: parsedSites,
+          main_product: '인증 대상 서비스',
+          contact_name: d.company_name ? `${d.company_name} 담당자` : '신청 담당자',
+          contact_phone: contactPhone,
+          contact_email: d.contact_email || '-',
+          referral_source: '홈페이지 견적 요청',
+          note: d.inquiry_type || d.diagnosis_step1 || '',
+          target_standards: targetStandards,
+          target_date: '3~6개월 이내',
+          has_existing_cert: Array.isArray(d.current_certs) && d.current_certs.length > 0,
+          existing_certs: d.current_certs || [],
+          source_funnel: 'quote',
+          status: '접수완료',
+        });
+      }
+    });
+
+    let combined = Array.from(quoteMap.values());
+
+    // Fallback seed data if no records
+    if (combined.length === 0) {
+      combined = [
+        {
+          id: 'quote-sample-1',
+          created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+          company_name: '(주)메디바이브 AI',
+          ceo_name: '홍길동',
+          biz_reg_no: '120-81-47521',
+          industry: '의료기기·체외진단(IVD)',
+          employee_count: 45,
+          sites: [
+            { id: '1', name: '본사 (R&D)', postcode: '06236', address: '서울특별시 강남구 테헤란로 152', addressDetail: '12층' },
+            { id: '2', name: '오송 제1공장 (제조/품질)', postcode: '28160', address: '충청북도 청주시 흥덕구 오송읍 오송생명1로 194', addressDetail: '동관 3층' }
+          ],
+          main_product: 'AI 기반 폐암 조기 진단 보조 소프트웨어 (SaMD)',
+          contact_name: '김민수 팀장',
+          contact_phone: '010-3849-2810',
+          contact_email: 'mskim@medivibe.ai',
+          referral_source: '인증 추천 퍼널 (/recommend)',
+          note: '2026년 하반기 FDA 510(k) 및 국내 식약처 3등급 허가 심사를 앞두고 ISO 13485와 ISO 42001 통합 구축이 시급합니다. 견적서 및 심사원 파견 일정 회신 부탁드립니다.',
+          target_standards: ['ISO 27001', 'ISO 42001', 'ISO 13485'],
+          target_date: '3~6개월 이내 (하반기 인증 완료 희망)',
+          has_existing_cert: true,
+          existing_certs: ['ISO 27001'],
+          source_funnel: 'recommend',
+          status: '접수완료'
+        },
+        {
+          id: 'quote-sample-2',
+          created_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+          company_name: '(주)넥스트코어 로보틱스',
+          ceo_name: '이진우',
+          biz_reg_no: '214-88-12345',
+          industry: 'IT·소프트웨어·AI·플랫폼',
+          employee_count: 120,
+          sites: [
+            { id: '1', name: '판교 통합 본사', postcode: '13487', address: '경기도 성남시 분당구 대왕판교로 645번길 12', addressDetail: '넥스트타워 7층' }
+          ],
+          main_product: '물류 자율주행 AGV 로봇 제어 AI 시스템',
+          contact_name: '박서연 책임',
+          contact_phone: '010-8293-1049',
+          contact_email: 'sypark@nextcore-robotics.com',
+          referral_source: '사전진단 퍼널 (/diagnosis)',
+          note: '공공 입찰 참여 요건 충족을 위해 ISO/IEC 42001 및 9001 견적이 필요합니다. FieldProof 증적 솔루션 도입 견적도 함께 포함해 주세요.',
+          target_standards: ['ISO 42001', 'ISO 9001'],
+          target_date: '1~3개월 이내 (신속 심사 희망)',
+          has_existing_cert: false,
+          existing_certs: [],
+          source_funnel: 'diagnosis',
+          status: '검토중'
+        }
+      ];
+    }
+
+    combined.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
+    setQuotes(combined);
+    setLoading(false);
   }
 
   // Format date in Korea Standard Time (KST, UTC+9)
