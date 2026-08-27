@@ -3642,5 +3642,160 @@ html, body {
   }
 }
 
+/* =============================================================
+   INSTITUTIONAL FOOTER DESIGN SYSTEM
+   Deep Ink Navy (#0B1220) with Refined Hierarchy & Micro Typography
+   ============================================================= */
+.footer {
+  background: var(--ink-950);
+  color: var(--fg-on-ink);
+  border-top: 1px solid rgba(245, 244, 239, 0.1);
+  padding: 56px 0 28px;
+  font-family: var(--font-sans);
+}
+
+.footer .container,
+.footer-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .footer-grid > div:first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .footer-grid > div:first-child {
+    grid-column: span 1;
+  }
+}
+
+.footer .header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.footer .brand-title {
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.footer .brand-subtitle {
+  color: rgba(245, 244, 239, 0.55);
+  font-size: 10.5px;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(245, 244, 239, 0.68);
+  margin-top: 12px;
+  line-height: 1.65;
+  max-width: 320px;
+}
+
+.footer .overline,
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--signal-400);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-col a,
+.footer-grid a {
+  display: block;
+  font-size: 13px;
+  font-weight: 450;
+  color: rgba(245, 244, 239, 0.72);
+  line-height: 1.6;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.footer-col a:hover,
+.footer-grid a:hover {
+  color: #34D399;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+.footer-guardrail {
+  border-top: 1px solid rgba(245, 244, 239, 0.08);
+  padding-top: 22px;
+  margin-top: 28px;
+  font-size: 12px;
+  color: rgba(245, 244, 239, 0.52);
+  line-height: 1.75;
+  text-align: left;
+}
+
+.footer-guardrail-heading {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(245, 244, 239, 0.9);
+  margin-bottom: 4px;
+}
+
+.footer-guardrail-desc {
+  font-size: 11.5px;
+  color: rgba(245, 244, 239, 0.45);
+  margin-top: 6px;
+}
+
+.footer-copyright {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(245, 244, 239, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: rgba(245, 244, 239, 0.4);
+}
+
+.footer-copyright a {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(245, 244, 239, 0.55);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-copyright a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
 
 
