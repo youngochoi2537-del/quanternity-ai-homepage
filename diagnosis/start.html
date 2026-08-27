@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>사전진단 테스트 — 콴터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="4단계 경영시스템 자가진단을 통해 귀사의 성숙도를 측정하고 맞춤형 ISO 인증 로드맵을 확인하세요." />
+  <link rel="canonical" href="https://quanternity.kr/diagnosis/start" />
+
+  <!-- Fonts & Styles -->
+  <link rel="preload" href="/assets/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  
+  <script src="/assets/js/cert-funnel.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body class="funnel-page funnel-page--dark" style="background: var(--qn-d-bg); min-height: 100vh;">
+
+  <!-- Header Navigation -->
+  <header class="header" style="background: rgba(15, 22, 38, 0.95); border-bottom: 1px solid var(--qn-d-border);">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="#E8ECF5" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="#E8ECF5" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="#E8ECF5" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title" style="color: #E8ECF5;">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle" style="color: var(--qn-d-text-muted);">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <div class="header-right">
+        <span style="font-size: 13px; color: var(--qn-d-text-muted);" id="header-progress-text">Step 1 of 4</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="funnel-container" style="max-width: 860px; padding-top: 32px;">
+
+    <!-- 4-Step Progress Bar (§7) -->
+    <div class="wizard-progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" id="wizard-progress-bar">
+      <div class="wizard-step-item active" data-step="1">
+        <div class="wizard-step-circle">1</div>
+        <span class="wizard-step-label">기본 정보</span>
+      </div>
+      <div class="wizard-step-item" data-step="2">
+        <div class="wizard-step-circle">2</div>
+        <span class="wizard-step-label">경영시스템 현황</span>
+      </div>
+      <div class="wizard-step-item" data-step="3">
+        <div class="wizard-step-circle">3</div>
+        <span class="wizard-step-label">인증 목적</span>
+      </div>
+      <div class="wizard-step-item" data-step="4">
+        <div class="wizard-step-circle">4</div>
+        <span class="wizard-step-label">진단 결과</span>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         STEP 1: 기업 기본 정보 (§7.1)
+         ========================================================= -->
+    <section id="wizard-step-1" class="wizard-content-step">
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h1 class="funnel-card-title">🏢 기업 기본 정보</h1>
+          <p class="funnel-card-desc">귀사의 산업 분야와 조직 규모를 선택해주세요.</p>
+        </div>
+
+        <!-- 1. 업종 (축 A 17개 카드형 그리드) -->
+        <div class="form-group">
+          <label class="form-label">1. 업종 분야 (하나 선택) <span class="req">*</span></label>
+          <div id="grid-industries" class="wizard-selectable-grid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- 2. 조직 유형 (축 B 5개) -->
+        <div class="form-group" style="margin-top: 28px;">
+          <label class="form-label">2. 조직 유형 <span class="req">*</span></label>
+          <div id="grid-org-types" class="wizard-selectable-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- 3. 직원 규모 -->
+        <div class="form-group" style="margin-top: 28px;">
+          <label class="form-label">3. 직원 규모 <span class="req">*</span></label>
+          <div id="grid-employee-size" class="wizard-selectable-grid" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));">
+            <div class="selectable-box" data-value="5명 미만"><span class="selectable-box-title">5명 미만</span></div>
+            <div class="selectable-box" data-value="5-10명"><span class="selectable-box-title">5~10명</span></div>
+            <div class="selectable-box selected" data-value="10-20명"><span class="selectable-box-title">10~20명</span></div>
+            <div class="selectable-box" data-value="20-50명"><span class="selectable-box-title">20~50명</span></div>
+            <div class="selectable-box" data-value="50-100명"><span class="selectable-box-title">50~100명</span></div>
+            <div class="selectable-box" data-value="100명 이상"><span class="selectable-box-title">100명 이상</span></div>
+          </div>
+        </div>
+
+        <!-- 4. 사업 기간 -->
+        <div class="form-group" style="margin-top: 28px;">
+          <label class="form-label">4. 사업 기간 <span class="req">*</span></label>
+          <div id="grid-business-age" class="wizard-selectable-grid" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));">
+            <div class="selectable-box" data-value="6개월 미만"><span class="selectable-box-title">6개월 미만</span></div>
+            <div class="selectable-box" data-value="6개월-1년"><span class="selectable-box-title">6개월~1년</span></div>
+            <div class="selectable-box selected" data-value="1-3년"><span class="selectable-box-title">1~3년</span></div>
+            <div class="selectable-box" data-value="3-5년"><span class="selectable-box-title">3~5년</span></div>
+            <div class="selectable-box" data-value="5-10년"><span class="selectable-box-title">5~10년</span></div>
+            <div class="selectable-box" data-value="10년 이상"><span class="selectable-box-title">10년 이상</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 사업 특성 (축 C 3문항 다중선택) -->
+        <div class="form-group" style="margin-top: 28px; margin-bottom: 0;">
+          <label class="form-label">5. 사업 특성 (해당되는 항목 모두 선택)</label>
+          <div id="grid-traits" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+        <button type="button" id="btn-step1-next" class="btn-funnel-primary" style="padding: 14px 36px;">
+          <span>다음 단계 (경영시스템 현황) →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 2: 경영시스템 현황 (§7.2)
+         ========================================================= -->
+    <section id="wizard-step-2" class="wizard-content-step" style="display: none;">
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h1 class="funnel-card-title">📋 경영시스템 현황</h1>
+          <p class="funnel-card-desc">귀사에 현재 구축되어 있거나 운영 중인 시스템을 모두 체크해주세요.</p>
+        </div>
+
+        <div id="system-checklist-container">
+          <!-- 1~8 + 9 배타선택 JS 렌더링 -->
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+        <button type="button" class="btn-step-prev btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text); padding: 12px 28px;">
+          ← 이전 단계
+        </button>
+        <button type="button" id="btn-step2-next" class="btn-funnel-primary" style="padding: 14px 36px;">
+          <span>다음 단계 (인증 목적) →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 3: 인증 목적 (§7.3)
+         ========================================================= -->
+    <section id="wizard-step-3" class="wizard-content-step" style="display: none;">
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h1 class="funnel-card-title">🎯 인증 취득 목적</h1>
+          <p class="funnel-card-desc">ISO 인증을 받고자 하는 주요 목적을 선택해주세요 (복수 선택 가능).</p>
+        </div>
+
+        <div id="purpose-checklist-container">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+        <button type="button" class="btn-step-prev btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text); padding: 12px 28px;">
+          ← 이전 단계
+        </button>
+        <button type="button" id="btn-step3-submit" class="btn-funnel-primary" style="padding: 14px 36px; background: #22C55E;">
+          <span>결과 확인하기 →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 4: 결과 화면 (§7.4)
+         ========================================================= -->
+    <section id="wizard-step-4" class="wizard-content-step" style="display: none;">
+      
+      <!-- 1. Maturity Gauge Card -->
+      <div class="result-gauge-card">
+        <span id="res-tier-badge" class="result-tier-badge tier-mid">부분 구축 · 보완 필요</span>
+        <div id="res-score-num" class="result-score-num" style="color: #FBBF24;">42<span style="font-size: 24px; font-weight: 500; color: var(--qn-d-text-muted);">/90</span></div>
+        <h2 id="res-headline" class="result-headline">📋 일부 체계가 갖춰진 단계입니다.</h2>
+        <p style="font-size: 14px; color: var(--qn-d-text-muted); margin: 0;">
+          자가진단 결과에 따라 추정된 경영시스템 성숙도 지표입니다.
+        </p>
+      </div>
+
+      <!-- 2. Result Summary 4 Boxes -->
+      <div class="result-summary-grid">
+        <div class="result-summary-box">
+          <div class="result-summary-label">경영 시스템 성숙도</div>
+          <div id="res-summary-maturity" class="result-summary-val">보통</div>
+        </div>
+        <div class="result-summary-box">
+          <div class="result-summary-label">문서화 수준</div>
+          <div id="res-summary-doc" class="result-summary-val">부분 문서화</div>
+        </div>
+        <div class="result-summary-box">
+          <div class="result-summary-label">내부 심사·관리 활동</div>
+          <div id="res-summary-audit" class="result-summary-val">일부 운영</div>
+        </div>
+        <div class="result-summary-box">
+          <div class="result-summary-label">추정 준비기간</div>
+          <div id="res-summary-period" class="result-summary-val">3~5개월</div>
+        </div>
+      </div>
+
+      <!-- Upper Quote CTA -->
+      <div style="text-align: center; margin-bottom: 32px;">
+        <button type="button" class="btn-goto-quote-from-diag btn-funnel-primary" style="font-size: 16px; font-weight: 700; padding: 14px 32px; width: 100%; border-radius: 10px;">
+          📄 선택한 인증 견적 받아보기
+        </button>
+      </div>
+
+      <!-- 3. Identified Gaps Card -->
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h3 class="funnel-card-title">⚠️ 확인된 보완 필요 요소</h3>
+          <p class="funnel-card-desc">인증 심사 통과를 위해 우선적으로 구축 및 정비가 필요한 항목들입니다.</p>
+        </div>
+        <div id="res-gaps-container">
+          <!-- Dynamic Gaps -->
+        </div>
+      </div>
+
+      <!-- 4. Purpose Custom Analysis -->
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h3 class="funnel-card-title">🎯 인증 목적별 맞춤 검토 의견</h3>
+          <p class="funnel-card-desc">선택하신 비즈니스 목적에 따른 전략적 관리 방안입니다.</p>
+        </div>
+        <div id="res-purpose-container" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Dynamic Purpose analysis -->
+        </div>
+      </div>
+
+      <!-- 5. Recommended ISO Certifications (Strict Fixed Order) -->
+      <div class="funnel-card">
+        <div class="funnel-card-header">
+          <h3 class="funnel-card-title">🏆 추천 ISO 인증 목록</h3>
+          <p class="funnel-card-desc"><span id="res-industry-label" style="color: var(--qn-d-accent);"></span> 업종에 추천되는 핵심 인증 목록입니다. 필요한 인증을 체크하여 견적을 요청하세요.</p>
+        </div>
+        <div id="res-certs-grid" class="cert-cards-grid">
+          <!-- Dynamic Cert Cards -->
+        </div>
+      </div>
+
+      <!-- 6. Guidebook Download Form (§7.4) -->
+      <div class="funnel-card" style="border: 1px solid rgba(59, 130, 246, 0.4); background: rgba(26, 35, 55, 0.7);">
+        <div class="funnel-card-header">
+          <h3 class="funnel-card-title">📥 ISO 인증 가이드북 & 로드맵 무료 다운로드</h3>
+          <p class="funnel-card-desc">이메일을 입력하시면 실무 가이드북과 정부지원 사업 활용 팁을 즉시 발송해드립니다.</p>
+        </div>
+        <ul style="font-size: 13.5px; color: var(--qn-d-text); line-height: 1.8; margin-bottom: 20px; padding-left: 20px;">
+          <li>ISO/IEC 42001 · 27001 실무 가이드북 (PDF)</li>
+          <li>인증 취득 단계별 준비 로드맵 (PDF)</li>
+          <li>AI 기본법 시행령 대응 체크리스트 (PDF)</li>
+        </ul>
+        <form id="guidebook-form" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="email" id="guidebook-email" class="form-control" placeholder="자료를 받아보실 이메일 주소 입력" required style="flex: 1; min-width: 240px;" />
+            <button type="submit" class="btn-funnel-primary" style="padding: 12px 24px;">⬇ 자료 다운로드 신청</button>
+          </div>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--qn-d-text-muted); cursor: pointer;">
+            <input type="checkbox" id="guidebook-agree" required style="accent-color: var(--qn-d-accent);" />
+            개인정보 수집 및 가이드북 수신에 동의합니다.
+          </label>
+          <div id="guidebook-status-msg" style="font-size: 13px; margin-top: 4px; display: none;"></div>
+        </form>
+      </div>
+
+      <!-- Lower Buttons -->
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px; text-align: center;">
+        <button type="button" class="btn-goto-quote-from-diag btn-funnel-primary" style="font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 10px;">
+          📄 선택한 인증 견적 받아보기
+        </button>
+        <button type="button" id="btn-restart-diag" class="btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text-muted); padding: 12px 24px; border-radius: 8px;">
+          ↻ 처음부터 다시 진단하기
+        </button>
+      </div>
+
+      <!-- Disclaimer (§7.4) -->
+      <div style="margin-top: 40px; font-size: 12.5px; color: var(--qn-d-text-muted); text-align: center; line-height: 1.6;">
+        <p>본 결과는 입력하신 정보를 기반으로 한 참고용 추정치이며, 실제 인증 준비기간과 심사 결과를 보장하지 않습니다.</p>
+        <p>※ 콴터니티는 ISO 17021-1 규정에 따른 인증 심사 준비 컨설팅 파트너입니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentStep = 1;
+
+      // State
+      let selectedIndustry = 'IT·소프트웨어·AI·플랫폼';
+      let selectedOrgType = '민간기업 (중소·중견)';
+      let selectedEmployeeSize = '10-20명';
+      let selectedBusinessAge = '1-3년';
+      let selectedTraits = [];
+      let checkedSystemItems = [1, 3, 5];
+      let selectedPurposes = ['입찰 참여 자격 확보', '내부 품질·보안 시스템 개선'];
+      let selectedCertsForQuote = new Set(['27001', '42001']);
+      let calculatedResult = null;
+
+      // DOM Elements
+      const gridIndustries = document.getElementById('grid-industries');
+      const gridOrgTypes = document.getElementById('grid-org-types');
+      const gridTraits = document.getElementById('grid-traits');
+      const systemChecklistContainer = document.getElementById('system-checklist-container');
+      const purposeChecklistContainer = document.getElementById('purpose-checklist-container');
+      const headerProgressText = document.getElementById('header-progress-text');
+      const wizardProgressBar = document.getElementById('wizard-progress-bar');
+
+      // 1. Populate Step 1 UI
+      TAXONOMY_AXIS_A_INDUSTRIES.forEach(ind => {
+        const box = document.createElement('div');
+        box.className = `selectable-box ${ind === selectedIndustry ? 'selected' : ''}`;
+        box.setAttribute('data-value', ind);
+        box.innerHTML = `<span class="selectable-box-title">${ind}</span>`;
+        box.addEventListener('click', () => {
+          gridIndustries.querySelectorAll('.selectable-box').forEach(b => b.classList.remove('selected'));
+          box.classList.add('selected');
+          selectedIndustry = ind;
+        });
+        gridIndustries.appendChild(box);
+      });
+
+      TAXONOMY_AXIS_B_ORG_TYPES.forEach(org => {
+        const box = document.createElement('div');
+        box.className = `selectable-box ${org.name === selectedOrgType ? 'selected' : ''}`;
+        box.setAttribute('data-value', org.name);
+        box.innerHTML = `<span class="selectable-box-title">${org.name}</span><span class="selectable-box-desc">${org.desc}</span>`;
+        box.addEventListener('click', () => {
+          gridOrgTypes.querySelectorAll('.selectable-box').forEach(b => b.classList.remove('selected'));
+          box.classList.add('selected');
+          selectedOrgType = org.name;
+        });
+        gridOrgTypes.appendChild(box);
+      });
+
+      // Employee size and business age box listeners
+      document.querySelectorAll('#grid-employee-size .selectable-box').forEach(b => {
+        b.addEventListener('click', () => {
+          document.querySelectorAll('#grid-employee-size .selectable-box').forEach(x => x.classList.remove('selected'));
+          b.classList.add('selected');
+          selectedEmployeeSize = b.getAttribute('data-value');
+        });
+      });
+
+      document.querySelectorAll('#grid-business-age .selectable-box').forEach(b => {
+        b.addEventListener('click', () => {
+          document.querySelectorAll('#grid-business-age .selectable-box').forEach(x => x.classList.remove('selected'));
+          b.classList.add('selected');
+          selectedBusinessAge = b.getAttribute('data-value');
+        });
+      });
+
+      // Traits checkboxes
+      TAXONOMY_AXIS_C_TRAITS.forEach(t => {
+        const item = document.createElement('label');
+        item.className = 'check-list-item';
+        item.innerHTML = `
+          <input type="checkbox" value="${t.id}" class="trait-wizard-cb" />
+          <span class="check-list-item-text">${t.label}</span>
+        `;
+        const cb = item.querySelector('input');
+        cb.addEventListener('change', () => {
+          if (cb.checked) {
+            item.classList.add('selected');
+            selectedTraits.push(t.id);
+          } else {
+            item.classList.remove('selected');
+            selectedTraits = selectedTraits.filter(x => x !== t.id);
+          }
+        });
+        gridTraits.appendChild(item);
+      });
+
+      // 2. Populate Step 2 (System Items 1~8 + 9 Exclusion)
+      DIAGNOSIS_SYSTEM_ITEMS.forEach(item => {
+        const label = document.createElement('label');
+        label.className = `check-list-item ${checkedSystemItems.includes(item.id) ? 'selected' : ''}`;
+        label.setAttribute('data-id', item.id);
+        label.innerHTML = `
+          <input type="checkbox" value="${item.id}" ${checkedSystemItems.includes(item.id) ? 'checked' : ''} class="sys-item-cb" />
+          <span class="check-list-item-text">${item.id}. ${item.text}</span>
+        `;
+        const cb = label.querySelector('input');
+        cb.addEventListener('change', () => {
+          if (cb.checked) {
+            label.classList.add('selected');
+            if (!checkedSystemItems.includes(item.id)) checkedSystemItems.push(item.id);
+            // Untick 9 if ticked
+            const noneItem = document.querySelector('.sys-item-none');
+            if (noneItem) {
+              noneItem.classList.remove('selected');
+              noneItem.querySelector('input').checked = false;
+              checkedSystemItems = checkedSystemItems.filter(x => x !== 9);
+            }
+          } else {
+            label.classList.remove('selected');
+            checkedSystemItems = checkedSystemItems.filter(x => x !== item.id);
+          }
+        });
+        systemChecklistContainer.appendChild(label);
+      });
+
+      // Item 9: None
+      const item9 = document.createElement('label');
+      item9.className = 'check-list-item sys-item-none';
+      item9.style.marginTop = '16px';
+      item9.style.border = '1px dashed var(--qn-d-border)';
+      item9.innerHTML = `
+        <input type="checkbox" value="9" class="sys-item-cb" />
+        <span class="check-list-item-text" style="color: #F87171; font-weight: 600;">9. 구축된 시스템이 없다 (처음 준비하는 단계)</span>
+      `;
+      const cb9 = item9.querySelector('input');
+      cb9.addEventListener('change', () => {
+        if (cb9.checked) {
+          item9.classList.add('selected');
+          checkedSystemItems = [9];
+          // Untick 1~8
+          document.querySelectorAll('.sys-item-cb').forEach(c => {
+            if (c.value !== '9') {
+              c.checked = false;
+              c.closest('label').classList.remove('selected');
+            }
+          });
+        } else {
+          item9.classList.remove('selected');
+          checkedSystemItems = [];
+        }
+      });
+      systemChecklistContainer.appendChild(item9);
+
+      // 3. Populate Step 3 (Purposes)
+      const purposes = [
+        '입찰 참여 자격 확보',
+        '대기업 납품 요구사항 충족',
+        '내부 품질·보안 시스템 개선',
+        '기업 신뢰도 및 브랜드 이미지 향상',
+        '투자유치·IPO 실사 대응',
+        '규제·법규 대응(AI 기본법·개인정보보호법 등)',
+        '기타'
+      ];
+
+      purposes.forEach(p => {
+        const label = document.createElement('label');
+        const isChecked = selectedPurposes.includes(p);
+        label.className = `check-list-item ${isChecked ? 'selected' : ''}`;
+        label.innerHTML = `
+          <input type="checkbox" value="${p}" ${isChecked ? 'checked' : ''} class="purpose-cb" />
+          <span class="check-list-item-text">${p}</span>
+        `;
+        const cb = label.querySelector('input');
+        cb.addEventListener('change', () => {
+          if (cb.checked) {
+            label.classList.add('selected');
+            if (!selectedPurposes.includes(p)) selectedPurposes.push(p);
+          } else {
+            label.classList.remove('selected');
+            selectedPurposes = selectedPurposes.filter(x => x !== p);
+          }
+        });
+        purposeChecklistContainer.appendChild(label);
+      });
+
+      // Navigation Step Transitions
+      function goToStep(step) {
+        currentStep = step;
+        document.querySelectorAll('.wizard-content-step').forEach(s => s.style.display = 'none');
+        document.getElementById(`wizard-step-${step}`).style.display = 'block';
+
+        // Update progress bar
+        wizardProgressBar.setAttribute('aria-valuenow', step);
+        document.querySelectorAll('.wizard-step-item').forEach(item => {
+          const itemStep = parseInt(item.getAttribute('data-step'), 10);
+          item.classList.remove('active', 'completed');
+          if (itemStep === step) item.classList.add('active');
+          if (itemStep < step) item.classList.add('completed');
+        });
+
+        headerProgressText.textContent = `Step ${step} of 4`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.getElementById('btn-step1-next').addEventListener('click', () => goToStep(2));
+      document.getElementById('btn-step2-next').addEventListener('click', () => goToStep(3));
+      
+      document.querySelectorAll('.btn-step-prev').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (currentStep > 1) goToStep(currentStep - 1);
+        });
+      });
+
+      // Submit and Calculate Results (Step 3 -> Step 4)
+      document.getElementById('btn-step3-submit').addEventListener('click', () => {
+        calculatedResult = calculateMaturityResult(
+          checkedSystemItems,
+          selectedEmployeeSize,
+          selectedBusinessAge,
+          selectedPurposes,
+          selectedIndustry,
+          selectedOrgType,
+          selectedTraits
+        );
+
+        renderDiagnosisResults(calculatedResult);
+        goToStep(4);
+
+        // Record diagnosis result asynchronously
+        fetch('/api/diagnosis-results', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            step1: {
+              industry: selectedIndustry,
+              orgType: selectedOrgType,
+              employeeSize: selectedEmployeeSize,
+              businessAge: selectedBusinessAge,
+              traits: selectedTraits
+            },
+            step2: {
+              checkedItems: checkedSystemItems,
+              noneSelected: checkedSystemItems.includes(9)
+            },
+            step3: {
+              purposes: selectedPurposes
+            },
+            result: calculatedResult
+          })
+        }).catch(err => console.log('Diagnosis record notice:', err));
+      });
+
+      function renderDiagnosisResults(res) {
+        // Badge & Score
+        const tierBadge = document.getElementById('res-tier-badge');
+        tierBadge.textContent = res.badge;
+        tierBadge.className = `result-tier-badge tier-${res.tier.toLowerCase()}`;
+
+        const scoreNum = document.getElementById('res-score-num');
+        scoreNum.innerHTML = `${res.maturityScore}<span style="font-size: 24px; font-weight: 500; color: var(--qn-d-text-muted);">/90</span>`;
+        if (res.tier === 'LOW') scoreNum.style.color = '#EF4444';
+        else if (res.tier === 'MID') scoreNum.style.color = '#FBBF24';
+        else scoreNum.style.color = '#22C55E';
+
+        document.getElementById('res-headline').textContent = res.headline;
+
+        // 4 Boxes
+        document.getElementById('res-summary-maturity').textContent = res.summary.maturity;
+        document.getElementById('res-summary-doc').textContent = res.summary.docLevel;
+        document.getElementById('res-summary-audit').textContent = res.summary.auditActivity;
+        document.getElementById('res-summary-period').textContent = res.summary.estimatedPeriod;
+
+        // Gaps
+        const gapsContainer = document.getElementById('res-gaps-container');
+        gapsContainer.innerHTML = '';
+        if (res.gaps.length === 0) {
+          gapsContainer.innerHTML = '<div style="color: #4ADE80; font-size: 14px;">✅ 기본 시스템 요건이 양호하게 운영되고 있습니다.</div>';
+        } else {
+          res.gaps.forEach(gap => {
+            const div = document.createElement('div');
+            div.className = 'result-gap-item';
+            div.innerHTML = `<span>•</span> <span>${gap}</span>`;
+            gapsContainer.appendChild(div);
+          });
+        }
+
+        // Purposes
+        const purposeContainer = document.getElementById('res-purpose-container');
+        purposeContainer.innerHTML = '';
+        res.purposeAnalysis.forEach(p => {
+          const card = document.createElement('div');
+          card.style.background = 'rgba(255, 255, 255, 0.04)';
+          card.style.border = '1px solid var(--qn-d-border)';
+          card.style.borderRadius = '8px';
+          card.style.padding = '12px 16px';
+          card.innerHTML = `
+            <div style="font-size: 14px; font-weight: 700; color: var(--qn-d-text); margin-bottom: 4px;">📌 ${p.purpose}</div>
+            <div style="font-size: 13px; color: var(--qn-d-text-muted); line-height: 1.5;">${p.analysis}</div>
+          `;
+          purposeContainer.appendChild(card);
+        });
+
+        // Recommended Certs
+        document.getElementById('res-industry-label').textContent = selectedIndustry;
+        const certsGrid = document.getElementById('res-certs-grid');
+        certsGrid.innerHTML = '';
+
+        selectedCertsForQuote.clear();
+
+        res.recommendedCerts.forEach(cert => {
+          if (cert.isPreChecked) selectedCertsForQuote.add(cert.code);
+          const isSelected = selectedCertsForQuote.has(cert.code);
+
+          const card = document.createElement('div');
+          card.className = `cert-card ${isSelected ? 'selected' : ''}`;
+          card.setAttribute('data-code', cert.code);
+
+          card.innerHTML = `
+            <div class="cert-card-top">
+              <div class="cert-card-code-wrap">
+                <div class="cert-card-check-icon">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-card-code">ISO ${cert.code}</span>
+              </div>
+              <span class="cert-badge ${cert.badgeClass}">[ ${cert.badge} ]</span>
+            </div>
+            <h4 class="cert-card-title">${cert.nameKo}</h4>
+            <div class="cert-card-en">${cert.nameEn}</div>
+            <div class="cert-summary-box">${cert.summary}</div>
+            <div class="cert-reason-box"><strong>추천 이유:</strong> ${cert.reason}</div>
+            <button type="button" class="cert-select-btn">${isSelected ? '선택됨' : '선택하기'}</button>
+          `;
+
+          card.addEventListener('click', () => {
+            if (selectedCertsForQuote.has(cert.code)) {
+              selectedCertsForQuote.delete(cert.code);
+              card.classList.remove('selected');
+              card.querySelector('.cert-select-btn').textContent = '선택하기';
+            } else {
+              selectedCertsForQuote.add(cert.code);
+              card.classList.add('selected');
+              card.querySelector('.cert-select-btn').textContent = '선택됨';
+            }
+          });
+
+          certsGrid.appendChild(card);
+        });
+      }
+
+      // Goto Quote Buttons handler (§7.4 CTA)
+      document.querySelectorAll('.btn-goto-quote-from-diag').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const certsArr = Array.from(selectedCertsForQuote);
+          if (certsArr.length === 0) {
+            alert('견적을 요청하실 인증을 1개 이상 선택해주세요.');
+            return;
+          }
+
+          const params = new URLSearchParams({
+            certs: certsArr.join(','),
+            industry: selectedIndustry,
+            orgType: selectedOrgType,
+            from: 'diagnosis'
+          });
+
+          // Save session state
+          sessionStorage.setItem('qn_diagnosis', JSON.stringify({
+            certs: certsArr,
+            industry: selectedIndustry,
+            orgType: selectedOrgType,
+            result: calculatedResult,
+            timestamp: Date.now()
+          }));
+
+          window.location.href = `/quote?${params.toString()}`;
+        });
+      });
+
+      // Restart
+      document.getElementById('btn-restart-diag').addEventListener('click', () => {
+        checkedSystemItems = [];
+        document.querySelectorAll('.sys-item-cb').forEach(c => {
+          c.checked = false;
+          c.closest('label').classList.remove('selected');
+        });
+        goToStep(1);
+      });
+
+      // Guidebook Form handler
+      const guidebookForm = document.getElementById('guidebook-form');
+      const guidebookMsg = document.getElementById('guidebook-status-msg');
+
+      guidebookForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('guidebook-email').value;
+        const agree = document.getElementById('guidebook-agree').checked;
+
+        if (!email || !agree) return;
+
+        guidebookMsg.style.display = 'block';
+        guidebookMsg.style.color = '#60A5FA';
+        guidebookMsg.textContent = '자료 발송 요청을 처리하고 있습니다...';
+
+        try {
+          const res = await fetch('/api/guidebook-requests', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, industry: selectedIndustry, maturityScore: calculatedResult?.maturityScore })
+          });
+
+          guidebookMsg.style.color = '#4ADE80';
+          guidebookMsg.textContent = '✅ 신청이 완료되었습니다! 입력하신 이메일로 가이드북이 발송됩니다.';
+          guidebookForm.reset();
+        } catch (err) {
+          guidebookMsg.style.color = '#4ADE80';
+          guidebookMsg.textContent = '✅ 신청이 접수되었습니다. (영업일 기준 순차 발송)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

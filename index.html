@@ -84,7 +84,7 @@
       <nav class="header-nav">
         <a href="#services" data-i18n="nav_services">서비스</a>
         <a href="/why-certification" data-i18n="nav_why">왜 인증인가</a>
-        <a href="#fieldproof" data-i18n="nav_fieldproof">FieldProof</a>
+        <a href="/quote" class="nav-quote-link" style="color: #60A5FA; font-weight: 700;">견적요청</a>
         <a href="/insights" data-i18n="nav_insights">인사이트</a>
         <div class="nav-item dropdown">
           <a href="/about" class="nav-link dropdown-toggle"><span data-i18n="nav_company">회사</span> <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
@@ -99,14 +99,8 @@
       <div class="header-right">
         <button class="lang-switch">KO / EN</button>
         <span class="divider-v"></span>
-        <a href="#login-modal" class="btn-outline open-login-trigger">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" />
-            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-          </svg>
-          <span data-i18n="btn_fieldproof_login">FieldProof 로그인</span>
-        </a>
-        <a href="#assessment-modal" class="btn-primary-dark open-assessment-trigger" data-i18n="btn_free_assessment">무료 진단 신청</a>
+        <a href="/diagnosis" class="btn-outline" style="border-color: rgba(255,255,255,0.25); color: #fff; font-size: 13.5px; padding: 7px 14px;">사전진단</a>
+        <a href="/quote" class="btn-primary-dark" style="background: var(--qn-primary); border-color: var(--qn-primary); font-size: 13.5px; padding: 7px 16px;">견적요청</a>
         <button class="mobile-nav-toggle" aria-label="메뉴 열기">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-Width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -134,7 +128,7 @@
                 <span class="announcement-body-inline"> — 지난 7월 14일 국무회의를 통과한 AI기본법 시행령 개정안이 7월 21일부터 시행되었습니다. 공공조달 AI 확인제 신설 및 ISO/IEC 42001·27001 통합 구축 무료 진단 진행 중</span>
               </span>
             </div>
-            <a href="#assessment-modal" class="announcement-link open-assessment-trigger" data-i18n="notice_link">진단하기 ➔</a>
+            <a href="/diagnosis" class="announcement-link">사전진단 ➔</a>
           </div>
 
           <div class="hero-carousel-controls">
@@ -166,13 +160,13 @@
                 ISO/IEC 42001과 27001은 정책·위험관리·내부심사·경영검토 등 경영시스템 구조를 공유합니다. 통합 구축은 같은 문서를 두 번 만드는 일을 없애고, 준비 기간과 심사 대응 부담을 줄입니다.
               </p>
               <div class="hero-cta-group">
-                <a href="#assessment-modal" class="btn-hero-primary open-assessment-trigger">
-                  <span data-i18n="hero_slide_1_cta1">3분 자가진단</span>
+                <a href="/recommend" class="btn-hero-primary">
+                  <span data-i18n="hero_slide_1_cta1">인증 추천받기</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#contact" class="btn-hero-ghost" data-i18n="hero_slide_1_cta2">무료 진단 신청</a>
+                <a href="/diagnosis" class="btn-hero-ghost" data-i18n="hero_slide_1_cta2">사전진단 (무료진단)</a>
               </div>
             </div>
 
@@ -185,13 +179,13 @@
                 ISO/IEC 42001·27001 통합 구축, 현장 증적 관리, 고영향 AI 규제 요건 분석까지.<br />심사원이 설계하고, 증적으로 증명합니다.
               </p>
               <div class="hero-cta-group">
-                <a href="#assessment-modal" class="btn-hero-primary open-assessment-trigger">
-                  <span data-i18n="hero_slide_2_cta1">무료 진단 신청</span>
+                <a href="/recommend" class="btn-hero-primary">
+                  <span data-i18n="hero_slide_2_cta1">인증 추천받기</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#fieldproof" class="btn-hero-ghost" data-i18n="hero_slide_2_cta2">FieldProof 보기</a>
+                <a href="/diagnosis" class="btn-hero-ghost" data-i18n="hero_slide_2_cta2">사전진단 (무료진단)</a>
               </div>
             </div>
 
@@ -204,13 +198,13 @@
                 2026년 상반기 AI 관련 공공 낙찰사들중 ISO42001 보유 기업이 확인된 사례가 많지 않았습니다. 평가 항목에 AI 거버넌스가 반영되기 시작한 지금이 격차를 만들 시점입니다.
               </p>
               <div class="hero-cta-group">
-                <a href="#assessment-modal" class="btn-hero-primary open-assessment-trigger">
-                  <span data-i18n="hero_slide_3_cta1">무료 진단 신청</span>
+                <a href="/recommend" class="btn-hero-primary">
+                  <span data-i18n="hero_slide_3_cta1">인증 추천받기</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#fieldproof" class="btn-hero-ghost" data-i18n="hero_slide_3_cta2">FieldProof 보기</a>
+                <a href="/diagnosis" class="btn-hero-ghost" data-i18n="hero_slide_3_cta2">사전진단 (무료진단)</a>
               </div>
             </div>
 
@@ -226,13 +220,13 @@
                 임상수탁 조직은 이미 감사받는 일을 업으로 합니다. 문제는 대응이 끝나면 아무것도 남지 않는다는 것입니다. 운영 중인 SOP와 데이터 관리 절차는 ISO/IEC 27001·42001 요구사항의 상당 부분을 이미 충족하고 있습니다. 새로 만드는 작업이 아니라, 있는 것을 한 번 정렬해 재사용 가능한 형태로 바꾸는 작업입니다.
               </p>
               <div class="hero-cta-group">
-                <a href="#assessment-modal" class="btn-hero-primary open-assessment-trigger">
-                  <span data-i18n="hero_slide_4_cta1">SOP → 27001·42001 매핑 진단</span>
+                <a href="/recommend" class="btn-hero-primary">
+                  <span data-i18n="hero_slide_4_cta1">인증 추천받기</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#services" class="btn-hero-ghost" data-i18n="hero_slide_4_cta2">무엇이 이미 충족되는지 보기 →</a>
+                <a href="/diagnosis" class="btn-hero-ghost" data-i18n="hero_slide_4_cta2">사전진단 (무료진단)</a>
               </div>
             </div>
 
@@ -245,13 +239,13 @@
                 AI기본법 시행령이 7월 21일부터 시행되며, 고영향 AI 사업자의 위험관리·영향평가 책임이 구체화되었습니다. ISO/IEC 42001·27001 통합 체계는 그 요구를 일회성 문서가 아닌, 운영되는 경영시스템으로 만듭니다.
               </p>
               <div class="hero-cta-group">
-                <a href="#assessment-modal" class="btn-hero-primary open-assessment-trigger">
-                  <span data-i18n="hero_slide_5_cta1">무료 진단 신청</span>
+                <a href="/recommend" class="btn-hero-primary">
+                  <span data-i18n="hero_slide_5_cta1">인증 추천받기</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="#fieldproof" class="btn-hero-ghost" data-i18n="hero_slide_5_cta2">FieldProof 보기</a>
+                <a href="/diagnosis" class="btn-hero-ghost" data-i18n="hero_slide_5_cta2">사전진단 (무료진단)</a>
               </div>
             </div>
           </div>

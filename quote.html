@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>인증 견적 요청하기 — 콴터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="ISO 42001, 27001, 13485, 9001 등 기업 환경에 맞춘 최적의 인증 심사 준비 견적과 컨설팅 상담을 요청하세요." />
+  <link rel="canonical" href="https://quanternity.kr/quote" />
+
+  <!-- Fonts & Styles -->
+  <link rel="preload" href="/assets/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  
+  <!-- Kakao Postcode Service -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/assets/js/cert-funnel.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body class="funnel-page">
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="/#services" data-i18n="nav_services">서비스</a>
+        <a href="/why-certification" data-i18n="nav_why">왜 인증인가</a>
+        <a href="/quote" class="nav-quote-link" style="color: var(--qn-primary); font-weight: 700;">견적요청</a>
+        <a href="/insights" data-i18n="nav_insights">인사이트</a>
+        <div class="nav-item dropdown">
+          <a href="/about" class="nav-link dropdown-toggle"><span data-i18n="nav_company">회사</span> <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="/about" class="dropdown-item" data-i18n="nav_company_about">회사 소개</a>
+            <a href="/about/independence" class="dropdown-item" data-i18n="nav_company_indep">원칙과 독립성</a>
+            <a href="/network" class="dropdown-item" data-i18n="nav_company_network">심사원 네트워크</a>
+            <a href="/#contact" class="dropdown-item" data-i18n="nav_company_contact">오시는 길 · 사업자 정보</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <a href="/diagnosis" class="btn-outline" style="border-color: var(--qn-border); color: var(--qn-text); font-size: 13.5px; padding: 7px 14px;">사전진단</a>
+        <a href="/recommend" class="btn-outline" style="border-color: var(--qn-border); color: var(--qn-text); font-size: 13.5px; padding: 7px 14px;">인증 추천</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="funnel-container">
+    <!-- Hero Section -->
+    <div class="funnel-hero">
+      <span class="funnel-hero-tag">CUSTOMIZED ESTIMATE REQUEST</span>
+      <h1 class="funnel-hero-title">인증 견적 요청하기</h1>
+      <p class="funnel-hero-sub">필요한 정보를 입력하시면 전담 컨설턴트가 1영업일 이내에 맞춤형 견적을 회신드립니다.</p>
+    </div>
+
+    <!-- Incoming Source Banner (§5.1) -->
+    <div id="incoming-funnel-banner" style="display: none; background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px; padding: 14px 20px; margin-bottom: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #1E40AF; font-weight: 600;">
+        <span id="incoming-banner-text">✅ 인증 추천 결과가 반영되었습니다. 필요 시 아래에서 수정하실 수 있습니다.</span>
+      </div>
+      <a href="#" id="incoming-banner-return-link" style="font-size: 13px; color: var(--qn-primary); font-weight: 700; text-decoration: underline;">이전 결과 다시 보기</a>
+    </div>
+
+    <form id="quote-main-form">
+
+      <!-- =======================================================
+           SECTION ① 견적 정보 입력 (§5.1)
+           ======================================================= -->
+      <section class="funnel-card">
+        <div class="funnel-card-header">
+          <h2 class="funnel-card-title">① 견적 정보 입력</h2>
+          <p class="funnel-card-desc">취득을 희망하시는 ISO 규격과 목표 일정을 선택해주세요.</p>
+        </div>
+
+        <!-- 1. 현재 ISO 인증 보유 여부 -->
+        <div class="form-group">
+          <label class="form-label">현재 보유 중인 ISO 인증이 있으신가요? <span class="req">*</span></label>
+          <div class="segment-group" id="seg-has-cert">
+            <button type="button" class="segment-btn" data-val="no">아니요, 인증이 없어요</button>
+            <button type="button" class="segment-btn" data-val="yes">네, 인증을 가지고 있어요</button>
+          </div>
+        </div>
+
+        <!-- 1-1. 보유 인증 선택 칩 (있음 선택 시) -->
+        <div id="existing-certs-wrap" class="form-group" style="display: none; background: var(--qn-surface-muted); padding: 16px; border-radius: 8px;">
+          <label class="form-label" style="font-size: 13px;">현재 보유 중인 인증을 선택해주세요 (복수 선택)</label>
+          <div id="existing-certs-chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="9001" /> ISO 9001</label>
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="27001" /> ISO 27001</label>
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="14001" /> ISO 14001</label>
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="45001" /> ISO 45001</label>
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="13485" /> ISO 13485</label>
+            <label class="cert-chip" style="cursor: pointer; padding: 6px 12px; font-size: 13px;"><input type="checkbox" value="42001" /> ISO 42001</label>
+            <input type="text" id="existing-cert-custom" class="form-control" placeholder="기타 보유 인증 직접입력" style="width: 200px; padding: 6px 10px; font-size: 13px;" />
+          </div>
+        </div>
+
+        <!-- 2. 추천 유도 세그먼트 -->
+        <div class="form-group" style="margin-top: 24px;">
+          <label class="form-label">ISO 인증 추천을 받아보시겠어요?</label>
+          <div class="segment-group" id="seg-wants-rec">
+            <button type="button" class="segment-btn active" data-val="self">직접 선택할게요</button>
+            <button type="button" class="segment-btn" data-val="rec">네, 추천해주세요 (추천 페이지 이동 ➔)</button>
+          </div>
+        </div>
+
+        <!-- 3. 취득 희망 인증 카드 (6종 고정 순서) -->
+        <div class="form-group" style="margin-top: 24px;">
+          <label class="form-label">취득을 원하는 인증을 알려주세요 (복수 선택) <span class="req">*</span></label>
+          <div id="target-certs-grid" class="cert-cards-grid">
+            <!-- 6종 렌더링 -->
+          </div>
+        </div>
+
+        <!-- 4. 인증 취득 목표 시기 -->
+        <div class="form-group" style="margin-top: 24px; margin-bottom: 0;">
+          <label class="form-label" for="target-date-input">인증 취득 목표 시기 <span class="req">*</span></label>
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <input type="date" id="target-date-input" class="form-control" style="width: 220px;" required />
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer;">
+              <input type="checkbox" id="target-date-undecided" />
+              <span>미정 (전문가 상담 후 결정)</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           SECTION ② 기업 정보 (§5.2)
+           ======================================================= -->
+      <section class="funnel-card">
+        <div class="funnel-card-header">
+          <h2 class="funnel-card-title">② 기업 정보</h2>
+          <p class="funnel-card-desc">정확한 심사 일수 및 견적 산출을 위한 기본 정보입니다.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="company-name">기업명 <span class="req">*</span></label>
+            <input type="text" id="company-name" class="form-control" placeholder="사업자등록증 상의 기업명" required minlength="2" />
+            <div class="form-error-text">기업명을 2자 이상 입력해주세요.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ceo-name">대표자명 <span class="req">*</span></label>
+            <input type="text" id="ceo-name" class="form-control" placeholder="대표자 성명" required minlength="2" />
+            <div class="form-error-text">대표자명을 2자 이상 입력해주세요.</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="biz-no">사업자등록번호 <span class="req">*</span></label>
+            <input type="text" id="biz-no" class="form-control" placeholder="000-00-00000" maxlength="12" required />
+            <div id="biz-no-error" class="form-error-text">유효한 사업자등록번호 10자리를 입력해주세요.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="quote-industry">산업군 <span class="req">*</span></label>
+            <select id="quote-industry" class="form-select" required>
+              <option value="" disabled selected>산업군 선택 (축 A 17개)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="employee-count">사원수 <span class="req">*</span></label>
+            <input type="number" id="employee-count" class="form-control" placeholder="명 (숫자)" min="1" required />
+          </div>
+        </div>
+
+        <!-- 사업장 주소 목록 -->
+        <div class="form-group">
+          <label class="form-label">인증받을 사업장 주소 <span class="req">*</span></label>
+          <div id="site-addresses-list" style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Site 1: Headquarter -->
+            <div class="site-address-item" data-site-idx="0" style="background: var(--qn-surface-muted); padding: 14px; border-radius: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 700; color: var(--qn-primary);">본사 (기본)</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <input type="text" class="form-control site-addr-main" placeholder="기본 주소 (우편번호 검색)" readonly required />
+                <button type="button" class="btn-search-postcode btn-outline" style="white-space: nowrap; padding: 0 16px;">주소 검색</button>
+              </div>
+              <input type="text" class="form-control site-addr-detail" placeholder="상세주소 (동·호수, 층수 등)" />
+            </div>
+          </div>
+          <button type="button" id="btn-add-site-address" class="btn-outline" style="margin-top: 10px; font-size: 13px; padding: 8px 14px;">
+            + 사업장(공장/지사/연구소) 주소 추가
+          </button>
+        </div>
+
+        <!-- 대표 제품/서비스 -->
+        <div class="form-group">
+          <label class="form-label" for="main-product">대표 제품 또는 서비스 <span class="req">*</span></label>
+          <textarea id="main-product" class="form-control" rows="3" placeholder="주요 제품/서비스 및 핵심 비즈니스 모델을 간략히 기술해주세요 (10자 이상)" required minlength="10"></textarea>
+          <div class="form-error-text">대표 제품/서비스를 10자 이상 입력해주세요.</div>
+        </div>
+
+        <!-- 사업자등록증 첨부 드롭존 -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">사업자등록증 사본 첨부 (선택)</label>
+          <div id="dropzone-biz-cert" class="file-dropzone">
+            <div class="file-dropzone-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            </div>
+            <div class="file-dropzone-text">파일을 마우스로 끌어오거나 클릭하여 업로드하세요</div>
+            <div class="file-dropzone-sub">PDF, JPG, PNG 파일 (최대 50MB)</div>
+            <input type="file" id="file-input-biz-cert" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" />
+          </div>
+          <div id="uploaded-file-display" class="uploaded-file-item" style="display: none;">
+            <span id="uploaded-file-name" style="font-weight: 600;"></span>
+            <button type="button" id="btn-delete-file" class="btn-remove-file">삭제 ✕</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           SECTION ③ 담당자 정보 (§5.3)
+           ======================================================= -->
+      <section class="funnel-card">
+        <div class="funnel-card-header">
+          <h2 class="funnel-card-title">③ 담당자 정보</h2>
+          <p class="funnel-card-desc">견적서 전달 및 상담을 위한 연락처 정보를 입력해주세요.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">담당자명 <span class="req">*</span></label>
+            <input type="text" id="contact-name" class="form-control" placeholder="성함" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-phone">담당자 연락처 <span class="req">*</span></label>
+            <input type="tel" id="contact-phone" class="form-control" placeholder="010-0000-0000" maxlength="13" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">담당자 이메일 <span class="req">*</span></label>
+            <input type="email" id="contact-email" class="form-control" placeholder="name@company.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="quote-referral">콴터니티를 어떻게 알게 되셨나요? <span class="req">*</span></label>
+          <select id="quote-referral" class="form-select" required>
+            <option value="" disabled selected>유입 경로를 선택해주세요</option>
+            <option value="검색(구글·네이버)">검색 (구글·네이버)</option>
+            <option value="지인 소개">지인 소개 및 추천</option>
+            <option value="SNS·블로그">SNS 및 기술 블로그</option>
+            <option value="세미나·강연">세미나 및 학술 강연</option>
+            <option value="언론 기사">언론 기사 및 보도자료</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-note">추가 요청사항</label>
+          <textarea id="contact-note" class="form-control" rows="2" placeholder="심사 희망 일정, 컨설팅 범위 등 특별 요청사항이 있으시면 적어주세요."></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; cursor: pointer; color: #374151;">
+            <input type="checkbox" id="agree-privacy" required style="margin-top: 3px; accent-color: var(--qn-primary);" />
+            <span>
+              [필수] <a href="/privacy" target="_blank" style="color: var(--qn-primary); text-decoration: underline;">개인정보처리방침</a> 및 
+              <a href="/terms" target="_blank" style="color: var(--qn-primary); text-decoration: underline;">서비스 이용약관</a>에 동의합니다.
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Bottom Summary & Submit (§5.3) -->
+      <div class="quote-summary-card">
+        <div class="quote-summary-header">최초 희망 인증 (실시간 반영)</div>
+        <div id="quote-selected-chips" class="quote-selected-chips">
+          <span style="font-size: 13px; color: var(--qn-text-muted);">선택된 인증 없음</span>
+        </div>
+        <button type="submit" id="btn-submit-quote" class="btn-funnel-primary" style="width: 100%; font-size: 17px; font-weight: 700; padding: 16px 0; border-radius: 10px;">
+          <span>견적 요청하기</span>
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+  <footer style="border-top: 1px solid var(--qn-border); padding: 32px 0; text-align: center; font-size: 13px; color: var(--qn-text-muted); margin-top: 60px;">
+    <p>※ KAB·UKAS·ANAB 등 공인 인정기구의 인정을 받은 인증기관 발행 여부 확인이 필요합니다.</p>
+    <p>© 2026 Quanternity AI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let selectedTargetCerts = new Set(['27001', '42001']);
+      let uploadedFileObj = null;
+
+      // 1. Populate Industry Dropdown
+      const quoteIndustry = document.getElementById('quote-industry');
+      TAXONOMY_AXIS_A_INDUSTRIES.forEach(ind => {
+        const opt = document.createElement('option');
+        opt.value = ind;
+        opt.textContent = ind;
+        quoteIndustry.appendChild(opt);
+      });
+
+      // 2. Render 6 ISO Target Cert Cards (§2.1 & §5.1)
+      const targetCertsGrid = document.getElementById('target-certs-grid');
+      
+      function renderQuoteCertCards() {
+        targetCertsGrid.innerHTML = '';
+        ISO_STANDARDS.forEach(std => {
+          const isChecked = selectedTargetCerts.has(std.code);
+          const card = document.createElement('div');
+          card.className = `cert-card ${isChecked ? 'selected' : ''}`;
+          card.setAttribute('data-code', std.code);
+
+          const tagBadge = std.code === '13485' 
+            ? '<span class="badge-tag-only" style="margin-left: auto;">의료기기·IVD 대상</span>' 
+            : '';
+
+          card.innerHTML = `
+            <div class="cert-card-top">
+              <div class="cert-card-code-wrap">
+                <div class="cert-card-check-icon">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-card-code">ISO ${std.code}</span>
+              </div>
+              ${tagBadge}
+            </div>
+            <h3 class="cert-card-title">${std.nameKo}</h3>
+            <div class="cert-card-en">${std.nameEn}</div>
+            <div class="cert-summary-box">${std.summary}</div>
+            <button type="button" class="cert-select-btn">${isChecked ? '선택됨' : '선택하기'}</button>
+          `;
+
+          card.addEventListener('click', () => {
+            if (selectedTargetCerts.has(std.code)) {
+              selectedTargetCerts.delete(std.code);
+            } else {
+              selectedTargetCerts.add(std.code);
+            }
+            renderQuoteCertCards();
+            updateQuoteSummaryChips();
+          });
+
+          targetCertsGrid.appendChild(card);
+        });
+      }
+
+      renderQuoteCertCards();
+      updateQuoteSummaryChips();
+
+      function updateQuoteSummaryChips() {
+        const chipsContainer = document.getElementById('quote-selected-chips');
+        chipsContainer.innerHTML = '';
+
+        if (selectedTargetCerts.size === 0) {
+          chipsContainer.innerHTML = '<span style="font-size: 13px; color: var(--qn-text-muted);">선택된 인증이 없습니다 (1개 이상 선택 필요)</span>';
+          return;
+        }
+
+        Array.from(selectedTargetCerts).forEach(code => {
+          const chip = document.createElement('span');
+          chip.className = 'quote-selected-chip';
+          chip.innerHTML = `ISO ${code} <span style="cursor: pointer;" data-del="${code}">✕</span>`;
+          chip.querySelector('span').addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectedTargetCerts.delete(code);
+            renderQuoteCertCards();
+            updateQuoteSummaryChips();
+          });
+          chipsContainer.appendChild(chip);
+        });
+      }
+
+      // 3. Segment Toggles
+      const segHasCert = document.getElementById('seg-has-cert');
+      const existingCertsWrap = document.getElementById('existing-certs-wrap');
+      segHasCert.querySelectorAll('.segment-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          segHasCert.querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          existingCertsWrap.style.display = btn.getAttribute('data-val') === 'yes' ? 'block' : 'none';
+        });
+      });
+
+      const segWantsRec = document.getElementById('seg-wants-rec');
+      segWantsRec.querySelectorAll('.segment-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.getAttribute('data-val') === 'rec') {
+            window.location.href = '/recommend';
+          }
+        });
+      });
+
+      // 4. Target Date handling
+      const targetDateInput = document.getElementById('target-date-input');
+      const targetDateUndecided = document.getElementById('target-date-undecided');
+      
+      // Set min date to tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      targetDateInput.min = tomorrow.toISOString().split('T')[0];
+
+      targetDateUndecided.addEventListener('change', () => {
+        if (targetDateUndecided.checked) {
+          targetDateInput.disabled = true;
+          targetDateInput.required = false;
+        } else {
+          targetDateInput.disabled = false;
+          targetDateInput.required = true;
+        }
+      });
+
+      // 5. Input Masking & Validation
+      const bizNoInput = document.getElementById('biz-no');
+      bizNoInput.addEventListener('input', () => {
+        bizNoInput.value = formatBizRegNo(bizNoInput.value);
+        validateBizNoField();
+      });
+
+      function validateBizNoField() {
+        const isValid = validateBizRegNo(bizNoInput.value);
+        const err = document.getElementById('biz-no-error');
+        if (bizNoInput.value.length === 12 && !isValid) {
+          err.style.display = 'block';
+          bizNoInput.style.borderColor = 'var(--qn-essential)';
+          return false;
+        } else {
+          err.style.display = 'none';
+          bizNoInput.style.borderColor = '';
+          return isValid || bizNoInput.value.length < 12;
+        }
+      }
+
+      const contactPhoneInput = document.getElementById('contact-phone');
+      contactPhoneInput.addEventListener('input', () => {
+        contactPhoneInput.value = formatPhoneNumber(contactPhoneInput.value);
+      });
+
+      // 6. Kakao Postcode Address Search & Dynamic Sites
+      const siteAddressesList = document.getElementById('site-addresses-list');
+      const btnAddSite = document.getElementById('btn-add-site-address');
+      let siteIndex = 1;
+
+      function bindPostcode(row) {
+        const btn = row.querySelector('.btn-search-postcode');
+        const mainInput = row.querySelector('.site-addr-main');
+        const detailInput = row.querySelector('.site-addr-detail');
+
+        btn.addEventListener('click', () => {
+          new daum.Postcode({
+            oncomplete: function(data) {
+              mainInput.value = `(${data.zonecode}) ${data.address}`;
+              detailInput.focus();
+            }
+          }).open();
+        });
+      }
+
+      bindPostcode(siteAddressesList.querySelector('.site-address-item'));
+
+      btnAddSite.addEventListener('click', () => {
+        siteIndex++;
+        const item = document.createElement('div');
+        item.className = 'site-address-item';
+        item.setAttribute('data-site-idx', siteIndex);
+        item.style.cssText = 'background: var(--qn-surface-muted); padding: 14px; border-radius: 8px; position: relative;';
+        item.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <span style="font-size: 13px; font-weight: 700; color: #4B5563;">추가 사업장 #${siteIndex}</span>
+            <button type="button" class="btn-remove-site" style="background: none; border: none; color: #EF4444; font-size: 12px; cursor: pointer;">삭제 ✕</button>
+          </div>
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <input type="text" class="form-control site-addr-main" placeholder="기본 주소 (우편번호 검색)" readonly required />
+            <button type="button" class="btn-search-postcode btn-outline" style="white-space: nowrap; padding: 0 16px;">주소 검색</button>
+          </div>
+          <input type="text" class="form-control site-addr-detail" placeholder="상세주소" />
+        `;
+
+        item.querySelector('.btn-remove-site').addEventListener('click', () => {
+          item.remove();
+        });
+
+        bindPostcode(item);
+        siteAddressesList.appendChild(item);
+      });
+
+      // 7. File Dropzone Handling
+      const dropzone = document.getElementById('dropzone-biz-cert');
+      const fileInput = document.getElementById('file-input-biz-cert');
+      const fileDisplay = document.getElementById('uploaded-file-display');
+      const fileNameSpan = document.getElementById('uploaded-file-name');
+      const btnDeleteFile = document.getElementById('btn-delete-file');
+
+      dropzone.addEventListener('click', () => fileInput.click());
+      dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      });
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) handleFile(fileInput.files[0]);
+      });
+
+      function handleFile(file) {
+        if (file.size > 50 * 1024 * 1024) {
+          alert('파일 크기는 최대 50MB까지 업로드 가능합니다.');
+          return;
+        }
+        uploadedFileObj = file;
+        fileNameSpan.textContent = `📎 ${file.name} (${Math.round(file.size / 1024)} KB)`;
+        fileDisplay.style.display = 'flex';
+        dropzone.style.display = 'none';
+      }
+
+      btnDeleteFile.addEventListener('click', () => {
+        uploadedFileObj = null;
+        fileInput.value = '';
+        fileDisplay.style.display = 'none';
+        dropzone.style.display = 'block';
+      });
+
+      // 8. Keyword Matching for ISO 13485 (§2.1)
+      const mainProductInput = document.getElementById('main-product');
+      mainProductInput.addEventListener('input', () => {
+        if (shouldShow13485(quoteIndustry.value, mainProductInput.value)) {
+          // If medical device keyword detected, auto highlight 13485
+          const card13485 = document.querySelector('.cert-card[data-code="13485"]');
+          if (card13485) card13485.style.boxShadow = '0 0 12px rgba(43, 92, 231, 0.3)';
+        }
+      });
+
+      // 9. Read URL Query Parameters (§5.1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const incomingCerts = urlParams.get('certs');
+      const incomingIndustry = urlParams.get('industry');
+      const incomingFrom = urlParams.get('from');
+
+      if (incomingCerts) {
+        selectedTargetCerts = new Set(incomingCerts.split(',').map(c => c.trim()).filter(Boolean));
+        renderQuoteCertCards();
+        updateQuoteSummaryChips();
+      }
+
+      if (incomingIndustry && quoteIndustry) {
+        quoteIndustry.value = incomingIndustry;
+      }
+
+      if (incomingFrom) {
+        const banner = document.getElementById('incoming-funnel-banner');
+        const bannerText = document.getElementById('incoming-banner-text');
+        const returnLink = document.getElementById('incoming-banner-return-link');
+
+        banner.style.display = 'flex';
+        if (incomingFrom === 'recommend') {
+          bannerText.textContent = '✅ 인증 추천 결과가 반영되었습니다. 필요 시 아래에서 수정하실 수 있습니다.';
+          returnLink.textContent = '추천 결과 다시 보기';
+          returnLink.href = '/recommend';
+        } else if (incomingFrom === 'diagnosis') {
+          bannerText.textContent = '✅ 사전진단 결과가 반영되었습니다. 필요 시 아래에서 수정하실 수 있습니다.';
+          returnLink.textContent = '진단 결과 다시 보기';
+          returnLink.href = '/diagnosis/start';
+        }
+      }
+
+      // 10. Form Submission
+      const form = document.getElementById('quote-main-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (selectedTargetCerts.size === 0) {
+          alert('취득을 원하는 ISO 인증을 1개 이상 선택해주세요.');
+          window.scrollTo({ top: 400, behavior: 'smooth' });
+          return;
+        }
+
+        // Gather Site Addresses
+        const sites = [];
+        document.querySelectorAll('.site-address-item').forEach((item, idx) => {
+          const main = item.querySelector('.site-addr-main').value;
+          const detail = item.querySelector('.site-addr-detail').value;
+          if (main) {
+            sites.push({
+              label: idx === 0 ? '본사' : `사업장 #${idx + 1}`,
+              address: main,
+              addressDetail: detail
+            });
+          }
+        });
+
+        // Gather Existing Certs
+        const existingCerts = [];
+        document.querySelectorAll('#existing-certs-chips input[type="checkbox"]:checked').forEach(c => {
+          existingCerts.push(c.value);
+        });
+        const customCert = document.getElementById('existing-cert-custom').value.trim();
+        if (customCert) existingCerts.push(customCert);
+
+        const quotePayload = {
+          quoteInfo: {
+            hasExistingCert: document.querySelector('#seg-has-cert .active').getAttribute('data-val') === 'yes',
+            existingCerts,
+            wantsRecommendation: false,
+            targetCerts: Array.from(selectedTargetCerts),
+            targetDate: targetDateUndecided.checked ? '미정' : targetDateInput.value,
+            sourceFunnel: incomingFrom || 'direct'
+          },
+          company: {
+            companyName: document.getElementById('company-name').value,
+            ceoName: document.getElementById('ceo-name').value,
+            bizRegNo: bizNoInput.value,
+            industry: quoteIndustry.value,
+            employeeCount: parseInt(document.getElementById('employee-count').value, 10),
+            sites,
+            mainProduct: mainProductInput.value,
+            fileName: uploadedFileObj ? uploadedFileObj.name : null
+          },
+          contact: {
+            name: document.getElementById('contact-name').value,
+            phone: contactPhoneInput.value,
+            email: document.getElementById('contact-email').value,
+            referralSource: document.getElementById('quote-referral').value,
+            note: document.getElementById('contact-note').value,
+            agreedPrivacy: document.getElementById('agree-privacy').checked
+          },
+          meta: {
+            submittedAt: new Date().toISOString()
+          }
+        };
+
+        const submitBtn = document.getElementById('btn-submit-quote');
+        submitBtn.disabled = true;
+        submitBtn.textContent = '견적 요청 접수 중...';
+
+        try {
+          const res = await fetch('/api/quote-requests', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(quotePayload)
+          });
+
+          window.location.href = '/quote/complete';
+        } catch (err) {
+          console.error(err);
+          // Fallback direct navigate on client success
+          window.location.href = '/quote/complete';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

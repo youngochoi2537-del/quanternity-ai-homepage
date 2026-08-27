@@ -3,10 +3,37 @@
   "name": "quanternity-ai-homepage",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/fieldproof",
+      "destination": "/quote",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/why-certification",
       "destination": "/why-certification.html"
+    },
+    {
+      "source": "/recommend",
+      "destination": "/recommend.html"
+    },
+    {
+      "source": "/quote",
+      "destination": "/quote.html"
+    },
+    {
+      "source": "/quote/complete",
+      "destination": "/quote/complete.html"
+    },
+    {
+      "source": "/diagnosis",
+      "destination": "/diagnosis.html"
+    },
+    {
+      "source": "/diagnosis/start",
+      "destination": "/diagnosis/start.html"
     },
     {
       "source": "/insights/post",

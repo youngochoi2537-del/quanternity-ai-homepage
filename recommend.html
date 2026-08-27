@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>인증 추천받기 — 콴터니티에이아이 (Quanternity AI)</title>
+  <meta name="description" content="산업 분야와 사업 특성에 맞는 ISO 42001, 27001, 13485, 9001 등 핵심 인증을 실시간으로 추천받고 견적을 요청하세요." />
+  <link rel="canonical" href="https://quanternity.kr/recommend" />
+
+  <!-- Fonts & Styles -->
+  <link rel="preload" href="/assets/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  
+  <script src="/assets/js/cert-funnel.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body class="funnel-page">
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-brand">
+        <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
+        </svg>
+        <div class="brand-text-group">
+          <div class="brand-title">Quanternity <span class="text-green">AI</span></div>
+          <div class="brand-subtitle">AI거버넌스 운영체계</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="/#services" data-i18n="nav_services">서비스</a>
+        <a href="/why-certification" data-i18n="nav_why">왜 인증인가</a>
+        <a href="/quote" class="nav-quote-link" style="color: var(--qn-primary); font-weight: 700;">견적요청</a>
+        <a href="/insights" data-i18n="nav_insights">인사이트</a>
+        <div class="nav-item dropdown">
+          <a href="/about" class="nav-link dropdown-toggle"><span data-i18n="nav_company">회사</span> <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="/about" class="dropdown-item" data-i18n="nav_company_about">회사 소개</a>
+            <a href="/about/independence" class="dropdown-item" data-i18n="nav_company_indep">원칙과 독립성</a>
+            <a href="/network" class="dropdown-item" data-i18n="nav_company_network">심사원 네트워크</a>
+            <a href="/#contact" class="dropdown-item" data-i18n="nav_company_contact">오시는 길 · 사업자 정보</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <a href="/diagnosis" class="btn-outline" style="border-color: var(--qn-border); color: var(--qn-text); font-size: 13.5px; padding: 7px 14px;">사전진단</a>
+        <a href="/quote" class="btn-primary-dark" style="background: var(--qn-primary); border-color: var(--qn-primary); font-size: 13.5px; padding: 7px 16px;">견적 요청</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="funnel-container">
+    <!-- Hero Section -->
+    <div class="funnel-hero">
+      <span class="funnel-hero-tag">MECE 3-AXIS RECOMMENDATION</span>
+      <h1 class="funnel-hero-title">당신의 산업에 맞는 인증,<br />우리가 추천해드립니다</h1>
+      <p class="funnel-hero-sub">산업 분야와 사업 특성을 선택하시면, 귀사에 필요한 인증을 우선순위와 함께 안내해드립니다.</p>
+    </div>
+
+    <!-- Step 1 Card: Selection -->
+    <section class="funnel-card">
+      <div class="funnel-card-header">
+        <h2 class="funnel-card-title">기업 정보 선택</h2>
+        <p class="funnel-card-desc">산업 분야와 조직 유형을 선택하면 실시간으로 최적의 인증이 계산됩니다.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <!-- Axis A -->
+        <div class="form-group">
+          <label class="form-label" for="industry-select">산업 분야 <span class="req">*</span></label>
+          <select id="industry-select" class="form-select">
+            <option value="" disabled selected>산업 분야를 선택해주세요</option>
+          </select>
+        </div>
+
+        <!-- Axis B -->
+        <div class="form-group">
+          <label class="form-label" for="org-type-select">조직 유형 <span class="req">*</span></label>
+          <select id="org-type-select" class="form-select">
+            <option value="" disabled selected>조직 유형을 선택해주세요</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Axis C -->
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">사업 특성 (해당 항목 모두 선택)</label>
+        <div id="traits-container" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="recommend-results-section" class="funnel-card" style="display: none;">
+      <div class="funnel-card-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2 class="funnel-card-title"><span id="target-industry-name" style="color: var(--qn-primary);"></span> 분야 추천 인증</h2>
+          <p class="funnel-card-desc">선택하신 기업 프로필에 따라 추천 순위와 근거가 반영되었습니다.</p>
+        </div>
+        <div style="width: 240px;">
+          <input type="text" id="cert-search-input" class="form-control" placeholder="인증명, 번호 검색..." style="padding: 8px 12px; font-size: 13.5px;" />
+        </div>
+      </div>
+
+      <!-- Cert Cards Grid -->
+      <div id="cert-cards-grid" class="cert-cards-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- Compliance Notice -->
+    <div style="margin-top: 32px; font-size: 13px; color: var(--qn-text-muted); line-height: 1.6; text-align: center; border-top: 1px solid var(--qn-border); padding-top: 24px;">
+      <p>※ KAB·UKAS·ANAB 등 공인 인정기구의 인정을 받은 인증기관 발행 여부 확인이 필요합니다.</p>
+      <p>※ 콴터니티는 ISO/IEC 17021-1 규정에 따라 인증 심사 준비를 지원하는 <strong>컨설팅 파트너</strong>이며, 직접 인증서를 발행하지 않습니다.</p>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Bar -->
+  <div id="recommend-sticky-bar" class="sticky-bottom-bar">
+    <div class="sticky-bar-inner">
+      <div class="sticky-bar-info">
+        <span class="sticky-bar-count">선택한 인증 <span id="sticky-selected-count">0</span>개</span>
+        <span class="sticky-bar-chips" id="sticky-selected-chips">선택된 인증 없음</span>
+      </div>
+      <button id="btn-goto-quote" class="btn-funnel-primary">
+        <span>선택한 인증으로 견적 요청하기</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const industrySelect = document.getElementById('industry-select');
+      const orgTypeSelect = document.getElementById('org-type-select');
+      const traitsContainer = document.getElementById('traits-container');
+      const resultsSection = document.getElementById('recommend-results-section');
+      const targetIndustryName = document.getElementById('target-industry-name');
+      const certCardsGrid = document.getElementById('cert-cards-grid');
+      const certSearchInput = document.getElementById('cert-search-input');
+      const stickyBar = document.getElementById('recommend-sticky-bar');
+      const stickyCount = document.getElementById('sticky-selected-count');
+      const stickyChips = document.getElementById('sticky-selected-chips');
+      const btnGotoQuote = document.getElementById('btn-goto-quote');
+
+      let selectedCerts = new Set();
+      let currentCertsList = [];
+
+      // 1. Populate Dropdowns
+      TAXONOMY_AXIS_A_INDUSTRIES.forEach(ind => {
+        const opt = document.createElement('option');
+        opt.value = ind;
+        opt.textContent = ind;
+        industrySelect.appendChild(opt);
+      });
+
+      TAXONOMY_AXIS_B_ORG_TYPES.forEach(org => {
+        const opt = document.createElement('option');
+        opt.value = org.name;
+        opt.textContent = org.name;
+        orgTypeSelect.appendChild(opt);
+      });
+
+      // Default org type to SME
+      orgTypeSelect.value = '민간기업 (중소·중견)';
+
+      TAXONOMY_AXIS_C_TRAITS.forEach(trait => {
+        const label = document.createElement('label');
+        label.style.display = 'flex';
+        label.style.alignItems = 'center';
+        label.style.gap = '8px';
+        label.style.fontSize = '14px';
+        label.style.color = '#374151';
+        label.style.cursor = 'pointer';
+
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = trait.id;
+        cb.classList.add('trait-cb');
+        cb.style.width = '16px';
+        cb.style.height = '16px';
+        cb.style.accentColor = 'var(--qn-primary)';
+        cb.addEventListener('change', renderResults);
+
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(trait.label));
+        traitsContainer.appendChild(label);
+      });
+
+      // Event Listeners
+      industrySelect.addEventListener('change', renderResults);
+      orgTypeSelect.addEventListener('change', renderResults);
+      certSearchInput.addEventListener('input', filterCerts);
+
+      function getSelectedTraits() {
+        const cbs = document.querySelectorAll('.trait-cb:checked');
+        return Array.from(cbs).map(cb => cb.value);
+      }
+
+      function renderResults() {
+        const industry = industrySelect.value;
+        const orgType = orgTypeSelect.value || '민간기업 (중소·중견)';
+        if (!industry) {
+          resultsSection.style.display = 'none';
+          stickyBar.classList.remove('visible');
+          return;
+        }
+
+        targetIndustryName.textContent = industry;
+        resultsSection.style.display = 'block';
+
+        const traits = getSelectedTraits();
+        currentCertsList = calculateRecommendationScores(industry, orgType, traits);
+
+        // Pre-check Essential cards if nothing selected yet or on initial load
+        if (selectedCerts.size === 0) {
+          currentCertsList.forEach(c => {
+            if (c.isPreChecked) selectedCerts.add(c.code);
+          });
+        }
+
+        renderCertCards(currentCertsList);
+        updateStickyBar();
+      }
+
+      function renderCertCards(certs) {
+        certCardsGrid.innerHTML = '';
+
+        certs.forEach(cert => {
+          const isSelected = selectedCerts.has(cert.code);
+          const card = document.createElement('div');
+          card.className = `cert-card ${isSelected ? 'selected' : ''}`;
+          card.setAttribute('data-code', cert.code);
+          card.setAttribute('role', 'checkbox');
+          card.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+          card.tabIndex = 0;
+
+          card.innerHTML = `
+            <div class="cert-card-top">
+              <div class="cert-card-code-wrap">
+                <div class="cert-card-check-icon">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <span class="cert-card-code">ISO ${cert.code}</span>
+              </div>
+              <span class="cert-badge ${cert.badgeClass}">[ ${cert.badge} ]</span>
+            </div>
+            <h3 class="cert-card-title">${cert.nameKo}</h3>
+            <div class="cert-card-en">${cert.nameEn}</div>
+            
+            <div class="cert-summary-box">${cert.summary}</div>
+            
+            <div class="cert-chips-wrap">
+              ${cert.industries.map(ind => `<span class="cert-chip">${ind}</span>`).join('')}
+            </div>
+
+            <div class="cert-reason-box">
+              <strong>추천 이유:</strong> ${cert.reason}
+            </div>
+
+            <button type="button" class="cert-select-btn">${isSelected ? '선택됨' : '선택하기'}</button>
+          `;
+
+          // Click toggle handler
+          card.addEventListener('click', (e) => {
+            toggleCert(cert.code);
+          });
+
+          // Keyboard Accessibility
+          card.addEventListener('keydown', (e) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+              e.preventDefault();
+              toggleCert(cert.code);
+            }
+          });
+
+          certCardsGrid.appendChild(card);
+        });
+      }
+
+      function toggleCert(code) {
+        if (selectedCerts.has(code)) {
+          selectedCerts.delete(code);
+        } else {
+          selectedCerts.add(code);
+        }
+        renderCertCards(currentCertsList);
+        updateStickyBar();
+      }
+
+      function filterCerts() {
+        const q = certSearchInput.value.toLowerCase().trim();
+        const cards = certCardsGrid.querySelectorAll('.cert-card');
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = text.includes(q) ? 'flex' : 'none';
+        });
+      }
+
+      function updateStickyBar() {
+        const count = selectedCerts.size;
+        stickyCount.textContent = count;
+
+        if (count > 0) {
+          stickyBar.classList.add('visible');
+          const names = Array.from(selectedCerts).map(c => `ISO ${c}`).join(', ');
+          stickyChips.textContent = `· ${names}`;
+        } else {
+          stickyBar.classList.remove('visible');
+          stickyChips.textContent = '선택된 인증 없음';
+        }
+      }
+
+      // Goto Quote with query params & sessionStorage
+      btnGotoQuote.addEventListener('click', () => {
+        if (selectedCerts.size === 0) return;
+
+        const industry = industrySelect.value;
+        const orgType = orgTypeSelect.value;
+        const traits = getSelectedTraits();
+        const certsArr = Array.from(selectedCerts);
+
+        const params = new URLSearchParams({
+          certs: certsArr.join(','),
+          industry: industry,
+          orgType: orgType,
+          traits: traits.join(','),
+          from: 'recommend'
+        });
+
+        // Save session state
+        const state = {
+          certs: certsArr,
+          industry,
+          orgType,
+          traits,
+          timestamp: Date.now()
+        };
+        sessionStorage.setItem('qn_recommend', JSON.stringify(state));
+
+        window.location.href = `/quote?${params.toString()}`;
+      });
+
+      // Restore if returning
+      const saved = sessionStorage.getItem('qn_recommend');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed.industry) {
+            industrySelect.value = parsed.industry;
+            orgTypeSelect.value = parsed.orgType || '민간기업 (중소·중견)';
+            if (parsed.traits) {
+              parsed.traits.forEach(t => {
+                const cb = document.querySelector(`.trait-cb[value="${t}"]`);
+                if (cb) cb.checked = true;
+              });
+            }
+            if (parsed.certs && parsed.certs.length > 0) {
+              selectedCerts = new Set(parsed.certs);
+            }
+            renderResults();
+          }
+        } catch (e) {}
+      }
+    });
+  </script>
+</body>
+</html>
