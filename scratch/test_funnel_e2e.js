@@ -41,6 +41,7 @@ assertCheck('Invalid BizRegNo rejected', validateBizRegNo('111-11-11111') === fa
 
 // 3. File existence checks
 const rootDir = path.join(__dirname, '..');
+assertCheck('services.html exists', fs.existsSync(path.join(rootDir, 'services.html')));
 assertCheck('recommend.html exists', fs.existsSync(path.join(rootDir, 'recommend.html')));
 assertCheck('quote.html exists', fs.existsSync(path.join(rootDir, 'quote.html')));
 assertCheck('quote/complete.html exists', fs.existsSync(path.join(rootDir, 'quote', 'complete.html')));
@@ -50,12 +51,14 @@ assertCheck('cert-funnel.js exists', fs.existsSync(path.join(rootDir, 'assets', 
 
 // 4. index.html GNB & Carousel check
 const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf-8');
+assertCheck('index.html contains /services GNB link', indexHtml.includes('/services'));
 assertCheck('index.html contains /quote GNB link', indexHtml.includes('/quote'));
 assertCheck('index.html contains /recommend CTA', indexHtml.includes('/recommend'));
 assertCheck('index.html contains /diagnosis CTA', indexHtml.includes('/diagnosis'));
 
 // 5. vercel.json configuration check
 const vercelJson = JSON.parse(fs.readFileSync(path.join(rootDir, 'vercel.json'), 'utf-8'));
+assertCheck('vercel.json has /services rewrite', vercelJson.rewrites.some(r => r.source === '/services'));
 assertCheck('vercel.json has /fieldproof -> /quote redirect', vercelJson.redirects.some(r => r.source === '/fieldproof' && r.destination === '/quote'));
 assertCheck('vercel.json has /recommend rewrite', vercelJson.rewrites.some(r => r.source === '/recommend'));
 assertCheck('vercel.json has /quote rewrite', vercelJson.rewrites.some(r => r.source === '/quote'));
@@ -64,6 +67,7 @@ assertCheck('vercel.json has /diagnosis/start rewrite', vercelJson.rewrites.some
 
 // 6. sitemap.xml check
 const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf-8');
+assertCheck('sitemap.xml contains /services', sitemap.includes('https://quanternity.kr/services'));
 assertCheck('sitemap.xml contains /recommend', sitemap.includes('https://quanternity.kr/recommend'));
 assertCheck('sitemap.xml contains /quote', sitemap.includes('https://quanternity.kr/quote'));
 assertCheck('sitemap.xml contains /diagnosis', sitemap.includes('https://quanternity.kr/diagnosis'));

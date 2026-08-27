@@ -12,6 +12,10 @@
   ],
   "rewrites": [
     {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+    {
       "source": "/why-certification",
       "destination": "/why-certification.html"
     },
