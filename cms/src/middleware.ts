@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const PUBLIC_PATHS = ['/login', '/auth/callback', '/auth/error', '/api/leads', '/api/indexnow'];
+const PUBLIC_PATHS = ['/login', '/auth/callback', '/auth/error'];
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -15,8 +15,8 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
-  // Bypass static files or Next.js internals
-  if (pathname.startsWith('/_next') || pathname.includes('.')) {
+  // Bypass static files, Next.js internals, or public API routes
+  if (pathname.startsWith('/_next') || pathname.includes('.') || pathname.startsWith('/api/')) {
     return response;
   }
 

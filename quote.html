@@ -648,13 +648,22 @@
         }
 
         try {
-          await fetch('/api/quote-requests', {
+          await fetch('https://cms.quanternity.kr/api/quote-requests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(quotePayload)
           });
         } catch (err) {
-          console.error('Quote submission error:', err);
+          console.warn('Live CMS quote submission attempt failed, trying fallback:', err);
+          try {
+            await fetch('/api/quote-requests', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(quotePayload)
+            });
+          } catch (e2) {
+            console.error('Local fallback failed too:', e2);
+          }
         }
 
         window.location.href = '/quote/complete';
