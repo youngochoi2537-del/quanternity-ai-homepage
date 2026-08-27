@@ -647,23 +647,48 @@
           console.warn('LocalStorage save failed:', storageErr);
         }
 
+        const formattedTargetCerts = Array.from(selectedTargetCerts).map(c => `ISO ${c}`);
+        const sitesSummary = sites.map(s => `[${s.label}] ${s.address} ${s.addressDetail || ''}`).join(' / ');
+        const leadPayload = {
+          company_name: quotePayload.company.companyName,
+          industry: quotePayload.company.industry,
+          contact_email: quotePayload.contact.email,
+          contact_phone: quotePayload.contact.phone,
+          current_certifications: quotePayload.quoteInfo.existingCerts.length > 0 ? quotePayload.quoteInfo.existingCerts : ['없음'],
+          target_standards: formattedTargetCerts,
+          inquiry_type: `[견적요청] ${formattedTargetCerts.join(', ')}`,
+          referral_source: `[견적요청] 대표:${quotePayload.company.ceoName} | 사업자:${quotePayload.company.bizRegNo} | 임직원:${quotePayload.company.employeeCount}명 | 유입:${quotePayload.contact.referralSource || '직접'}`,
+          diagnosis_step1: `사업자번호: ${quotePayload.company.bizRegNo} · 대표자: ${quotePayload.company.ceoName}`,
+          diagnosis_step2: `주요제품: ${quotePayload.company.mainProduct || '미입력'} · 임직원: ${quotePayload.company.employeeCount}명`,
+          diagnosis_step3: `사업장: ${sitesSummary || '본사'} · 메모: ${quotePayload.contact.note || '없음'}`,
+          diagnosis_score: `희망규격: ${formattedTargetCerts.join(', ')} · 목표시기: ${quotePayload.quoteInfo.targetDate}`
+        };
+
         try {
-          await fetch('https://cms.quanternity.kr/api/quote-requests', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(quotePayload)
-          });
-        } catch (err) {
-          console.warn('Live CMS quote submission attempt failed, trying fallback:', err);
-          try {
-            await fetch('/api/quote-requests', {
+          await Promise.allSettled([
+            fetch('https://cms.quanternity.kr/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(leadPayload)
+            }),
+            fetch('https://cms.quanternity.kr/api/quote-requests', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(quotePayload)
-            });
-          } catch (e2) {
-            console.error('Local fallback failed too:', e2);
-          }
+            }),
+            fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(leadPayload)
+            }),
+            fetch('/api/quote-requests', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(quotePayload)
+            })
+          ]);
+        } catch (err) {
+          console.warn('Quote submission multi-sync notice:', err);
         }
 
         window.location.href = '/quote/complete';
