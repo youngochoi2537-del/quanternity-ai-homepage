@@ -345,14 +345,14 @@ export default function LeadsViewerPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-[#0B1220] tracking-tight flex items-center gap-2">
-            <span>리드·진단 응답 데이터</span>
+            <span>리드·진단 응답 및 가이드북 발송 데이터</span>
             <span className="px-2 py-0.5 rounded bg-gray-200 text-gray-800 text-[10px] font-mono font-bold inline-flex items-center gap-1">
               <Lock className="w-3 h-3 text-gray-600" />
               READ-ONLY
             </span>
           </h1>
           <p className="text-xs text-gray-500 font-mono mt-0.5">
-            상담 신청, 견적 요청 및 3분 자가진단 제출 데이터 조회 (KST 한국시간 기준 / 테스트 데이터 자동 제외)
+            상담 신청, 견적 요청, 3분 자가진단 및 가이드북 다운로드 이메일 발송 데이터 조회 (KST 한국시간 기준)
           </p>
         </div>
 
@@ -376,10 +376,30 @@ export default function LeadsViewerPage() {
         </p>
       </div>
 
+      {/* Guidebook Materials & Download Log Quick Status Banner */}
+      <div className="bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div className="space-y-1">
+          <div className="font-bold text-emerald-950 text-xs flex items-center gap-2">
+            <span>📚 ISO 가이드북 3종 실시간 배포 관리</span>
+            <span className="bg-emerald-200/80 text-emerald-900 px-2 py-0.5 rounded text-[10px] font-mono font-bold">LIVE 배포 중</span>
+          </div>
+          <p className="text-xs text-emerald-800 font-mono">
+            사전진단 화면 신청 시 즉시 다운로드 제공 및 이메일 발송 이력 실시간 기록 중 (1. 실무 가이드북 / 2. 인증 로드맵 / 3. AI기본법 체크리스트)
+          </p>
+        </div>
+        <a
+          href="/guidebooks"
+          className="px-3.5 py-1.5 bg-[#10B981] hover:bg-emerald-600 text-black font-bold text-xs rounded-lg inline-flex items-center gap-1.5 shadow-2xs transition-colors whitespace-nowrap"
+        >
+          <span>자료 등록 & 상세 발송 이력 관리</span>
+          <span>→</span>
+        </a>
+      </div>
+
       {/* Leads Table (Read-Only) */}
       <div className="bg-white border border-[#E5E3DA] rounded-xl shadow-sm overflow-hidden">
         <div className="p-3.5 bg-[#F9F8F5] border-b border-[#E5E3DA] flex items-center justify-between font-mono text-xs text-gray-600">
-          <span>접수된 리드 목록 ({leads.length}건)</span>
+          <span>접수된 리드 및 가이드북 신청 목록 ({leads.length}건)</span>
           <span>한국시간(KST UTC+9) 표기 적용 / 테스트 항목 삭제 완료</span>
         </div>
 
