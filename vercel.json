@@ -46,6 +46,14 @@
     {
       "source": "/insights/:slug",
       "destination": "/insights/post.html"
+    },
+    {
+      "source": "/guidebooks",
+      "destination": "/guidebooks.html"
+    },
+    {
+      "source": "/cms/guidebooks",
+      "destination": "/guidebooks.html"
     }
   ]
 }

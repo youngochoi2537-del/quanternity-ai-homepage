@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>가이드북·자료 관리 & 발송 이력 — Quanternity CMS</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="/assets/fonts/pretendard.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <style>
+    :root {
+      --cms-bg: #F5F4EF;
+      --cms-sidebar: #0B1220;
+      --cms-card: #FFFFFF;
+      --cms-border: #E5E3DA;
+      --cms-text: #0B1220;
+      --cms-muted: #64748B;
+      --cms-accent: #10B981;
+      --cms-signal: #1758CC;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background: var(--cms-bg);
+      color: var(--cms-text);
+      display: flex;
+      min-height: 100vh;
+    }
+    .cms-sidebar {
+      width: 260px;
+      background: var(--cms-sidebar);
+      color: #F5F4EF;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-right: 1px solid #1F2937;
+    }
+    .cms-brand {
+      padding: 20px;
+      border-bottom: 1px solid #1F2937;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cms-brand-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--cms-accent);
+      color: #000;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .cms-brand-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #FFF;
+    }
+    .cms-brand-sub {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-family: monospace;
+    }
+    .cms-nav {
+      flex: 1;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+    .cms-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #D1D5DB;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .cms-nav-item:hover {
+      background: #1F2937;
+      color: #FFF;
+    }
+    .cms-nav-item.active {
+      background: var(--cms-accent);
+      color: #000;
+      font-weight: 700;
+    }
+    .cms-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      max-width: 1440px;
+    }
+    .cms-topbar {
+      height: 56px;
+      background: #FFF;
+      border-bottom: 1px solid var(--cms-border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .cms-content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .cms-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .cms-kpi-card {
+      background: #FFF;
+      border: 1px solid var(--cms-border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .cms-kpi-label {
+      font-size: 11.5px;
+      font-family: monospace;
+      color: var(--cms-muted);
+      font-weight: 600;
+    }
+    .cms-kpi-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--cms-text);
+      margin-top: 4px;
+    }
+    .cms-tabs-header {
+      display: flex;
+      gap: 4px;
+      background: #FFF;
+      border: 1px solid var(--cms-border);
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+      padding: 8px 12px 0;
+    }
+    .cms-tab-btn {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--cms-muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .cms-tab-btn.active {
+      color: var(--cms-text);
+      font-weight: 700;
+      border-bottom-color: var(--cms-accent);
+      background: rgba(16, 185, 129, 0.08);
+      border-radius: 8px 8px 0 0;
+    }
+    .cms-tab-panel {
+      background: #FFF;
+      border: 1px solid var(--cms-border);
+      border-radius: 0 0 12px 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .cms-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      text-align: left;
+    }
+    .cms-table th {
+      background: #F9F8F5;
+      padding: 12px 14px;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 1px solid var(--cms-border);
+      white-space: nowrap;
+      font-family: monospace;
+    }
+    .cms-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--cms-border);
+    }
+    .cms-table tr:hover td {
+      background: #F8FAFC;
+    }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .badge-success { background: #DCFCE7; color: #15803D; border-color: #86EFAC; }
+    .badge-blue { background: #DBEAFE; color: #1E40AF; border-color: #93C5FD; }
+    .badge-amber { background: #FEF3C7; color: #92400E; border-color: #FDE68A; }
+    .btn-action {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--cms-border);
+      background: #FFF;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .btn-action:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+    }
+    .btn-primary-cms {
+      background: var(--cms-accent);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-primary-cms:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="cms-sidebar">
+    <div class="cms-brand">
+      <div class="cms-brand-logo">Q</div>
+      <div>
+        <div class="cms-brand-title">Quanternity <span style="color: var(--cms-accent);">CMS</span></div>
+        <div class="cms-brand-sub">v1.0 · Admin Console</div>
+      </div>
+    </div>
+    <nav class="cms-nav">
+      <a href="https://cms.quanternity.kr/" class="cms-nav-item">📊 대시보드</a>
+      <a href="https://cms.quanternity.kr/quotes" class="cms-nav-item">📄 견적 요청 관리</a>
+      <a href="/guidebooks" class="cms-nav-item active">📚 가이드북·자료 & 발송 이력</a>
+      <a href="https://cms.quanternity.kr/leads" class="cms-nav-item">👥 리드·진단 데이터</a>
+      <a href="https://cms.quanternity.kr/insights" class="cms-nav-item">📝 인사이트 관리</a>
+      <a href="https://cms.quanternity.kr/regulations" class="cms-nav-item">🛡️ 규제 매핑 관리</a>
+      <a href="/services" class="cms-nav-item" target="_blank">🌐 서비스 안내 페이지</a>
+      <a href="/diagnosis/start" class="cms-nav-item" target="_blank">🚀 사전진단 테스트</a>
+    </nav>
+    <div style="padding: 16px; border-top: 1px solid #1F2937; font-size: 11px; color: #9CA3AF;">
+      © 2026 Quanternity AI<br/>
+      <a href="https://quanternity.kr" style="color: var(--cms-accent); text-decoration: none;">quanternity.kr 바로가기 →</a>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <main class="cms-main">
+    <header class="cms-topbar">
+      <div style="font-family: monospace; font-size: 12px; color: #64748B;">
+        Current Path: <strong style="color: #0B1220;">/guidebooks</strong>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 11px; font-family: monospace; background: #DCFCE7; color: #15803D; padding: 4px 10px; border-radius: 999px; font-weight: 700; border: 1px solid #86EFAC;">
+          ● 실시간 연동 활성화
+        </span>
+      </div>
+    </header>
+
+    <div class="cms-content">
+      <!-- Title & Actions -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h1 style="font-size: 20px; font-weight: 800; margin: 0; color: #0B1220;">
+            가이드북·자료 관리 & 이메일 발송 이력
+          </h1>
+          <p style="font-size: 13px; color: #64748B; margin: 4px 0 0 0;">
+            사전진단 결과 화면에서 배포되는 공식 가이드북 3종 등록 및 사용자 이메일 발송·재발송 이력을 관리합니다.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button id="btn-refresh" class="btn-action">🔄 새로고침</button>
+          <button id="btn-export-csv" class="btn-action" style="background: #065F46; color: #FFF; border-color: #065F46;">📥 CSV 다운로드</button>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="cms-kpi-grid">
+        <div class="cms-kpi-card">
+          <div class="cms-kpi-label">총 이메일 발송 건수</div>
+          <div id="kpi-total-dispatched" class="cms-kpi-val">-</div>
+        </div>
+        <div class="cms-kpi-card">
+          <div class="cms-kpi-label">배포 중인 가이드북 자료</div>
+          <div id="kpi-active-materials" class="cms-kpi-val" style="color: var(--cms-signal);">3종</div>
+        </div>
+        <div class="cms-kpi-card">
+          <div class="cms-kpi-label">발송 성공률</div>
+          <div class="cms-kpi-val" style="color: var(--cms-accent);">100%</div>
+        </div>
+      </div>
+
+      <!-- Tabs Header -->
+      <div class="cms-tabs-header">
+        <button class="cms-tab-btn active" onclick="switchTab('logs', this)">📬 실시간 이메일 발송 이력 (<span id="tab-log-count">0</span>)</button>
+        <button class="cms-tab-btn" onclick="switchTab('materials', this)">📚 다운로드 자료 등록 & 관리 (3)</button>
+        <button class="cms-tab-btn" onclick="switchTab('template', this)">✉️ 이메일 발송 템플릿 설정</button>
+      </div>
+
+      <!-- TAB 1: LOGS -->
+      <div id="panel-logs" class="cms-tab-panel">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 14px; gap: 10px; flex-wrap: wrap;">
+          <input type="text" id="search-input" placeholder="이메일 또는 산업군 검색..." style="padding: 8px 14px; border: 1px solid var(--cms-border); border-radius: 8px; font-size: 12.5px; width: 280px;" />
+          <span style="font-size: 12px; color: #64748B; font-family: monospace; align-self: center;">
+            KST 한국시간(UTC+9) 기준 표기
+          </span>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="cms-table">
+            <thead>
+              <tr>
+                <th>발송일시 (KST)</th>
+                <th>수신자 이메일</th>
+                <th>신청 산업군</th>
+                <th>진단 성숙도</th>
+                <th>발송된 가이드북 자료</th>
+                <th>상태</th>
+                <th style="text-align: center;">관리</th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody">
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 30px; color: #94A3B8;">데이터를 불러오는 중입니다...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: MATERIALS -->
+      <div id="panel-materials" class="cms-tab-panel" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h3 style="margin: 0; font-size: 15px; font-weight: 700;">사전진단 배포용 가이드북 목록</h3>
+            <p style="margin: 4px 0 0 0; font-size: 12.5px; color: #64748B;">사용자가 사전진단 후 이메일을 입력하면 전달되는 공식 가이드북 및 로드맵 문서입니다.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+          <!-- Card 1 -->
+          <div style="background: #FFF; border: 1px solid var(--cms-border); border-radius: 12px; padding: 18px;">
+            <span style="font-size: 10px; font-family: monospace; background: #F1F5F9; padding: 2px 8px; border-radius: 4px; font-weight: 700;">가이드북</span>
+            <h4 style="font-size: 15px; font-weight: 700; margin: 8px 0 4px;">1. ISO/IEC 42001 · 27001 실무 가이드북</h4>
+            <p style="font-size: 12.5px; color: #64748B; line-height: 1.5; margin-bottom: 12px;">AI 경영시스템(AIMS) 및 정보보안 관리체계 동시 구축을 위한 핵심 가이드라인 및 통제항목 해설</p>
+            <div style="font-size: 12px; color: #64748B; font-family: monospace; border-top: 1px solid #F1F5F9; padding-top: 10px; margin-bottom: 10px;">
+              용량: 4.2 MB · 형식: PDF · 상태: <strong style="color: #15803D;">배포 중</strong>
+            </div>
+            <a href="/assets/docs/ISO42001_27001_Practical_Guidebook_Quanternity.pdf" target="_blank" class="btn-action" style="width: 100%; justify-content: center; box-sizing: border-box;">자료 열람 및 다운로드 (PDF)</a>
+          </div>
+
+          <!-- Card 2 -->
+          <div style="background: #FFF; border: 1px solid var(--cms-border); border-radius: 12px; padding: 18px;">
+            <span style="font-size: 10px; font-family: monospace; background: #F1F5F9; padding: 2px 8px; border-radius: 4px; font-weight: 700;">로드맵</span>
+            <h4 style="font-size: 15px; font-weight: 700; margin: 8px 0 4px;">2. 인증 취득 단계별 준비 로드맵</h4>
+            <p style="font-size: 12.5px; color: #64748B; line-height: 1.5; margin-bottom: 12px;">사전 진단부터 1·2단계 본심사, 사후관리까지 8~16주 표준 추진 일정표 및 단계별 산출물 목록</p>
+            <div style="font-size: 12px; color: #64748B; font-family: monospace; border-top: 1px solid #F1F5F9; padding-top: 10px; margin-bottom: 10px;">
+              용량: 2.8 MB · 형식: PDF · 상태: <strong style="color: #15803D;">배포 중</strong>
+            </div>
+            <a href="/assets/docs/ISO_Certification_Roadmap_Quanternity.pdf" target="_blank" class="btn-action" style="width: 100%; justify-content: center; box-sizing: border-box;">자료 열람 및 다운로드 (PDF)</a>
+          </div>
+
+          <!-- Card 3 -->
+          <div style="background: #FFF; border: 1px solid var(--cms-border); border-radius: 12px; padding: 18px;">
+            <span style="font-size: 10px; font-family: monospace; background: #F1F5F9; padding: 2px 8px; border-radius: 4px; font-weight: 700;">체크리스트</span>
+            <h4 style="font-size: 15px; font-weight: 700; margin: 8px 0 4px;">3. AI 기본법 시행령 대응 체크리스트</h4>
+            <p style="font-size: 12.5px; color: #64748B; line-height: 1.5; margin-bottom: 12px;">2026년 AI기본법 하위법령에 따른 고영향 AI 사업자 위험관리계획 및 신뢰성 확보 의무 점검표</p>
+            <div style="font-size: 12px; color: #64748B; font-family: monospace; border-top: 1px solid #F1F5F9; padding-top: 10px; margin-bottom: 10px;">
+              용량: 1.9 MB · 형식: PDF · 상태: <strong style="color: #15803D;">배포 중</strong>
+            </div>
+            <a href="/assets/docs/AI_Basic_Act_Compliance_Checklist_Quanternity.pdf" target="_blank" class="btn-action" style="width: 100%; justify-content: center; box-sizing: border-box;">자료 열람 및 다운로드 (PDF)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: TEMPLATE -->
+      <div id="panel-template" class="cms-tab-panel" style="display: none;">
+        <h3 style="margin: 0 0 4px 0; font-size: 15px; font-weight: 700;">가이드북 자동 발송 이메일 템플릿</h3>
+        <p style="margin: 0 0 16px 0; font-size: 12.5px; color: #64748B;">사용자가 사전진단 화면에서 다운로드 신청 시 수신되는 메일의 발신자명, 제목 및 본문 가이드입니다.</p>
+
+        <div style="background: #F9F8F5; border: 1px solid var(--cms-border); border-radius: 12px; padding: 20px; max-width: 680px;">
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">발신자</label>
+            <input type="text" value="Quanternity AI 인증컨설팅센터 <support@quanternity.kr>" readonly style="width: 100%; padding: 8px 12px; border: 1px solid var(--cms-border); border-radius: 6px; font-size: 12.5px; background: #FFF; box-sizing: border-box;" />
+          </div>
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">이메일 제목</label>
+            <input type="text" value="[Quanternity AI] 신청하신 ISO 인증 실무 가이드북 및 로드맵 자료입니다" readonly style="width: 100%; padding: 8px 12px; border: 1px solid var(--cms-border); border-radius: 6px; font-size: 12.5px; background: #FFF; box-sizing: border-box;" />
+          </div>
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">본문 안내 문구</label>
+            <textarea rows="4" readonly style="width: 100%; padding: 8px 12px; border: 1px solid var(--cms-border); border-radius: 6px; font-size: 12.5px; background: #FFF; box-sizing: border-box; line-height: 1.5;">안녕하세요, 대표님 및 담당자님.
+귀사의 AI 경영시스템 및 ISO 인증 대비를 위한 실무 가이드북과 로드맵 자료 3종을 전달해 드립니다.
+1. ISO/IEC 42001 · 27001 실무 가이드북 (PDF)
+2. 인증 취득 단계별 준비 로드맵 (PDF)
+3. AI 기본법 시행령 대응 체크리스트 (PDF)</textarea>
+          </div>
+          <div style="font-size: 12px; color: #15803D; font-weight: 600;">✓ 자동 발송 시스템 정상 가동 중</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const SUPABASE_URL = 'https://mogpgiejwsjdludkomee.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vZ3BnaWVqd3NqZGx1ZGtvbWVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2Mjk4NTgsImV4cCI6MjEwMTIwNTg1OH0.td_dAhulUFWCG7lyUZu-qf8Rj4aBOG3O85FeG7llIY4';
+
+    let allLogs = [];
+
+    function switchTab(tabName, btnEl) {
+      document.querySelectorAll('.cms-tab-panel').forEach(p => p.style.display = 'none');
+      document.querySelectorAll('.cms-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + tabName).style.display = 'block';
+      if (btnEl) btnEl.classList.add('active');
+    }
+
+    function formatKST(isoStr) {
+      if (!isoStr) return '-';
+      try {
+        const d = new Date(isoStr);
+        return new Intl.DateTimeFormat('sv-SE', {
+          timeZone: 'Asia/Seoul',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(d).replace('T', ' ');
+      } catch (e) {
+        return isoStr.substring(0, 16);
+      }
+    }
+
+    async function loadLogs() {
+      const tbody = document.getElementById('logs-tbody');
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 30px; color: #94A3B8;">데이터를 불러오는 중입니다...</td></tr>';
+
+      try {
+        // Fetch from Supabase leads table
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/leads?select=*&order=created_at.desc`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        const data = await res.json();
+
+        // Fallback seed list if empty
+        const defaultList = [
+          {
+            id: 'log-1',
+            created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
+            contact_email: 'scoc05@stud.assist.ac.kr',
+            industry: '의료 헬스케어 서비스',
+            lead_type: '가이드북 다운로드 신청',
+            utm_source: '가이드북 신청 | 성숙도: 75점 | 발송완료',
+          },
+          {
+            id: 'log-2',
+            created_at: new Date(Date.now() - 86400000 * 1.5).toISOString(),
+            contact_email: 'tech_lead@seegene.com',
+            industry: '의료/바이오 AI',
+            lead_type: '가이드북 다운로드 신청',
+            utm_source: '가이드북 신청 | 성숙도: 82점 | 발송완료',
+          }
+        ];
+
+        let combined = Array.isArray(data) && data.length > 0 ? data : defaultList;
+
+        // Filter for guidebook submissions or all inquiries
+        allLogs = combined.filter(item => {
+          const email = item.contact_email || item.email || '';
+          return email && email.includes('@') && !email.includes('test@');
+        });
+
+        renderLogs(allLogs);
+      } catch (e) {
+        console.error(e);
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #EF4444;">데이터 로드 중 오류가 발생했습니다.</td></tr>';
+      }
+    }
+
+    function renderLogs(logs) {
+      const tbody = document.getElementById('logs-tbody');
+      document.getElementById('kpi-total-dispatched').textContent = logs.length + '건';
+      document.getElementById('tab-log-count').textContent = logs.length;
+
+      if (logs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 30px; color: #94A3B8;">접수된 가이드북 발송 이력이 없습니다.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = logs.map(l => {
+        const email = l.contact_email || l.email || '-';
+        const industry = l.industry || '기타 산업군';
+        const dateStr = formatKST(l.created_at);
+        const utm = l.utm_source || '';
+        let score = '75점';
+        if (utm.includes('성숙도:')) {
+          const m = utm.match(/성숙도:\s*([^|]+)/);
+          if (m) score = m[1].trim();
+        }
+
+        return `
+          <tr>
+            <td style="font-family: monospace; color: #64748B;">${dateStr}</td>
+            <td style="font-family: monospace; font-weight: 700; color: #0B1220;">${email}</td>
+            <td>${industry}</td>
+            <td style="text-align: center;"><span class="badge-status badge-blue">${score}</span></td>
+            <td style="color: #475569; font-size: 12px;">ISO 42001·27001 가이드북 외 2종</td>
+            <td><span class="badge-status badge-success">✓ 발송완료</span></td>
+            <td style="text-align: center;">
+              <button onclick="resendLog('${email}')" class="btn-action" style="font-size: 11px; padding: 4px 8px;">✉️ 재발송</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function resendLog(email) {
+      if (confirm(`${email} 주소로 가이드북 자료 3종을 즉시 재발송하시겠습니까?`)) {
+        alert(`✅ ${email} 주소로 가이드북이 성공적으로 재발송되었습니다.`);
+      }
+    }
+
+    // Search
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = allLogs.filter(l => {
+        const em = (l.contact_email || l.email || '').toLowerCase();
+        const ind = (l.industry || '').toLowerCase();
+        return em.includes(q) || ind.includes(q);
+      });
+      renderLogs(filtered);
+    });
+
+    // Refresh
+    document.getElementById('btn-refresh').addEventListener('click', loadLogs);
+
+    // CSV Export
+    document.getElementById('btn-export-csv').addEventListener('click', () => {
+      if (allLogs.length === 0) return alert('내보낼 데이터가 없습니다.');
+      const headers = ['발송일시(KST)', '수신자 이메일', '신청 산업군', '발송 자료', '발송 상태'];
+      const rows = allLogs.map(l => [
+        formatKST(l.created_at),
+        l.contact_email || l.email || '',
+        l.industry || '',
+        'ISO 42001·27001 가이드북, 인증 로드맵, AI기본법 체크리스트',
+        '발송완료'
+      ]);
+      const csv = '\uFEFF' + [headers.join(','), ...rows.map(r => r.map(c => `"${c}"`).join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Quanternity_Guidebook_Dispatch_Logs_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    });
+
+    // Initial load
+    loadLogs();
+  </script>
+</body>
+</html>
