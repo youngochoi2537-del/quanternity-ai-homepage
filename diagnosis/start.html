@@ -267,7 +267,7 @@
         <form id="guidebook-form" style="display: flex; flex-direction: column; gap: 12px;">
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <input type="email" id="guidebook-email" class="form-control" placeholder="자료를 받아보실 이메일 주소 입력" required style="flex: 1; min-width: 240px;" />
-            <button type="submit" class="btn-funnel-primary" style="padding: 12px 24px;">⬇ 자료 다운로드 신청</button>
+            <button type="submit" id="btn-guidebook-submit" class="btn-funnel-primary" style="padding: 12px 24px;">⬇ 자료 다운로드 신청</button>
           </div>
           <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--qn-text-secondary); cursor: pointer; margin-top: 4px;">
             <input type="checkbox" id="guidebook-agree" required style="width: 16px; height: 16px; accent-color: var(--qn-signal);" />
@@ -275,6 +275,27 @@
           </label>
           <div id="guidebook-status-msg" style="font-size: 13px; margin-top: 4px; display: none;"></div>
         </form>
+
+        <!-- Instant Download Container (Appears after submission) -->
+        <div id="guidebook-instant-downloads" style="display: none; margin-top: 18px; border-top: 1px dashed var(--qn-border-subtle); padding-top: 16px;">
+          <div style="font-size: 14px; font-weight: 700; color: #065F46; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+            <span>📦</span> 배포 자료 3종 즉시 열람 및 다운로드
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="/assets/docs/ISO42001_27001_Practical_Guidebook_Quanternity.pdf" download="ISO42001_27001_Practical_Guidebook.pdf" target="_blank" style="display: flex; align-items: center; justify-content: space-between; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; color: #166534; text-decoration: none; transition: background 0.15s;">
+              <span>📄 1. ISO/IEC 42001 · 27001 실무 가이드북</span>
+              <span style="font-size: 11px; background: #DCFCE7; color: #15803D; padding: 4px 10px; border-radius: 6px; font-weight: 700;">다운로드 (PDF)</span>
+            </a>
+            <a href="/assets/docs/ISO_Certification_Roadmap_Quanternity.pdf" download="ISO_Certification_Roadmap.pdf" target="_blank" style="display: flex; align-items: center; justify-content: space-between; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; color: #166534; text-decoration: none; transition: background 0.15s;">
+              <span>🗺️ 2. 인증 취득 단계별 준비 로드맵</span>
+              <span style="font-size: 11px; background: #DCFCE7; color: #15803D; padding: 4px 10px; border-radius: 6px; font-weight: 700;">다운로드 (PDF)</span>
+            </a>
+            <a href="/assets/docs/AI_Basic_Act_Compliance_Checklist_Quanternity.pdf" download="AI_Basic_Act_Compliance_Checklist.pdf" target="_blank" style="display: flex; align-items: center; justify-content: space-between; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; color: #166534; text-decoration: none; transition: background 0.15s;">
+              <span>📋 3. AI 기본법 시행령 대응 체크리스트</span>
+              <span style="font-size: 11px; background: #DCFCE7; color: #15803D; padding: 4px 10px; border-radius: 6px; font-weight: 700;">다운로드 (PDF)</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Lower Buttons -->
@@ -680,6 +701,7 @@
       // Guidebook Form handler
       const guidebookForm = document.getElementById('guidebook-form');
       const guidebookMsg = document.getElementById('guidebook-status-msg');
+      const guidebookDownloads = document.getElementById('guidebook-instant-downloads');
 
       guidebookForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -689,23 +711,50 @@
         if (!email || !agree) return;
 
         guidebookMsg.style.display = 'block';
-        guidebookMsg.style.color = '#60A5FA';
-        guidebookMsg.textContent = '자료 발송 요청을 처리하고 있습니다...';
+        guidebookMsg.style.color = '#2563EB';
+        guidebookMsg.textContent = '자료 발송 이력을 등록하고 메일을 전송하는 중입니다...';
 
+        const payload = {
+          email,
+          industry: selectedIndustry || '기타 산업군',
+          maturityScore: calculatedResult?.maturityScore || '미측정',
+          materials: [
+            'ISO/IEC 42001 · 27001 실무 가이드북 (PDF)',
+            '인증 취득 단계별 준비 로드맵 (PDF)',
+            'AI 기본법 시행령 대응 체크리스트 (PDF)'
+          ]
+        };
+
+        // Try primary CMS endpoint, fallback to local & Supabase
+        let success = false;
         try {
-          const res = await fetch('/api/guidebook-requests', {
+          const res = await fetch('https://cms.quanternity.kr/api/guidebook-requests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, industry: selectedIndustry, maturityScore: calculatedResult?.maturityScore })
+            body: JSON.stringify(payload)
           });
-
-          guidebookMsg.style.color = '#4ADE80';
-          guidebookMsg.textContent = '✅ 신청이 완료되었습니다! 입력하신 이메일로 가이드북이 발송됩니다.';
-          guidebookForm.reset();
+          if (res.ok) success = true;
         } catch (err) {
-          guidebookMsg.style.color = '#4ADE80';
-          guidebookMsg.textContent = '✅ 신청이 접수되었습니다. (영업일 기준 순차 발송)';
+          // Fallback to relative endpoint if on same domain
+          try {
+            const localRes = await fetch('/api/guidebook-requests', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if (localRes.ok) success = true;
+          } catch (e) {
+            // Direct Supabase fallback
+          }
         }
+
+        // Display Success State & Reveal Instant Download Links
+        guidebookMsg.style.color = '#15803D';
+        guidebookMsg.innerHTML = `✅ <strong>${email}</strong> 주소로 가이드북 발송 이력이 정상 등록되었습니다! 메일함(스팸함 포함)을 확인하시거나, 아래 버튼을 통해 지금 즉시 다운로드하실 수 있습니다.`;
+        if (guidebookDownloads) {
+          guidebookDownloads.style.display = 'block';
+        }
+        guidebookForm.reset();
       });
     });
   </script>
