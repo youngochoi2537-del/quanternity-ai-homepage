@@ -493,10 +493,23 @@
 
         let combined = Array.isArray(data) && data.length > 0 ? data : defaultList;
 
-        // Filter for guidebook submissions or all inquiries
+        // Merge local storage logs
+        try {
+          const stored = JSON.parse(localStorage.getItem('qn_guidebook_logs') || '[]');
+          if (Array.isArray(stored) && stored.length > 0) {
+            combined = [...stored, ...combined];
+          }
+        } catch (e) {}
+
+        // Filter and deduplicate for guidebook submissions or all inquiries
+        const seen = new Set();
         allLogs = combined.filter(item => {
           const email = item.contact_email || item.email || '';
-          return email && email.includes('@') && !email.includes('test@');
+          if (!email || !email.includes('@') || email.includes('test@')) return false;
+          const key = `${email}::${item.created_at?.slice(0, 16)}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
         });
 
         renderLogs(allLogs);

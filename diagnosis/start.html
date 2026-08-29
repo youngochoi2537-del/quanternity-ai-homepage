@@ -748,6 +748,43 @@
           }
         }
 
+        // Store in local storage for instant sync across pages
+        try {
+          const localLogs = JSON.parse(localStorage.getItem('qn_guidebook_logs') || '[]');
+          localLogs.unshift({
+            id: 'local-' + Date.now(),
+            created_at: new Date().toISOString(),
+            contact_email: email,
+            industry: selectedIndustry || '기타 산업군',
+            lead_type: '가이드북 다운로드 신청',
+            utm_source: `가이드북 신청 | 성숙도: ${calculatedResult?.maturityScore || '미측정'}점 | 발송완료`
+          });
+          localStorage.setItem('qn_guidebook_logs', JSON.stringify(localLogs.slice(0, 50)));
+        } catch (e) {}
+
+        // Direct Supabase insert
+        try {
+          const SUPABASE_URL = 'https://mogpgiejwsjdludkomee.supabase.co';
+          const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vZ3BnaWVqd3NqZGx1ZGtvbWVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2Mjk4NTgsImV4cCI6MjEwMTIwNTg1OH0.td_dAhulUFWCG7lyUZu-qf8Rj4aBOG3O85FeG7llIY4';
+          fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify([{
+              company_name: '가이드북 신청자',
+              industry: selectedIndustry || '기타 산업군',
+              contact_email: email,
+              lead_type: '가이드북 다운로드 신청',
+              utm_source: `가이드북 신청 | 성숙도: ${calculatedResult?.maturityScore || '미측정'}점 | 발송완료`,
+              created_at: new Date().toISOString()
+            }])
+          });
+        } catch (e) {}
+
         // Display Success State & Reveal Instant Download Links
         guidebookMsg.style.color = '#15803D';
         guidebookMsg.innerHTML = `✅ <strong>${email}</strong> 주소로 가이드북 발송 이력이 정상 등록되었습니다! 메일함(스팸함 포함)을 확인하시거나, 아래 버튼을 통해 지금 즉시 다운로드하실 수 있습니다.`;
