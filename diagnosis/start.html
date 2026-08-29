@@ -15,16 +15,16 @@
   <script src="/assets/js/cert-funnel.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
 </head>
-<body class="funnel-page funnel-page--dark" style="background: var(--qn-d-bg); min-height: 100vh;">
+<body data-page="diagnosis" style="min-height: 100vh; background: var(--qn-bg-subtle);">
 
   <!-- Header Navigation -->
-  <header class="header" style="background: rgba(15, 22, 38, 0.95); border-bottom: 1px solid var(--qn-d-border);">
+  <header class="header" style="background: #FFFFFF; border-bottom: 1px solid var(--qn-border-subtle);">
     <div class="header-inner">
       <a href="/" class="header-brand">
         <svg class="brand-logo-icon" width="34" height="34" viewBox="0 0 52 52" fill="none">
-          <rect x="2" y="2" width="20" height="20" rx="5" fill="#E8ECF5" />
-          <rect x="25" y="2" width="20" height="20" rx="5" fill="#E8ECF5" />
-          <rect x="2" y="25" width="20" height="20" rx="5" fill="#E8ECF5" />
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="25" y="2" width="20" height="20" rx="5" fill="currentColor" />
+          <rect x="2" y="25" width="20" height="20" rx="5" fill="currentColor" />
           <rect x="30" y="30" width="20" height="20" rx="5" fill="#10B981" />
         </svg>
         <div class="brand-text-group">
@@ -33,7 +33,7 @@
         </div>
       </a>
       <div class="header-right">
-        <span style="font-size: 13px; color: var(--qn-d-text-muted);" id="header-progress-text">Step 1 of 4</span>
+        <span style="font-size: 13px; font-weight: 600; color: var(--qn-text-secondary);" id="header-progress-text">Step 1 of 4</span>
       </div>
     </div>
   </header>
@@ -144,7 +144,7 @@
       </div>
 
       <div style="display: flex; justify-content: space-between; margin-top: 24px;">
-        <button type="button" class="btn-step-prev btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text); padding: 12px 28px;">
+        <button type="button" class="btn-step-prev">
           ← 이전 단계
         </button>
         <button type="button" id="btn-step2-next" class="btn-funnel-primary" style="padding: 14px 36px;">
@@ -169,10 +169,10 @@
       </div>
 
       <div style="display: flex; justify-content: space-between; margin-top: 24px;">
-        <button type="button" class="btn-step-prev btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text); padding: 12px 28px;">
+        <button type="button" class="btn-step-prev">
           ← 이전 단계
         </button>
-        <button type="button" id="btn-step3-submit" class="btn-funnel-primary" style="padding: 14px 36px; background: #22C55E;">
+        <button type="button" id="btn-step3-submit" class="btn-funnel-primary" style="padding: 14px 36px;">
           <span>결과 확인하기 →</span>
         </button>
       </div>
@@ -186,9 +186,9 @@
       <!-- 1. Maturity Gauge Card -->
       <div class="result-gauge-card">
         <span id="res-tier-badge" class="result-tier-badge tier-mid">부분 구축 · 보완 필요</span>
-        <div id="res-score-num" class="result-score-num" style="color: #FBBF24;">42<span style="font-size: 24px; font-weight: 500; color: var(--qn-d-text-muted);">/90</span></div>
+        <div id="res-score-num" class="result-score-num" style="color: #D97706;">42<span style="font-size: 24px; font-weight: 500; color: var(--qn-text-muted);">/90</span></div>
         <h2 id="res-headline" class="result-headline">📋 일부 체계가 갖춰진 단계입니다.</h2>
-        <p style="font-size: 14px; color: var(--qn-d-text-muted); margin: 0;">
+        <p style="font-size: 14px; color: var(--qn-text-secondary); margin: 0;">
           자가진단 결과에 따라 추정된 경영시스템 성숙도 지표입니다.
         </p>
       </div>
@@ -246,7 +246,7 @@
       <div class="funnel-card">
         <div class="funnel-card-header">
           <h3 class="funnel-card-title">🏆 추천 ISO 인증 목록</h3>
-          <p class="funnel-card-desc"><span id="res-industry-label" style="color: var(--qn-d-accent);"></span> 업종에 추천되는 핵심 인증 목록입니다. 필요한 인증을 체크하여 견적을 요청하세요.</p>
+          <p class="funnel-card-desc"><span id="res-industry-label" style="color: var(--qn-signal); font-weight: 700;"></span> 업종에 추천되는 핵심 인증 목록입니다. 필요한 인증을 체크하여 견적을 요청하세요.</p>
         </div>
         <div id="res-certs-grid" class="cert-cards-grid">
           <!-- Dynamic Cert Cards -->
@@ -254,12 +254,12 @@
       </div>
 
       <!-- 6. Guidebook Download Form (§7.4) -->
-      <div class="funnel-card" style="border: 1px solid rgba(59, 130, 246, 0.4); background: rgba(26, 35, 55, 0.7);">
+      <div class="funnel-card" style="border: 1px solid var(--qn-border-subtle); background: #FFFFFF;">
         <div class="funnel-card-header">
           <h3 class="funnel-card-title">📥 ISO 인증 가이드북 & 로드맵 무료 다운로드</h3>
           <p class="funnel-card-desc">이메일을 입력하시면 실무 가이드북과 정부지원 사업 활용 팁을 즉시 발송해드립니다.</p>
         </div>
-        <ul style="font-size: 13.5px; color: var(--qn-d-text); line-height: 1.8; margin-bottom: 20px; padding-left: 20px;">
+        <ul style="font-size: 13.5px; color: var(--qn-text-secondary); line-height: 1.8; margin-bottom: 20px; padding-left: 20px;">
           <li>ISO/IEC 42001 · 27001 실무 가이드북 (PDF)</li>
           <li>인증 취득 단계별 준비 로드맵 (PDF)</li>
           <li>AI 기본법 시행령 대응 체크리스트 (PDF)</li>
@@ -269,8 +269,8 @@
             <input type="email" id="guidebook-email" class="form-control" placeholder="자료를 받아보실 이메일 주소 입력" required style="flex: 1; min-width: 240px;" />
             <button type="submit" class="btn-funnel-primary" style="padding: 12px 24px;">⬇ 자료 다운로드 신청</button>
           </div>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--qn-d-text-muted); cursor: pointer;">
-            <input type="checkbox" id="guidebook-agree" required style="accent-color: var(--qn-d-accent);" />
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--qn-text-secondary); cursor: pointer; margin-top: 4px;">
+            <input type="checkbox" id="guidebook-agree" required style="width: 16px; height: 16px; accent-color: var(--qn-signal);" />
             개인정보 수집 및 가이드북 수신에 동의합니다.
           </label>
           <div id="guidebook-status-msg" style="font-size: 13px; margin-top: 4px; display: none;"></div>
@@ -282,13 +282,13 @@
         <button type="button" class="btn-goto-quote-from-diag btn-funnel-primary" style="font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 10px;">
           📄 선택한 인증 견적 받아보기
         </button>
-        <button type="button" id="btn-restart-diag" class="btn-outline" style="border-color: var(--qn-d-border); color: var(--qn-d-text-muted); padding: 12px 24px; border-radius: 8px;">
+        <button type="button" id="btn-restart-diag" class="btn-step-prev" style="padding: 12px 24px; border-radius: 8px; margin: 0 auto;">
           ↻ 처음부터 다시 진단하기
         </button>
       </div>
 
       <!-- Disclaimer (§7.4) -->
-      <div style="margin-top: 40px; font-size: 12.5px; color: var(--qn-d-text-muted); text-align: center; line-height: 1.6;">
+      <div style="margin-top: 40px; font-size: 12.5px; color: var(--qn-text-muted); text-align: center; line-height: 1.6;">
         <p>본 결과는 입력하신 정보를 기반으로 한 참고용 추정치이며, 실제 인증 준비기간과 심사 결과를 보장하지 않습니다.</p>
         <p>※ 콴터니티는 ISO 17021-1 규정에 따른 인증 심사 준비 컨설팅 파트너입니다.</p>
       </div>
@@ -417,10 +417,10 @@
       const item9 = document.createElement('label');
       item9.className = 'check-list-item sys-item-none';
       item9.style.marginTop = '16px';
-      item9.style.border = '1px dashed var(--qn-d-border)';
+      item9.style.border = '1px dashed var(--qn-border-strong)';
       item9.innerHTML = `
         <input type="checkbox" value="9" class="sys-item-cb" />
-        <span class="check-list-item-text" style="color: #F87171; font-weight: 600;">9. 구축된 시스템이 없다 (처음 준비하는 단계)</span>
+        <span class="check-list-item-text" style="color: #DC2626; font-weight: 600;">9. 구축된 시스템이 없다 (처음 준비하는 단계)</span>
       `;
       const cb9 = item9.querySelector('input');
       cb9.addEventListener('change', () => {
@@ -579,13 +579,13 @@
         purposeContainer.innerHTML = '';
         res.purposeAnalysis.forEach(p => {
           const card = document.createElement('div');
-          card.style.background = 'rgba(255, 255, 255, 0.04)';
-          card.style.border = '1px solid var(--qn-d-border)';
-          card.style.borderRadius = '8px';
-          card.style.padding = '12px 16px';
+          card.style.background = 'var(--qn-bg-subtle)';
+          card.style.border = '1px solid var(--qn-border-subtle)';
+          card.style.borderRadius = '10px';
+          card.style.padding = '14px 18px';
           card.innerHTML = `
-            <div style="font-size: 14px; font-weight: 700; color: var(--qn-d-text); margin-bottom: 4px;">📌 ${p.purpose}</div>
-            <div style="font-size: 13px; color: var(--qn-d-text-muted); line-height: 1.5;">${p.analysis}</div>
+            <div style="font-size: 14.5px; font-weight: 700; color: var(--qn-text-primary); margin-bottom: 4px;">📌 ${p.purpose}</div>
+            <div style="font-size: 13.5px; color: var(--qn-text-secondary); line-height: 1.55;">${p.analysis}</div>
           `;
           purposeContainer.appendChild(card);
         });
