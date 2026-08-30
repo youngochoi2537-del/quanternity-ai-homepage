@@ -322,15 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (verdictSavings) verdictSavings.textContent = savings;
   }
 
-  // Transfer Verdict to Inquiry Form
+  // Transfer Verdict to Recommendation Engine
   const bookConsultationBtn = document.getElementById("book-consultation-btn");
   if (bookConsultationBtn) {
-    bookConsultationBtn.addEventListener("click", () => {
+    bookConsultationBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       closeModal();
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      const industryParam = selections.industry ? `?industry=${encodeURIComponent(selections.industry)}` : '';
+      window.location.href = `/recommend${industryParam}`;
     });
   }
 
