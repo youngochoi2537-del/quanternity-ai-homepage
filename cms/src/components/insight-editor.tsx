@@ -321,6 +321,29 @@ export default function InsightEditor({ initialData, isNew = false }: InsightEdi
             <div className="prose prose-sm max-w-none text-[#2D3748] leading-relaxed">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{bodyMd || '_본문 내용을 입력하시면 실시간 미리보기가 렌더링됩니다._'}</ReactMarkdown>
             </div>
+
+            {/* Bottom Direct Pre-Diagnosis CTA in Preview */}
+            <div className="mt-8 bg-gradient-to-br from-[#0B1220] to-[#172554] text-white p-5 rounded-xl space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold bg-[#10B981]/20 text-[#10B981] px-2 py-0.5 rounded-full border border-[#10B981]/30">
+                  ● 3분 무료 자가진단
+                </span>
+                <span className="text-[10px] font-mono text-gray-400">ISO 42001 · 27001 · AI기본법 대응</span>
+              </div>
+              <h4 className="font-bold text-sm text-white">우리 기업에 꼭 필요한 AI 거버넌스 & ISO 인증은?</h4>
+              <p className="text-[11px] text-gray-300">
+                3분 간단 진단으로 현재 관리체계 수준을 점검하고, 추천 인증 규격과 실무 가이드북(PDF)을 무료로 받아보세요.
+              </p>
+              <div className="flex gap-2">
+                <span className="px-3 py-1.5 bg-[#10B981] text-black text-xs font-bold rounded-lg inline-flex items-center gap-1 shadow-sm">
+                  <span>사전진단(무료진단) 바로 시작하기</span>
+                  <span>➔</span>
+                </span>
+                <span className="px-3 py-1.5 border border-white/20 text-gray-200 text-xs font-medium rounded-lg">
+                  맞춤 견적 문의
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
